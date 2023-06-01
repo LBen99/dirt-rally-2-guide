@@ -16,7 +16,7 @@ function convertVehicle(vehicle) {
             <img src="images/vehicles/${ img }.jpg" alt="" class="vehicle-img">
             <h2 class="vehicle-manufacturer">${ vehicle.manufacturer }</h2>
             <h3 class="vehicle-model">${ vehicle.model }</h3>
-            <button class="btn-cart btn-primary">Details</button>
+            <button class="btn-details btn-primary">Details</button>
             <button id="${ id }-close" class="btn-red-xmark hide fa-solid fa-xmark"></button>
         </summary>
         <ul class="tab-select">

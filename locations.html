@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Marketplace</title>
+    <title>DR2 Locations</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/header-footer.css">
@@ -20,7 +20,7 @@
     <div id="wrapper">
         <header>
             <nav>
-                <a href="index.html"><img src="images/logo.png" alt="The Marketplace Logo"></a>
+                <a href="index.html"><img src="" alt="Dirt Rally 2 Guide logo"></a>
 
                 <button id="menu-icon" class="closed">
                     <span></span>
@@ -30,7 +30,7 @@
 
                 <ul id="web-menu">
                     <li>
-                        <a href="cart.html">Cart</a>
+                        <a href="vehicles.html">Vehicles</a>
                     </li>
                     <li>
                         <a href="about.html">About</a>
@@ -42,7 +42,7 @@
         <aside id="mobile-menu" class="closed">
             <ul id="mobile-links" class="closed">
                 <li>
-                    <a href="cart.html">Cart</a>
+                    <a href="vehicles.html">Vehicles</a>
                 </li>
                 <li>
                     <a href="about.html">About</a>
@@ -51,79 +51,29 @@
         </aside>
     
         <main>
-            <ul id="shop-btns">
+            <ul id="page-btns">
                 <li id="btn-search">
                     <button id="search-icon" class="fa-solid fa-magnifying-glass"></button>
                     <input type="search" name="search-input" id="search-input">
                 </li>
                 <li id="btn-filter">
                     <button id="filter-icon" class="show fa-solid fa-sliders"></button>
-                    <ul id="filter-list">
-                        <li>
-                            <button id="filter-price" class="filter">Price</button>
-                            <ul id="filter-price-dropdown" class="dropdown-content hide">
-                                <li class="price-slider">
-                                    <span class="range-selected"></span>
-                                </li>
-                                <li class="price-range">
-                                    <input type="range" class="min" min="0" max="10000" value="0" step="1">
-                                    <input type="range" class="max" min="0" max="10000" value="10000" step="1">
-                                </li>
-                                <li class="price-input">
-                                    <label for="min">$</label>
-                                    <input type="number" id="min" class="min" name="min" value="0">
-                                    <p>-</p>
-                                    <label for="max">$</label>
-                                    <input type="number" id="max" class="max" name="max" value="10000">
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <button id="filter-category" class="filter">Category</button>
-                            <ul id="filter-category-dropdown" class="dropdown-content hide">
-                                <li>
-                                    <p>Bedroom</p>
-                                </li>
-                                <li>
-                                    <p>Dining</p>
-                                </li>
-                                <li>
-                                    <p>Office</p>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <button id="filter-item" class="filter">Item</button>
-                            <ul id="filter-item-dropdown" class="dropdown-content hide">
-                                <li>
-                                    <p>Chairs</p>
-                                </li>
-                                <li>
-                                    <p>Tables</p>
-                                </li>
-                                <li>
-                                    <p>Beds</p>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <button id="filter-colour" class="filter">Colour</button>
-                            <ul id="filter-colour-dropdown" class="dropdown-content hide">
-                                <li>
-                                    <p>Black</p>
-                                    <span class="filter-colour-icon black"></span>
-                                </li>
-                                <li>
-                                    <p>Grey</p>
-                                    <span class="filter-colour-icon grey"></span>
-                                </li>
-                                <li>
-                                    <p>White</p>
-                                    <span class="filter-colour-icon white"></span>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+                    <form action="locations.html" method="get">
+                        <ul id="filter-list">
+                            <li>
+                                <a name="event" id="event" class="filter">Event</a>
+                                <aside id="event-dropdown" class="dropdown hide"></aside>
+                            </li>
+                            <li>
+                                <a name="country" id="country" class="filter">Country</a>
+                                <aside id="country-dropdown" class="dropdown hide"></aside>
+                            </li>
+                            <li>
+                                <a name="surface" id="surface" class="filter">Surface</a>
+                                <aside id="surface-dropdown" class="dropdown hide"></aside>
+                            </li>
+                        </ul>
+                    </form>
                     <ul id="filter-open-icons">
                         <li>
                             <button id="filter-confirm" class="fa-solid fa-check"></button>
@@ -138,75 +88,6 @@
                 </li>
             </ul>
 
-            <aside id="mobile-filter-menu">
-                <ul id="mobile-filter-list">
-                    <li>
-                        <button id="mobile-filter-price" class="filter mobile-filter">Price</button>
-                        <ul id="mobile-filter-price-dropdown" class="dropdown-content mobile-dropdown-content hide">
-                            <li class="price-slider">
-                                <span class="range-selected"></span>
-                            </li>
-                            <li class="price-range">
-                                <input type="range" class="min" min="0" max="10000" value="0" step="1">
-                                <input type="range" class="max" min="0" max="10000" value="10000" step="1">
-                            </li>
-                            <li class="price-input">
-                                <label for="min">$</label>
-                                <input type="number" id="mobile-min" class="min" name="min" value="0">
-                                <p>-</p>
-                                <label for="max">$</label>
-                                <input type="number" id="mobile-max" class="max" name="max" value="10000">
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <button id="mobile-filter-category" class="filter mobile-filter">Category</button>
-                        <ul id="mobile-filter-category-dropdown" class="dropdown-content mobile-dropdown-content hide">
-                            <li>
-                                <p>Bedroom</p>
-                            </li>
-                            <li>
-                                <p>Dining</p>
-                            </li>
-                            <li>
-                                <p>Office</p>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <button id="mobile-filter-item" class="filter mobile-filter">Item</button>
-                        <ul id="mobile-filter-item-dropdown" class="dropdown-content mobile-dropdown-content hide">
-                            <li>
-                                <p>Chairs</p>
-                            </li>
-                            <li>
-                                <p>Tables</p>
-                            </li>
-                            <li>
-                                <p>Beds</p>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <button id="mobile-filter-colour" class="filter mobile-filter">Colour</button>
-                        <ul id="mobile-filter-colour-dropdown" class="dropdown-content mobile-dropdown-content hide">
-                            <li>
-                                <p>Black</p>
-                                <span class="filter-colour-icon black"></span>
-                            </li>
-                            <li>
-                                <p>Grey</p>
-                                <span class="filter-colour-icon grey"></span>
-                            </li>
-                            <li>
-                                <p>White</p>
-                                <span class="filter-colour-icon white"></span>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </aside>
-
             <section id="locationContainer"></section>
         </main>
     
@@ -218,7 +99,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="mailto:themarketplace@market.com">
+                    <a href="mailto:dr2g@dr2g.com">
                         <i class="fa-solid fa-envelope"></i>
                     </a>
                 </li>
@@ -226,15 +107,6 @@
                     <a href="https://www.facebook.com">
                         <i class="fa-brands fa-facebook"></i>
                     </a>
-                </li>
-            </ul>
-
-            <ul id="visit">
-                <li>
-                    <h3>Visit Us</h3>
-                </li>
-                <li>
-                    <p>Mon - Fri | 9am - 7pm<br>Sat - Sun | 11am - 5pm<br><br><a href="">Store Locator</a></p>
                 </li>
             </ul>
         </footer>

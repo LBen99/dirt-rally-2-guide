@@ -15,15 +15,9 @@ const filterReset = document.getElementById("filter-reset");
 const filterCancel = document.getElementById("filter-cancel");
 const filters = document.querySelectorAll(".filter");
 const filterList = document.getElementById("filter-list");
-const mobileFilterMenu = document.getElementById("mobile-filter-menu");
-const mobileFilterList = document.getElementById("mobile-filter-list");
-const dropdowns = document.querySelectorAll(".dropdown-content");
-
-//* PRICE FILTER VARIABLES *//
-let rangeMin = 0;
-const range = document.querySelectorAll(".range-selected");
-const priceRange = document.querySelectorAll(".price-range input");
-const priceInput = document.querySelectorAll(".price-input input");
+// const mobileFilterMenu = document.getElementById("mobile-filter-menu");
+// const mobileFilterList = document.getElementById("mobile-filter-list");
+const dropdowns = document.querySelectorAll(".dropdown");
 
 //* location VARIABLES *//
 const locations = document.getElementById("locationContainer");
@@ -64,8 +58,6 @@ function hideIcons() {
 function filterOpen() {
     filterBtn.classList.add("filter-open");
     filterList.classList.add("open");
-    mobileFilterMenu.classList.add("open");
-    mobileFilterList.classList.add("open");
     filterIcon.classList.remove("show");
     filterOpenIcons.classList.add("show");
     showIcons();
@@ -79,66 +71,6 @@ function filterClosed() {
     filterIcon.classList.add("show");
     filterOpenIcons.classList.remove("show");
     hideIcons();
-}
-
-function filterPriceRange(e) {
-    let minRange = parseInt(priceRange[0].value);
-    let maxRange = parseInt(priceRange[1].value);
-    let mobileMinRange = parseInt(priceRange[2].value);
-    let mobileMaxRange = parseInt(priceRange[3].value);
-
-    if (maxRange - minRange < rangeMin) {
-        if (e.target.className === "min") {
-            priceRange[0].value = maxRange - rangeMin;
-        } else {
-            priceRange[1].value = minRange + rangeMin;
-        }
-    } else {
-        priceInput[0].value = minRange;
-        priceInput[1].value = maxRange;
-        range[0].style.left = (minRange / priceRange[0].max) * 100 + "%";
-        range[0].style.right = 100 - (maxRange / priceRange[1].max) * 100 + "%";
-    }
-        
-    if (mobileMaxRange - mobileMinRange < rangeMin) {
-        if (e.target.className === "min") {
-            priceRange[2].value = mobileMaxRange - rangeMin;
-        } else {
-            priceRange[3].value = mobileMinRange + rangeMin;
-        }
-    } else {
-        priceInput[2].value = mobileMinRange;
-        priceInput[3].value = mobileMaxRange;
-        range[1].style.left = (mobileMinRange / priceRange[2].max) * 100 + "%";
-        range[1].style.right = 100 - (mobileMaxRange / priceRange[3].max) * 100 + "%";
-    }
-}
-
-function filterPriceInput(e) {
-    let minPrice = priceInput[0].value;
-    let maxPrice = priceInput[1].value;
-    let mobileMinPrice = priceInput[0].value;
-    let mobileMaxPrice = priceInput[1].value;
-
-    if (maxPrice - minPrice >= rangeMin && maxPrice <= priceRange[1].max) {
-        if (e.target.className === "min") {
-            priceRange[0].value = minPrice;
-            range[0].style.left = (minPrice / priceRange[0].max) * 100 + "%";
-        } else {
-            priceRange[1].value = maxPrice;
-            range[0].style.right = 100 - (maxPrice / priceRange[1].max) * 100 + "%";
-        }
-    }
-
-    if (mobileMaxPrice - mobileMinPrice >= rangeMin && mobileMaxPrice <= priceRange[3].max) {
-        if (e.target.className === "min") {
-            priceRange[2].value = mobileMinPrice;
-            range[1].style.left = (mobileMinPrice / priceRange[2].max) * 100 + "%";
-        } else {
-            priceRange[3].value = mobileMaxPrice;
-            range[1].style.right = 100 - (mobileMaxPrice / priceRange[3].max) * 100 + "%";
-        }
-    }
 }
 
 function showDropdown() {
@@ -309,19 +241,6 @@ dropdowns.forEach(dropdown => dropdown.addEventListener("mouseleave", () => {
 dropdowns.forEach(dropdown => dropdown.addEventListener("click", (e) => {
     e.stopPropagation();
 }));
-
-mobileFilterMenu.addEventListener("click", (e) => {
-    e.stopPropagation();
-});
-
-//* FILTER PRICE *//
-priceRange.forEach((input) => {
-    input.addEventListener("input", filterPriceRange);
-});
-
-priceInput.forEach((input) => {
-    input.addEventListener("input", filterPriceInput);
-});
 
 //* location *//
 tiles.forEach(tile => tile.addEventListener("click", function(e) {

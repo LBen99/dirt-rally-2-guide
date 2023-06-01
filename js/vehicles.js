@@ -15,21 +15,33 @@ const filterReset = document.getElementById("filter-reset");
 const filterCancel = document.getElementById("filter-cancel");
 const filters = document.querySelectorAll(".filter");
 const filterList = document.getElementById("filter-list");
-const mobileFilterMenu = document.getElementById("mobile-filter-menu");
-const mobileFilterList = document.getElementById("mobile-filter-list");
-const dropdowns = document.querySelectorAll(".dropdown-content");
+// const mobileFilterMenu = document.getElementById("mobile-filter-menu");
+// const mobileFilterList = document.getElementById("mobile-filter-list");
+const dropdowns = document.querySelectorAll(".dropdown");
 
-//* PRICE FILTER VARIABLES *//
-let rangeMin = 0;
-const range = document.querySelectorAll(".range-selected");
-const priceRange = document.querySelectorAll(".price-range input");
-const priceInput = document.querySelectorAll(".price-input input");
+//* POWER FILTER VARIABLES *//
+let powerRangeMin = 0;
+const selectedPower = document.getElementById("power-range-selected");
+const powerRange = document.querySelectorAll(".power-slider input");
+const powerInput = document.querySelectorAll(".power-input input");
+
+//* WEIGHT FILTER VARIABLES *//
+let weightRangeMin = 0;
+const selectedWeight = document.getElementById("weight-range-selected");
+const weightRange = document.querySelectorAll(".weight-slider input");
+const weightInput = document.querySelectorAll(".weight-input input");
+
+//* ENGINE FILTER VARIABLES *//
+let engineRangeMin = 0;
+const selectedEngine = document.getElementById("engine-range-selected");
+const engineRange = document.querySelectorAll(".engine-slider input");
+const engineInput = document.querySelectorAll(".engine-input input");
 
 //* VEHICLE VARIABLES *//
 const vehicles = document.getElementById("vehicleContainer");
 const tiles = document.querySelectorAll(".vehicle-tile");
 const tileOpen = document.querySelectorAll(".vehicle-tile[open]");
-const cartBtn = document.querySelectorAll(".btn-cart");
+const detailsBtn = document.querySelectorAll(".btn-details");
 const vehicleImg = document.querySelectorAll(".vehicle-img");
 const vehicleSummary = document.querySelectorAll(".vehicle-tile summary");
 const tileCloseBtn = document.querySelectorAll(".btn-red-xmark");
@@ -60,8 +72,8 @@ function hideIcons() {
 function filterOpen() {
     filterBtn.classList.add("filter-open");
     filterList.classList.add("open");
-    mobileFilterMenu.classList.add("open");
-    mobileFilterList.classList.add("open");
+    // mobileFilterMenu.classList.add("open");
+    // mobileFilterList.classList.add("open");
     filterIcon.classList.remove("show");
     filterOpenIcons.classList.add("show");
     showIcons();
@@ -77,62 +89,101 @@ function filterClosed() {
     hideIcons();
 }
 
-function filterPriceRange(e) {
-    let minRange = parseInt(priceRange[0].value);
-    let maxRange = parseInt(priceRange[1].value);
-    let mobileMinRange = parseInt(priceRange[2].value);
-    let mobileMaxRange = parseInt(priceRange[3].value);
+function filterPowerRange(e) {
+    let minRange = parseInt(powerRange[0].value);
+    let maxRange = parseInt(powerRange[1].value);
 
-    if (maxRange - minRange < rangeMin) {
+    if (maxRange - minRange < powerRangeMin) {
         if (e.target.className === "min") {
-            priceRange[0].value = maxRange - rangeMin;
+            powerInput[0].value = maxRange - powerRangeMin;
         } else {
-            priceRange[1].value = minRange + rangeMin;
+            powerInput[1].value = minRange + powerRangeMin;
         }
     } else {
-        priceInput[0].value = minRange;
-        priceInput[1].value = maxRange;
-        range[0].style.left = (minRange / priceRange[0].max) * 100 + "%";
-        range[0].style.right = 100 - (maxRange / priceRange[1].max) * 100 + "%";
-    }
-        
-    if (mobileMaxRange - mobileMinRange < rangeMin) {
-        if (e.target.className === "min") {
-            priceRange[2].value = mobileMaxRange - rangeMin;
-        } else {
-            priceRange[3].value = mobileMinRange + rangeMin;
-        }
-    } else {
-        priceInput[2].value = mobileMinRange;
-        priceInput[3].value = mobileMaxRange;
-        range[1].style.left = (mobileMinRange / priceRange[2].max) * 100 + "%";
-        range[1].style.right = 100 - (mobileMaxRange / priceRange[3].max) * 100 + "%";
+        powerInput[0].value = minRange;
+        powerInput[1].value = maxRange;
+        selectedPower.style.left = (minRange / powerRange[0].max) * 100 + "%";
+        selectedPower.style.right = 100 - (maxRange / powerRange[1].max) * 100 + "%";
     }
 }
 
-function filterPriceInput(e) {
-    let minPrice = priceInput[0].value;
-    let maxPrice = priceInput[1].value;
-    let mobileMinPrice = priceInput[0].value;
-    let mobileMaxPrice = priceInput[1].value;
+function filterPowerInput(e) {
+    let minPrice = powerInput[0].value;
+    let maxPrice = powerInput[1].value;
 
-    if (maxPrice - minPrice >= rangeMin && maxPrice <= priceRange[1].max) {
+    if (maxPrice - minPrice >= powerRangeMin && maxPrice <= powerRange[1].max) {
         if (e.target.className === "min") {
-            priceRange[0].value = minPrice;
-            range[0].style.left = (minPrice / priceRange[0].max) * 100 + "%";
+            powerRange[0].value = minPrice;
+            selectedPower.style.left = (minPrice / powerRange[0].max) * 100 + "%";
         } else {
-            priceRange[1].value = maxPrice;
-            range[0].style.right = 100 - (maxPrice / priceRange[1].max) * 100 + "%";
+            powerRange[1].value = maxPrice;
+            selectedPower.style.right = 100 - (maxPrice / powerRange[1].max) * 100 + "%";
         }
     }
+}
 
-    if (mobileMaxPrice - mobileMinPrice >= rangeMin && mobileMaxPrice <= priceRange[3].max) {
+function filterWeightRange(e) {
+    let minRange = parseInt(weightRange[0].value);
+    let maxRange = parseInt(weightRange[1].value);
+
+    if (maxRange - minRange < weightRangeMin) {
         if (e.target.className === "min") {
-            priceRange[2].value = mobileMinPrice;
-            range[1].style.left = (mobileMinPrice / priceRange[2].max) * 100 + "%";
+            weightInput[0].value = maxRange - weightRangeMin;
         } else {
-            priceRange[3].value = mobileMaxPrice;
-            range[1].style.right = 100 - (mobileMaxPrice / priceRange[3].max) * 100 + "%";
+            weightInput[1].value = minRange + weightRangeMin;
+        }
+    } else {
+        weightInput[0].value = minRange;
+        weightInput[1].value = maxRange;
+        selectedWeight.style.left = (minRange / weightRange[0].max) * 100 + "%";
+        selectedWeight.style.right = 100 - (maxRange / weightRange[1].max) * 100 + "%";
+    }
+}
+
+function filterWeightInput(e) {
+    let minPrice = weightInput[0].value;
+    let maxPrice = weightInput[1].value;
+
+    if (maxPrice - minPrice >= weightRangeMin && maxPrice <= weightRange[1].max) {
+        if (e.target.className === "min") {
+            weightRange[0].value = minPrice;
+            selectedWeight.style.left = (minPrice / weightRange[0].max) * 100 + "%";
+        } else {
+            weightRange[1].value = maxPrice;
+            selectedWeight.style.right = 100 - (maxPrice / weightRange[1].max) * 100 + "%";
+        }
+    }
+}
+
+function filterEngineRange(e) {
+    let minRange = parseInt(engineRange[0].value);
+    let maxRange = parseInt(engineRange[1].value);
+
+    if (maxRange - minRange < engineRangeMin) {
+        if (e.target.className === "min") {
+            engineInput[0].value = maxRange - engineRangeMin;
+        } else {
+            engineInput[1].value = minRange + engineRangeMin;
+        }
+    } else {
+        engineInput[0].value = minRange;
+        engineInput[1].value = maxRange;
+        selectedEngine.style.left = (minRange / engineRange[0].max) * 100 + "%";
+        selectedEngine.style.right = 100 - (maxRange / engineRange[1].max) * 100 + "%";
+    }
+}
+
+function filterEngineInput(e) {
+    let minPrice = engineInput[0].value;
+    let maxPrice = engineInput[1].value;
+
+    if (maxPrice - minPrice >= engineRangeMin && maxPrice <= engineRange[1].max) {
+        if (e.target.className === "min") {
+            engineRange[0].value = minPrice;
+            selectedEngine.style.left = (minPrice / engineRange[0].max) * 100 + "%";
+        } else {
+            engineRange[1].value = maxPrice;
+            selectedEngine.style.right = 100 - (maxPrice / engineRange[1].max) * 100 + "%";
         }
     }
 }
@@ -270,18 +321,21 @@ dropdowns.forEach(dropdown => dropdown.addEventListener("click", (e) => {
     e.stopPropagation();
 }));
 
-mobileFilterMenu.addEventListener("click", (e) => {
-    e.stopPropagation();
-});
+// mobileFilterMenu.addEventListener("click", (e) => {
+//     e.stopPropagation();
+// });
 
-//* FILTER PRICE *//
-priceRange.forEach((input) => {
-    input.addEventListener("input", filterPriceRange);
-});
+//* FILTER POWER *//
+powerRange.forEach((input) => input.addEventListener("input", filterPowerRange));
+powerInput.forEach((input) => input.addEventListener("input", filterPowerInput));
 
-priceInput.forEach((input) => {
-    input.addEventListener("input", filterPriceInput);
-});
+//* FILTER WEIGHT *//
+weightRange.forEach((input) => input.addEventListener("input", filterWeightRange));
+weightInput.forEach((input) => input.addEventListener("input", filterWeightInput));
+
+//* FILTER ENGINE *//
+engineRange.forEach((input) => input.addEventListener("input", filterEngineRange));
+engineInput.forEach((input) => input.addEventListener("input", filterEngineInput));
 
 //* VEHICLE *//
 tiles.forEach(tile => tile.addEventListener("click", function(e) {
@@ -309,6 +363,6 @@ tileCloseBtn.forEach(btn => btn.addEventListener("click", function(e) {
     btn.parentElement.parentElement.scrollIntoView({block: "center"});
 }));
 
-cartBtn.forEach(btn => btn.addEventListener("click", (e) => {
+detailsBtn.forEach(btn => btn.addEventListener("click", (e) => {
     e.stopPropagation();
 }));

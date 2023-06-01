@@ -1,0 +1,557 @@
+main {
+    padding: 0 1rem;
+}
+
+/********** CLOSED VEHICLE TILE **********/
+#vehicleContainer {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    max-width: 120rem;
+    min-height: 60rem;
+    margin: 0 auto 2.5rem;
+    padding: 2.5rem;
+    gap: 2.5rem;
+    box-shadow: inset 0 0 .6rem var(--shadow);
+    border-radius: .4rem;
+}
+
+.vehicle-tile {
+    position: relative;
+    display: flex;
+    justify-self: center;
+    width: 100%;
+    max-width: fit-content;
+    box-shadow: inset 0 0 .6rem var(--shadow);
+    border-radius: .4rem;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.vehicle-tile summary {
+    list-style: none;
+    padding-bottom: 1rem;
+}
+
+.vehicle-tile summary::marker {
+    display: none;
+}
+
+.vehicle-tile summary::-webkit-details-marker {
+    display: none;
+}
+
+.vehicle-img {
+    position: relative;
+}
+
+.vehicle-name {
+    margin: 0 1rem;
+}
+
+.vehicle-name {
+    color: var(--color-red);
+}
+
+.hide {
+    display: none;
+}
+
+/********** OPEN vehicle TILE **********/
+#vehicleContainer.tile-open {
+    display: block;
+    padding: 0;
+    box-shadow: none;
+}
+
+.vehicle-tile[open] {
+    top: 0;
+    bottom: 0;
+    display: grid;
+    grid-template-areas:
+        "img"
+        "price"
+        "name"
+        "btn"
+        "info";
+    max-width: 60rem;
+    margin: 0 auto;
+    padding: 2.5rem;
+    cursor: default;
+}
+
+.vehicle-tile[open] > summary {
+    text-align: center;
+}
+
+.vehicle-tile[open] .vehicle-img {
+    grid-area: img;
+}
+
+.vehicle-tile[open] summary :nth-child(2),
+.vehicle-tile[open] summary :nth-child(3),
+.vehicle-tile[open] summary :nth-child(4) {
+    margin: auto;
+}
+
+.vehicle-tile[open] summary :nth-child(2) {
+    grid-area: price;
+    margin-bottom: 0;
+}
+
+.vehicle-tile[open] summary :nth-child(3) {
+    grid-area: name;
+}
+
+.vehicle-tile[open] summary :nth-child(4) {
+    grid-area: btn;
+    margin-top: 0;
+    width: 75%;
+}
+
+.vehicle-info {
+    grid-area: info;
+    display:grid;
+    grid-template-areas: "links text";
+    gap: 1rem;
+}
+
+.desc-info {
+    grid-area: text;
+    font-size: 1.2rem;
+}
+
+.info-list {
+    grid-area: links;
+    display: flex;
+    margin-bottom: .5rem;
+    border-bottom: .1rem solid var(--shadow);
+}
+
+.info-link {
+    margin: 1rem 1rem .5rem 0;
+    font-size: 1.4rem;
+}
+
+/********** BUTTON DESIGN **********/
+/*! SHOP BUTTONS !*/
+#shop-btns {
+    position: relative;
+    display: flex;
+    max-width: 120rem;
+    margin: 1rem auto;
+}
+
+#btn-search,
+#btn-filter {
+    position: relative;
+    cursor: pointer;
+    border: .1rem solid var(--color-light);
+}
+
+#btn-search {
+    transition: width .25s ease-in-out;
+    width: 4rem;
+    max-width: 40rem;
+    border-radius: 3rem;
+    overflow: hidden;
+}
+
+#btn-search.search-open {
+    transition: width .25s ease-in-out;
+    border: .1rem solid var(--color-dark);
+    border-radius: 3rem;
+    width: 100%;
+}
+
+#btn-filter.filter-open {
+    display: flex;
+    position: absolute;
+    right: 1rem;
+    border: none;
+}
+
+#filter-open-icons {
+    display: none;
+    border: .1rem solid var(--color-dark);
+    border-radius: 3rem;
+}
+
+#search-icon {
+    display: block;
+}
+
+#filter-icon,
+#filter-confirm,
+#filter-reset,
+#filter-cancel {
+    display: none;
+}
+
+#filter-icon.show,
+#filter-confirm.show,
+#filter-reset.show,
+#filter-cancel.show {
+    display: block;
+}
+
+#filter-open-icons.show {
+    display: flex;
+}
+
+#search-icon {
+    position: relative;
+    float: right;
+    background: var(--color-light);
+}
+
+#search-icon,
+#filter-icon,
+#filter-confirm,
+#filter-reset,
+#filter-cancel {
+    width: 4rem;
+    height: 4rem;
+    font-size: 2.5rem;
+    border: none;
+    background: none;
+    z-index: 9;
+}
+
+#search-icon,
+#filter-icon {
+    color: var(--color-dark);
+}
+
+#search-icon:hover,
+#filter-icon:hover,
+#filter-confirm:hover,
+#filter-reset:hover,
+#filter-cancel:hover {
+    color: var(--color-white);
+}
+
+#filter-confirm {
+    color: var(--color-green);
+}
+
+#filter-reset {
+    color: var(--shadow);
+}
+
+#filter-cancel {
+    color: var(--color-red);
+}
+
+/*! SEARCH BOX !*/
+#btn-search input {
+    transition: background-color .25s ease-out;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 4rem;
+    z-index: 1;
+    padding: 1rem 3.5rem 1rem 1rem;
+    background-color: var(--color-light);
+}
+
+#btn-search.search-open input {
+    background: var(--color-white);
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+    display: none;
+}
+
+input[type=search]::-ms-clear {
+    display: none; width : 0; height: 0;
+}
+
+input[type=search]::-ms-reveal {
+    display: none; width : 0; height: 0;
+}
+
+/*! FILTER !*/
+#filter-list {
+    display: none;
+}
+
+#mobile-filter-menu,
+#mobile-filter-list {
+    display: block;
+    width: 100%;
+    background: var(--color-light);
+}
+
+#mobile-filter-menu {
+    position: relative;
+    transition: height .25s ease-in-out;
+    height: 0;
+    overflow: hidden;
+}
+
+#mobile-filter-list {
+    position: absolute;
+    left: -1rem;
+    height: 100%;
+}
+
+#mobile-filter-menu.open {
+    transition: height .25s ease-in-out;
+    height: 100%;
+    max-height: calc(100% - 6.2rem);
+}
+
+#mobile-filter-list > li {
+    position: relative;
+}
+
+#mobile-filter-list li:not(#mobile-filter-price-dropdown) {
+    justify-content: center;
+}
+
+#filter-list > li {
+    display: inline-block;
+    margin: auto 0;
+}
+
+/*! FILTER BUTTONS !*/
+.filter {
+    all: unset;
+    color: var(--color-dark);
+    margin: 1rem 1rem 0;
+    padding-bottom: .9rem;
+}
+
+.filter-selected {
+    color: var(--color-white);
+}
+
+.mobile-filter {
+    position: relative;
+    margin-top: 1.9rem;
+    left: 50%;
+    transform: translate(-50%);
+    font-size: 4.8rem;
+}
+
+.dropdown-content {
+    position: absolute;
+    margin-left: 1rem;
+    padding: .5rem;
+    cursor: default;
+    z-index: 10;
+}
+
+.mobile-dropdown-content {
+    position: relative;
+    width: fit-content;
+    left: 50%;
+    transform: translate(-50%);
+    padding: .5rem;
+    z-index: 2;
+}
+
+.dropdown-content,
+.mobile-dropdown-content {
+    background: var(--color-white);
+    box-shadow: inset 0 0 .2rem var(--shadow);
+}
+
+.dropdown-content:not(#filter-price-dropdown):not(#mobile-filter-price-dropdown) > li {
+    list-style: none;
+    display: block;
+}
+
+.dropdown-content:not(#filter-price-dropdown):not(#mobile-filter-price-dropdown) > li {
+    display: flex;
+    max-width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: .5rem;
+    cursor: pointer;
+}
+
+.dropdown-content:not(#filter-price-dropdown):not(#mobile-filter-price-dropdown) > li:hover {
+    box-shadow: inset 0 0 .2rem var(--shadow);
+}
+
+.filter-colour-icon {
+    display: block;
+    float: right;
+    width: .5rem;
+    height: .5rem;
+    box-shadow: 0 0 .2rem var(--shadow);
+}
+
+.black {
+    background-color: black;
+}
+
+.grey {
+    background-color: gray;
+}
+
+.white {
+    background-color: white;
+}
+
+/*! FILTER PRICE !*/
+#filter-price-dropdown,
+#mobile-filter-price-dropdown {
+    padding: 1rem;
+}
+
+.price-slider {
+    margin-top: 1rem;
+    max-width: 20rem;
+    height: .5rem;
+    position: relative;
+    background: var(--color-light);
+    border-radius: .2rem;
+}
+
+.range-selected {
+    height: 100%;
+    left: 0%;
+    right: 0%;
+    position: absolute;
+    border-radius: .5rem;
+    background: var(--color-green);
+    box-shadow: inset 0 0 .2rem var(--shadow);
+}
+
+.price-range {
+    position: relative;
+    max-width: 20rem;
+}
+
+.price-range input {
+    position: absolute;
+    width: 100%;
+    height: .5rem;
+    top: -.5rem;
+    background: none;
+    pointer-events: none;
+    appearance: none;
+}
+
+.price-range input::-webkit-slider-thumb {
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 50%;
+    background: var(--color-green);
+    box-shadow: 0 0 .4rem var(--shadow);
+    pointer-events: auto;
+    -webkit-appearance: none;
+}
+
+.price-range input::-moz-range-thumb {
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 50%;
+    border: .3rem solid var(--color-white);
+    background: var(--color-light);
+    pointer-events: auto;
+    -moz-appearance: none;
+}
+
+.price-input {
+    display: flex;
+    margin-top: 2rem;
+    max-width: 20rem;
+}
+
+.price-input input {
+    max-width: 8rem;
+}
+
+/*! CART BUTTON !*/
+.btn-primary {
+    width: 75%;
+    margin: 1rem auto 0;
+}
+
+/*! CLOSE BUTTON !*/
+.btn-red-xmark {
+    top: 0rem;
+    right: 0rem;
+}
+
+@media screen and (min-width: 431px) {
+    #vehicleContainer {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 601px) {
+    .btn-primary {
+        font-size: 2.5rem;
+    }
+
+    .vehicle-tile[open] {
+        display: grid;
+        grid-template-areas:
+            "img price"
+            "img name"
+            "img btn"
+            "info info";
+    }
+
+    .vehicle-tile[open] summary {
+        display: grid;
+        grid-template-areas:
+            "img price"
+            "img name"
+            "img btn";
+        grid-template-columns: 50% 50%;
+    }
+
+    #btn-filter {
+        display: flex;
+        max-width: 100%;
+    }
+
+    #btn-filter.filter-open {
+        position: relative;
+        right: unset;
+        width: unset;
+        justify-content: unset;
+        border: .1rem solid var(--color-dark);
+        border-radius: 3rem;
+    }
+
+    #filter-open-icons {
+        margin: unset;
+        border: none;
+    }
+
+    #filter-list.open {
+        display: flex;
+        width: 80%
+    }
+
+    #mobile-filter-menu {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 821px) {
+    #vehicleContainer {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (min-width: 1201px) {
+    #vehicleContainer {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

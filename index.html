@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Marketplace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/header-footer.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/menu.js" defer></script>
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <nav>
+                <img src="images/logo.png" alt="The Marketplace Logo">
+
+                <button id="menu-icon" class="closed">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <ul id="web-menu">
+                    <li>
+                        <a href="shop.html">Shop</a>
+                    </li>
+                    <li>
+                        <a href="cart.html">Cart</a>
+                    </li>
+                    <li>
+                        <a href="about.html">About</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <aside id="mobile-menu" class="closed">
+            <ul id="mobile-links" class="closed">
+                <li>
+                    <a href="shop.html">Shop</a>
+                </li>
+                <li>
+                    <a href="cart.html">Cart</a>
+                </li>
+                <li>
+                    <a href="about.html">About</a>
+                </li>
+            </ul>
+        </aside>
+    
+        <main>
+            <h1 id="header-text">Helping you feel at home</h1>
+            <button id="btn-shop" onclick="window.location.href='shop.html'">
+                Shop
+            </button>
+        </main>
+    
+        <footer>
+            <ul id="social-links">
+                <li>
+                    <a href="https://www.instagram.com">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="mailto:themarketplace@market.com">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                </li>
+            </ul>
+
+            <ul id="visit">
+                <li>
+                    <h3>Visit Us</h3>
+                </li>
+                <li>
+                    <p>Mon - Fri | 9am - 7pm<br>Sat - Sun | 11am - 5pm<br><br><a href="">Store Locator</a></p>
+                </li>
+            </ul>
+        </footer>
+    </div>
+</body>
+</html>

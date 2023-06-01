@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Marketplace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/header-footer.css">
+    <link rel="stylesheet" href="css/about.css">
+    <script src="js/menu.js" defer></script>
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <nav>
+                <a href="index.html"><img src="images/logo.png" alt="The Marketplace Logo"></a>
+
+                <button id="menu-icon" class="closed">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <ul id="web-menu">
+                    <li>
+                        <a href="shop.html">Shop</a>
+                    </li>
+                    <li>
+                        <a href="cart.html">Cart</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <aside id="mobile-menu" class="closed">
+            <ul id="mobile-links" class="closed">
+                <li>
+                    <a href="shop.html">Shop</a>
+                </li>
+                <li>
+                    <a href="cart.html">Cart</a>
+                </li>
+            </ul>
+        </aside>
+    
+        <main>
+            <div>
+                <article id="about-us">
+                    <h2>About Us</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consectetur justo turpis, ut malesuada magna mollis ac. Mauris hendrerit condimentum finibus. Curabitur libero diam, luctus id odio eget, dapibus lobortis enim. Aenean quam sapien, molestie ac porta at, bibendum sed ligula. Duis mattis pulvinar aliquam. Nulla rhoncus ac ligula vitae aliquet. Fusce bibendum leo et purus cursus, non euismod massa eleifend. Suspendisse potenti. Pellentesque feugiat augue orci.
+                        <br><br>
+                        Aliquam erat volutpat. Ut tincidunt ac turpis ac lobortis. Quisque non ultrices velit, sed lacinia nisi. Morbi convallis erat cursus orci ornare, non facilisis justo posuere. Sed sit amet malesuada sem, vel porta leo. Maecenas non tristique elit. Maecenas eu est non diam tincidunt ultricies. Curabitur aliquet diam ac metus sollicitudin condimentum. Duis egestas, ligula sed aliquam dignissim, justo velit rhoncus erat, at pulvinar leo metus a erat. Vestibulum non massa felis.
+                        <br><br>
+                        Nam congue erat non ipsum venenatis egestas. Nullam ante ipsum, ultrices quis dictum sed, euismod at ipsum. Vivamus at luctus nibh, at condimentum eros. Nam sit amet vestibulum velit. Sed sodales, dolor vel eleifend pellentesque, lectus nisl sodales mauris, nec auctor lorem nisl vel mi. Suspendisse ullamcorper rutrum cursus. Aliquam suscipit rhoncus velit sit amet sodales. Duis et consequat ligula, vitae malesuada lorem. Aenean vulputate auctor consequat. Proin fringilla libero et tortor porta rhoncus. Maecenas eget luctus nulla. Phasellus nec venenatis sem. Proin sed massa ut dui condimentum maximus. Nulla bibendum quis purus nec consectetur.
+                    </p>
+                </article>
+                <div id="visit-contact">
+                    <article id="visit-us">
+                        <h2>Visit Us</h2>
+                        <p>3 Market Road<br><br>Mon - Fri | 9am - 7pm<br>Sat - Sun | 11am - 5pm</p>
+                    </article>
+                    <article id="contact-us">
+                        <h2>Contact Us</h2>
+                        <p>Phone: 9000 000</p>
+                        <p>Email: <a href="mailto:themarketplace@market.com">themarketplace@market.com</a></p>
+                        <form id="submit-question">
+                            <fieldset>
+                                <legend>Ask a question</legend>
+                                <label for="name-input">Name:</label>
+                                <input type="text" name="name" id="name-input" required>
+                                <label for="email-input">Email:</label>
+                                <input type="text" name="email" id="email-input" required>
+                                <label for="question-input">Your question:</label>
+                                <textarea name="question" id="question-input" cols="30" rows="5" required></textarea>
+                                <input type="submit" name="submit" id="submit-btn" class="btn-primary" value="Submit Question">
+                            </fieldset>
+                        </form>
+                    </article>
+                </div>
+            </div>
+        </main>
+    
+        <footer>
+            <ul id="social-links">
+                <li>
+                    <a href="https://www.instagram.com">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="mailto:themarketplace@market.com">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                </li>
+            </ul>
+
+            <ul id="visit">
+                <li>
+                    <h3>Visit Us</h3>
+                </li>
+                <li>
+                    <p>Mon - Fri | 9am - 7pm<br>Sat - Sun | 11am - 5pm<br><br><a href="">Store Locator</a></p>
+                </li>
+            </ul>
+        </footer>
+    </div>
+</body>
+</html>

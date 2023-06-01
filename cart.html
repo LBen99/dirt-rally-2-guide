@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Marketplace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/header-footer.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <script src="js/menu.js" defer></script>
+    <script src="js/cart.js" defer></script>
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <nav>
+                <a href="index.html"><img src="images/logo.png" alt="The Marketplace Logo"></a>
+
+                <button id="menu-icon" class="closed">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <ul id="web-menu">
+                    <li>
+                        <a href="shop.html">Shop</a>
+                    </li>
+                    <li>
+                        <a href="about.html">About</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <aside id="mobile-menu" class="closed">
+            <ul id="mobile-links" class="closed">
+                <li>
+                    <a href="shop.html">Shop</a>
+                </li>
+                <li>
+                    <a href="about.html">About</a>
+                </li>
+            </ul>
+        </aside>
+    
+        <main>
+            <div id="cart-products">
+                <article class="cart-product">
+                    <img class="cart-product-img" src="images/products/couch.jpg" alt="couch image">
+                    <h2 class="cart-product-name">Couch</h2>
+                    <p class="cart-product-price">$<span id="couch-price">350</span></p>
+                    <input id="couch-qty" class="cart-product-qty" type="number" value="3">
+                    <h3 class="cart-product-total">$<span id="couch-total">1050</span></h3>
+                    <button class="btn-red-xmark fa-solid fa-xmark"></button>
+                </article>
+                <article class="cart-product">
+                    <img class="cart-product-img" src="images/products/chair.jpg" alt="chair image">
+                    <h2 class="cart-product-name">Chair</h2>
+                    <p class="cart-product-price">$<span id="chair-price">80</span></p>
+                    <input id="chair-qty" class="cart-product-qty" type="number" value="4">
+                    <h3 class="cart-product-total">$<span id="chair-total">320</span></h3>
+                    <button class="btn-red-xmark fa-solid fa-xmark"></button>
+                </article>
+                <article class="cart-product">
+                    <img class="cart-product-img" src="images/products/deluxe-armchair.jpg" alt="deluxe armchair image">
+                    <h2 class="cart-product-name">Deluxe Armchair</h2>
+                    <p class="cart-product-price">$<span id="deluxe-armchair-price">300</span></p>
+                    <input id="deluxe-armchair-qty" class="cart-product-qty" type="number" value="2">
+                    <h3 class="cart-product-total">$<span id="deluxe-armchair-total">600</span></h3>
+                    <button class="btn-red-xmark fa-solid fa-xmark"></button>
+                </article>
+            </div>
+
+            <section id="cart-info">
+                <h1 id="cart-total">$<span id="cart-price">1970</span></h1>
+                <button id="checkout" class="btn-primary">Checkout</button>
+                <button id="continue" class="btn-secondary">Continue Shopping</button>
+            </section>
+        </main>
+    
+        <footer>
+            <ul id="social-links">
+                <li>
+                    <a href="https://www.instagram.com">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="mailto:themarketplace@market.com">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                </li>
+            </ul>
+
+            <ul id="visit">
+                <li>
+                    <h3>Visit Us</h3>
+                </li>
+                <li>
+                    <p>Mon - Fri | 9am - 7pm<br>Sat - Sun | 11am - 5pm<br><br><a href="">Store Locator</a></p>
+                </li>
+            </ul>
+        </footer>
+    </div>
+</body>
+</html>

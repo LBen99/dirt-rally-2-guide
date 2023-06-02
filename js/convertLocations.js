@@ -44,7 +44,7 @@ function convertLocation(location) {
     });
 
     locationContainer.insertAdjacentHTML("beforeend",
-    `<details id="${ id }" class="location-tile">
+    `<details id="${ id }" class="location-tile tile">
         <summary>
             <img src="images/locations/${ img }.jpg" alt="" class="location-img">
             <h2 class="location-name">${ location.name }</h2>

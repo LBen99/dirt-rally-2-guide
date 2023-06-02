@@ -11,9 +11,9 @@ function convertVehicle(vehicle) {
     img = img.replace(/ /g, "-").replace(/\//g, "").toLowerCase();
 
     vehicleContainer.insertAdjacentHTML("beforeend",
-    `<details id="${ id }" class="vehicle-tile">
+    `<details id="${ id }" class="vehicle-tile tile">
         <summary>
-            <img src="images/vehicles/${ img }.jpg" alt="" class="vehicle-img">
+            <img src="images/vehicles/${ img }.jpg" alt="" class="vehicle-img tile-img">
             <h2 class="vehicle-manufacturer">${ vehicle.manufacturer }</h2>
             <h3 class="vehicle-model">${ vehicle.model }</h3>
             <button class="btn-details btn-primary">Details</button>

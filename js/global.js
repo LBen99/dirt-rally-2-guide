@@ -1,6 +1,20 @@
 //* IMPORTS *//
 import { filterPowerRange, filterPowerInput, filterWeightRange, filterWeightInput, filterEngineRange, filterEngineInput } from "./vehicles.js";
 import { toggleForward, toggleReverse } from "./locations.js";
+import { findVehicleKeyData, convertVehicle, vehicleFilters } from "./convertVehicles.js";
+import { findLocationKeyData, convertLocation, locationFilters } from "./convertLocations.js";
+
+if (window.location.pathname.includes("/vehicles.html")) {
+    await findVehicleKeyData();
+    await convertVehicle();
+    await vehicleFilters();
+}
+
+if (window.location.pathname.includes( "/locations.html")) {
+    await findLocationKeyData();
+    await convertLocation();
+    await locationFilters();
+}
 
 //* PAGE *//
 const wrapper = document.getElementById("wrapper");
@@ -19,16 +33,23 @@ const filterCancel = document.getElementById("filter-cancel");
 const filters = document.querySelectorAll(".filter");
 const filterList = document.getElementById("filter-list");
 const dropdowns = document.querySelectorAll(".dropdown");
+const dropdownItems = document.querySelectorAll(".dropdown-item");
 
 //* POWER FILTER *//
+let powerRangeMin = 0;
+const selectedPower = document.getElementById("power-range-selected");
 const powerRange = document.querySelectorAll(".power-slider input");
 const powerInput = document.querySelectorAll(".power-input input");
 
 //* WEIGHT FILTER *//
+let weightRangeMin = 0;
+const selectedWeight = document.getElementById("weight-range-selected");
 const weightRange = document.querySelectorAll(".weight-slider input");
 const weightInput = document.querySelectorAll(".weight-input input");
 
 //* ENGINE FILTER *//
+let engineRangeMin = 0;
+const selectedEngine = document.getElementById("engine-range-selected");
 const engineRange = document.querySelectorAll(".engine-slider input");
 const engineInput = document.querySelectorAll(".engine-input input");
 
@@ -38,8 +59,9 @@ const tiles = document.querySelectorAll(".tile");
 const tileOpen = document.querySelectorAll(".tile[open]");
 const detailsBtn = document.querySelectorAll(".btn-details");
 const tileImg = document.querySelectorAll(".tile-img");
-const tileSummary = document.querySelectorAll(".tile summary");
+const tileSummary = document.querySelectorAll(".tile li");
 const tileCloseBtn = document.querySelectorAll(".btn-red-xmark");
+const modals = document.querySelectorAll(".modal");
 
 //* LOCATION *//
 const forwardTab = document.querySelectorAll(".forward-tab");
@@ -138,24 +160,32 @@ function showTiles() {
     containers.forEach((container) => container.classList.remove("tile-open"));
     tiles.forEach((tile) => {
         tile.classList.remove("hide");
-        tile.removeAttribute("open");
+        // tile.removeAttribute("open");
     });
-    tileCloseBtn.forEach((btn) => {
-        btn.classList.add("hide");
-    });
+    // tileCloseBtn.forEach((btn) => {
+    //     btn.classList.add("hide");
+    // });
     centerImg();
     window.onresize = centerImg;
+}
+
+function closeModal() {
+    modals.forEach((modal) => {
+        if (!modal.classList.value.includes("hide")) {
+            modal.classList.add("hide");
+        }
+    })
 }
 
 //! EVENT LISTENERS !//
 window.onresize = centerImg;
 window.onload = centerImg;
 
-wrapper.addEventListener("click", function() {
-    searchClosed();
-    filterClosed();
-    showTiles();
-});
+// wrapper.addEventListener("click", function(e) {
+//     searchClosed();
+//     filterClosed();
+//     showTiles();
+// });
 
 //* SEARCH BUTTON *//
 searchBtn.addEventListener("click", function(e) {
@@ -217,35 +247,30 @@ dropdowns.forEach(dropdown => dropdown.addEventListener("click", (e) => {
 }));
 
 //* FILTER POWER *//
-powerRange.forEach((input) => input.addEventListener("input", filterPowerRange));
-powerInput.forEach((input) => input.addEventListener("input", filterPowerInput));
+powerRange.forEach((input) => input.addEventListener("input", (e) => filterPowerRange(e, powerRangeMin, selectedPower, powerRange, powerInput)));
+powerInput.forEach((input) => input.addEventListener("input", (e) => filterPowerInput(e, powerRangeMin, selectedPower, powerRange, powerInput)));
 
 //* FILTER WEIGHT *//
-weightRange.forEach((input) => input.addEventListener("input", filterWeightRange));
-weightInput.forEach((input) => input.addEventListener("input", filterWeightInput));
+weightRange.forEach((input) => input.addEventListener("input", (e) => filterWeightRange(e, weightRangeMin, selectedWeight, weightRange, weightInput)));
+weightInput.forEach((input) => input.addEventListener("input", (e) => filterWeightInput(e, weightRangeMin, selectedWeight, weightRange, weightInput)));
 
 //* FILTER ENGINE *//
-engineRange.forEach((input) => input.addEventListener("input", filterEngineRange));
-engineInput.forEach((input) => input.addEventListener("input", filterEngineInput));
+engineRange.forEach((input) => input.addEventListener("input", (e) => filterEngineRange(e, engineRangeMin, selectedEngine, engineRange, engineInput)));
+engineInput.forEach((input) => input.addEventListener("input", (e) => filterEngineRange(e, engineRangeMin, selectedEngine, engineRange, engineInput)));
 
 //* TILES *//
 tiles.forEach(tile => tile.addEventListener("click", function(e) {
     e.stopPropagation();
-    e.preventDefault();
-    searchClosed();
-    filterClosed();
+    // e.preventDefault();
+    // searchClosed();
+    // filterClosed();
     window.onresize = tileImg.forEach(img => img.setAttribute("style", "left: 0"));
-    hideTiles();
-    window.scrollTo(top);
 
-    if (!this.open) {
-        tiles.forEach((tile) => {
-            if (tile.id !== this.id) {
-                tile.classList.toggle("hide");
-                this.open = this.open == false ? true : false;
-            }
-        });
-    }
+    modals.forEach((modal) => {
+        if (modal.id === this.id + "-modal") {
+            modal.classList.toggle("hide");
+        }
+    })
 }));
 
 forwardTab.forEach(tab => tab.addEventListener("click", () => {
@@ -258,7 +283,7 @@ reverseTab.forEach(tab => tab.addEventListener("click", () => {
 
 tileCloseBtn.forEach(btn => btn.addEventListener("click", function(e) {
     e.stopPropagation();
-    showTiles();
+    closeModal();
     btn.parentElement.parentElement.scrollIntoView({block: "center"});
 }));
 

@@ -11,9 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/header-footer.css">
-    <link rel="stylesheet" href="css/vehicles.css">
     <script type="module" src="js/convertVehicles.js" defer></script>
-    <!-- <script src="js/vehicles.js" defer></script> -->
     <script type="module" src="js/global.js" defer></script>
     <script src="js/menu.js" defer></script>
 </head>
@@ -52,105 +50,68 @@
         </aside>
     
         <main>
-            <ul id="shop-btns">
+            <ul id="page-btns">
                 <li id="btn-search">
                     <button id="search-icon" class="fa-solid fa-magnifying-glass"></button>
                     <input type="search" name="search-input" id="search-input">
                 </li>
                 <li id="btn-filter">
                     <button id="filter-icon" class="show fa-solid fa-sliders"></button>
-                    <form action="vehicles.html" method="get">
-                        <ul id="filter-list">
-                            <li>
-                                <a name="type" id="type" class="filter">Type</a>
-                                <aside id="type-dropdown" class="dropdown hide"></aside>
-                            </li>
-                            <li>
-                                <a name="discipline" id="discipline" class="filter">Surface</a>
-                                <aside id="discipline-dropdown" class="dropdown hide"></aside>
-                            </li>
-                            <li>
-                                <a name="manufacturer" id="manufacturer" class="filter">Manufacturer</a>
-                                <aside id="manufacturer-dropdown" class="dropdown hide"></aside>
-                            </li>
-                            <li>
-                                <a name="power" id="power" class="filter">Power</a>
-                                <aside id="power-dropdown" class="dropdown hide">
-                                    <ul id="power-dropdown-content" class="dropdown-content">
-                                        <li class="power-range slider">
-                                            <span id="power-range-selected" class="range-selected"></span>
-                                        </li>
-                                        <li class="power-slider slider-range">
-                                            <input type="range" name="minPower" class="min-power-slider" min="0" max="600" value="0" step="1">
-                                            <input type="range" name="maxPower" class="max-power-slider" min="0" max="600" value="600" step="1">
-                                        </li>
-                                        <li class="power-input slider-input">
-                                            <input type="number" name="min" class="min-power-number" value="0">
-                                            <label for="min">bhp</label>
-                                            <input type="number" name="min" class="min-power-number" value="600">
-                                            <label for="max">bhp</label>
-                                        </li>
-                                    </ul>
-                                </aside>
-                            </li>
-                            <li>
-                                <a name="transmission" id="transmission" class="filter">Transmission</a>
-                                <aside id="transmission-dropdown" class="dropdown hide"></aside>
-                            </li>
-                            <li>
-                                <a name="weight" id="weight" class="filter">Weight</a>
-                                <aside id="weight-dropdown" class="dropdown hide">
-                                    <ul id="weight-dropdown-content" class="dropdown-content">
-                                        <li class="weight-range slider">
-                                            <span id="weight-range-selected" class="range-selected"></span>
-                                        </li>
-                                        <li class="weight-slider slider-range">
-                                            <input type="range" name="minWeight" class="min-weight-slider" min="0" max="2000" value="0" step="1">
-                                            <input type="range" name="maxWeight" class="max-weight-slider" min="0" max="2000" value="2000" step="1">
-                                        </li>
-                                        <li class="weight-input slider-input">
-                                            <input type="number" name="min" class="min-weight-number" value="0">
-                                            <label for="min">kg</label>
-                                            <input type="number" name="min" class="min-weight-number" value="2000">
-                                            <label for="max">kg</label>
-                                        </li>
-                                    </ul>
-                                </aside>
-                            </li>
-                            <li>
-                                <a name="drivetrain" id="drivetrain" class="filter">Drivetrain</a>
-                                <aside id="drivetrain-dropdown" class="dropdown hide"></aside>
-                            </li>
-                            <li>
-                                <a name="engine" id="engine" class="filter">Engine</a>
-                                <aside id="engine-dropdown" class="dropdown hide">
-                                    <ul id="engine-dropdown-content" class="dropdown-content">
-                                        <li class="engine-range slider">
-                                            <span id="engine-range-selected" class="range-selected"></span>
-                                        </li>
-                                        <li class="engine-slider slider-range">
-                                            <input type="range" name="minEngine" class="min-engine-slider" min="0" max="2000" value="0" step="1">
-                                            <input type="range" name="maxEngine" class="max-engine-slider" min="0" max="2000" value="2000" step="1">
-                                        </li>
-                                        <li class="engine-input slider-input">
-                                            <input type="number" name="min" class="min-engine-number" value="0">
-                                            <label for="min">cc</label>
-                                            <input type="number" name="min" class="min-engine-number" value="2000">
-                                            <label for="max">cc</label>
-                                        </li>
-                                    </ul>
-                                </aside>
-                            </li>
-                            <li>
-                                <a name="cylinders" id="cylinders" class="filter">Cylinders</a>
-                                <aside id="cylinders-dropdown" class="dropdown hide"></aside>
-                            </li>
-                            <li>
-                                <a name="aspiration" id="aspiration" class="filter">Aspiration</a>
-                                <aside id="aspiration-dropdown" class="dropdown hide"></aside>
-                            </li>
-                        </ul>
-                    </form>
+                    <ul id="filter-list">
+                        <li>
+                            <a name="type" id="type" class="filter">Type</a>
+                            <aside id="type-dropdown" class="dropdown hide">
+                                <ul id="type-dropdown-content" class="dropdown-content"></ul>
+                            </aside>
+                        </li>
+                        <li>
+                            <a name="discipline" id="discipline" class="filter">Discipline</a>
+                            <aside id="discipline-dropdown" class="dropdown hide">
+                                <ul id="discipline-dropdown-content" class="dropdown-content"></ul>
+                            </aside>
+                        </li>
+                        <li>
+                            <a name="manufacturer" id="manufacturer" class="filter">Manufacturer</a>
+                            <aside id="manufacturer-dropdown" class="dropdown hide">
+                                <ul id="manufacturer-dropdown-content" class="dropdown-content"></ul>
+                            </aside>
+                        </li>
+                        <li>
+                            <a name="power" id="power" class="filter">Power</a>
+                            <aside id="power-dropdown" class="dropdown hide"></aside>                            </li>
+                        <li>
+                            <a name="transmission" id="transmission" class="filter">Transmission</a>
+                            <aside id="transmission-dropdown" class="dropdown hide">
+                                <ul id="transmission-dropdown-content" class="dropdown-content"></ul>
+                            </aside>
+                        </li>
+                        <li>
+                            <a name="weight" id="weight" class="filter">Weight</a>
+                            <aside id="weight-dropdown" class="dropdown hide"></aside>
+                        </li>
+                        <li>
+                            <a name="drivetrain" id="drivetrain" class="filter">Drivetrain</a>
+                            <aside id="drivetrain-dropdown" class="dropdown hide">
+                                <ul id="drivetrain-dropdown-content" class="dropdown-content"></ul>
+                            </aside>
+                        </li>
+                        <li>
+                            <a name="engine" id="engine" class="filter">Engine</a>
+                            <aside id="engine-dropdown" class="dropdown hide"></aside>
+                        </li>
+                        <li>
+                            <a name="cylinders" id="cylinders" class="filter">Cylinders</a>
+                            <aside id="cylinders-dropdown" class="dropdown hide">
+                                <ul id="cylinders-dropdown-content" class="dropdown-content"></ul>
+                            </aside>
+                        </li>
+                        <li>
+                            <a name="aspiration" id="aspiration" class="filter">Aspiration</a>
+                            <aside id="aspiration-dropdown" class="dropdown hide">
+                                <ul id="aspiration-dropdown-content" class="dropdown-content"></ul>
+                            </aside>
+                        </li>
+                    </ul>
                     <ul id="filter-open-icons">
                         <li>
                             <button id="filter-confirm" class="fa-solid fa-check"></button>

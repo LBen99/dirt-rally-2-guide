@@ -60,8 +60,7 @@
                         }
                     ]
                 }
-            },
-            "img": ""
+            }
         },
         {
             "name": "Monaro",
@@ -123,8 +122,7 @@
                         }
                     ]
                 }
-            },
-            "img": ""
+            }
         },
         {
             "name": "Jämsä",
@@ -186,8 +184,7 @@
                         }
                     ]
                 }       
-            },
-            "img": ""
+            }
         },
         {
             "name": "Baumholder",
@@ -249,8 +246,7 @@
                         }
                     ]
                 }
-            },
-            "img": ""
+            }
         },
         {
             "name": "Argolis",
@@ -312,8 +308,7 @@
                         }
                     ]
                 }
-            },
-            "img": ""
+            }
         },
         {
             "name": "Monte Carlo",
@@ -375,8 +370,7 @@
                         }
                     ]
                 }
-            },
-            "img": ""
+            }
         },
         {
             "name": "Hawkes Bay",
@@ -438,8 +432,7 @@
                         }
                     ]
                 }
-            },
-            "img": ""
+            }
             
         },
         {
@@ -502,8 +495,7 @@
                         }
                     ]
                 }
-            },
-            "img": ""
+            }
         },
         {
             "name": "Ribadelles",
@@ -565,8 +557,7 @@
                         }
                     ]
                 }
-            },
-            "img": ""
+            }
         },
         {
             "name": "Värmland",
@@ -628,8 +619,7 @@
                         }
                     ]
                 }
-            },
-            "img": ""
+            }
         },
         {
             "name": "New England",
@@ -691,8 +681,7 @@
                         }
                     ]
                 }
-            },
-            "img": ""
+            }
         },
         {
             "name": "Powys",
@@ -754,8 +743,7 @@
                         }
                     ]
                 }
-            },
-            "img": ""
+            }
         },
         {
             "name": "Perth and Kinross",
@@ -817,99 +805,85 @@
                         }
                     ]
                 }
-            },
-            "img": ""
+            }
         },
         {
             "name": "Mettet",
             "country": "Belgium",
             "type": "Rallycross",
-            "track_surface": ["Smooth Asphalt", "Dirt"],
-            "img": ""
+            "track_surface": ["Smooth Asphalt", "Dirt"]
         },
         {
             "name": "Trois-Rivières",
             "country": "Canada",
             "type": "Rallycross",
-            "track_surface": ["Smooth Asphalt", "Gravel"],
-            "img": ""
+            "track_surface": ["Smooth Asphalt", "Gravel"]
         },
         {
             "name": "Lydden Hill",
             "country": "England",
             "type": "Rallycross",
-            "track_surface": ["Asphalt", "Concrete", "Dirt"],
-            "img": ""
+            "track_surface": ["Asphalt", "Concrete", "Dirt"]
         },
         {
             "name": "Silverstone",
             "country": "England",
             "type": "Rallycross",
-            "track_surface": ["Dirt", "Smooth Asphalt"],
-            "img": ""
+            "track_surface": ["Dirt", "Smooth Asphalt"]
         },
         {
             "name": "Lohéac Bretagne",
             "country": "France",
             "type": "Rallycross",
-            "track_surface": ["Rough Asphalt", "Smooth Asphalt", "Dirt"],
-            "img": ""
+            "track_surface": ["Rough Asphalt", "Smooth Asphalt", "Dirt"]
         },
         {
             "name": "Estering",
             "country": "Germany",
             "type": "Rallycross",
-            "track_surface": ["Rough Asphalt", "Dirt"],
-            "img": ""
+            "track_surface": ["Rough Asphalt", "Dirt"]
         },
         {
             "name": "Bikernieki",
             "country": "Latvia",
             "type": "Rallycross",
-            "track_surface": ["Rough Asphalt", "Gravel"],
-            "img": ""
+            "track_surface": ["Rough Asphalt", "Gravel"]
         },
         {
             "name": "Hell",
             "country": "Norway",
             "type": "Rallycross",
-            "track_surface": ["Asphalt", "Dirt", "Gravel"],
-            "img": ""
+            "track_surface": ["Asphalt", "Dirt", "Gravel"]
         },
         {
             "name": "Montalegre",
             "country": "Portugal",
             "type": "Rallycross",
-            "track_surface": ["Asphalt", "Dirt"],
-            "img": ""
+            "track_surface": ["Asphalt", "Dirt"]
         },
         {
             "name": "Killarney International Raceway",
             "country": "South Africa",
             "type": "Rallycross",
-            "track_surface": ["Smooth Asphalt", "Light Gravel"],
-            "img": ""
+            "track_surface": ["Smooth Asphalt", "Light Gravel"]
         },
         {
             "name": "Circuit de Barcelona-Catalunya",
             "country": "Spain",
             "type": "Rallycross",
-            "track_surface": ["Asphalt", "Dirt"],
-            "img": ""
+            "track_surface": ["Asphalt", "Dirt"]
         },
         {
             "name": "Höljes",
             "country": "Sweden",
             "type": "Rallycross",
-            "track_surface": ["Asphalt", "Dirt", "Gravel"],
-            "img": ""
+            "track_surface": ["Asphalt", "Dirt", "Gravel"]
         },
         {
             "name": "Yas Marina Circuit",
             "country": "Abu Dhabi",
             "type": "Rallycross",
-            "track_surface": ["Light Gravel", "Smooth Asphalt"],
-            "img": ""
+            "track_surface": ["Light Gravel", "Smooth Asphalt"]
         }
     ]
 }

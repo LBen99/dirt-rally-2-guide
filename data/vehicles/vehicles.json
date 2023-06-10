@@ -6,16 +6,15 @@
             "model": "Cooper S",
             "year": 1964,
             "discipline": "H1(FWD)",
-            "statistics": {
-                "max_power": 100,
+            "specs": {
+                "power": 100,
                 "transmission": "4 speed - manual",
-                "max_weight": 670,
+                "weight": 670,
                 "drivetrain": "FWD",
                 "engine": 1275,
                 "cylinders": 4,
-                "aspiration": "natural"
-            },
-            "img": "mini-cooper-s.jpg"
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rally",
@@ -23,16 +22,15 @@
             "model": "DS 21",
             "year": 1966,
             "discipline": "H1(FWD)",
-            "statistics": {
-                "max_power": 130,
+            "specs": {
+                "power": 130,
                 "transmission": "4 speed - manual",
-                "max_weight": 1250,
+                "weight": 1250,
                 "drivetrain": "FWD",
                 "engine": 2175,
                 "cylinders": 4,
-                "aspiration": "natural"
-            },
-            "img": "ds-automobiles-ds-21.jpg"
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rally",
@@ -40,16 +38,15 @@
             "model": "Fulvia HF",
             "year": 1972,
             "discipline": "H1(FWD)",
-            "statistics": {
-                "max_power": 115,
+            "specs": {
+                "power": 115,
                 "transmission": "4 speed - manual",
-                "max_weight": 800,
+                "weight": 800,
                 "drivetrain": "FWD",
                 "engine": 1299,
                 "cylinders": 4,
-                "aspiration": "natural"
-            },
-            "img": "lancia-fulvia-hf.jpg"
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rally",
@@ -57,16 +54,15 @@
             "model": "Golf GTI 16v",
             "year": 1986,
             "discipline": "H2(FWD)",
-            "statistics": {
-                "max_power": 195,
+            "specs": {
+                "power": 195,
                 "transmission": "5 speed - manual",
-                "max_weight": 950,
+                "weight": 950,
                 "drivetrain": "FWD",
                 "engine": 1781,
                 "cylinders": 4,
-                "aspiration": "natural"
-            },
-            "img": "volkswagen-golf-gti-16v.jpg"
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rally",
@@ -74,16 +70,15 @@
             "model": "205 GTI",
             "year": 1991,
             "discipline": "H2(FWD)",
-            "statistics": {
-                "max_power": 175,
+            "specs": {
+                "power": 175,
                 "transmission": "5 speed - manual",
-                "max_weight": 875,
+                "weight": 875,
                 "drivetrain": "FWD",
                 "engine": 1905,
                 "cylinders": 4,
-                "aspiration": "natural"
-            },
-            "img": "peugot-205-gti.jpg"
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rally",
@@ -91,16 +86,15 @@
             "model": "Escort MK II",
             "year": 1976,
             "discipline": "H2(RWD)",
-            "statistics": {
-                "max_power": 265,
+            "specs": {
+                "power": 265,
                 "transmission": "5 speed - manual",
-                "max_weight": 940,
+                "weight": 940,
                 "drivetrain": "RWD",
                 "engine": 1975,
                 "cylinders": 4,
-                "aspiration": "natural"
-            },
-            "img": "ford-escort-mk-ii.jpg"
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rally",
@@ -108,16 +102,15 @@
             "model": "Renault A110 1600 S",
             "year": 1969,
             "discipline": "H2(RWD)",
-            "statistics": {
-                "max_power": 125,
+            "specs": {
+                "power": 125,
                 "transmission": "5 speed - manual",
-                "max_weight": 680,
+                "weight": 680,
                 "drivetrain": "RWD",
                 "engine": 1565,
                 "cylinders": 4,
-                "aspiration": "natural"
-            },
-            "img": "alpine-renault-a110-1600-s.jpg"
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rally",
@@ -125,16 +118,15 @@
             "model": "131 Abarth Rally",
             "year": 1976,
             "discipline": "H2(RWD)",
-            "statistics": {
-                "max_power": 230,
+            "specs": {
+                "power": 230,
                 "transmission": "5 speed - manual",
-                "max_weight": 1080,
+                "weight": 1080,
                 "drivetrain": "RWD",
                 "engine": 1995,
                 "cylinders": 4,
-                "aspiration": "natural"
-            },
-            "img": "fiat-131-abarth-rally.jpg"
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rally",
@@ -142,16 +134,15 @@
             "model": "Kadett C GT/E",
             "year": 1975,
             "discipline": "H2(RWD)",
-            "statistics": {
-                "max_power": 240,
+            "specs": {
+                "power": 240,
                 "transmission": "5 speed - manual",
-                "max_weight": 950,
+                "weight": 950,
                 "drivetrain": "RWD",
                 "engine": 1996,
                 "cylinders": 4,
-                "aspiration": "natural"
-            },
-            "img": "opel-kadett-c-gte.jpg"
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rally",
@@ -159,16 +150,15 @@
             "model": "E30 M3 Evo Rally",
             "year": 1988,
             "discipline": "H3(RWD)",
-            "statistics": {
-                "max_power": 280,
+            "specs": {
+                "power": 280,
                 "transmission": "6 speed - manual",
-                "max_weight": 1025,
+                "weight": 1025,
                 "drivetrain": "RWD",
                 "engine": 2302,
                 "cylinders": 4,
-                "aspiration": "natural"
-            },
-            "img": "bmw-e30-m3-evo-rally.jpg"
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rally",
@@ -176,16 +166,15 @@
             "model": "Ascona 400",
             "year": 1984,
             "discipline": "H3(RWD)",
-            "statistics": {
-                "max_power": 240,
+            "specs": {
+                "power": 240,
                 "transmission": "5 speed - manual",
-                "max_weight": 1150,
+                "weight": 1150,
                 "drivetrain": "RWD",
                 "engine": 2410,
                 "cylinders": 4,
-                "aspiration": "natural"
-            },
-            "img": ""
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rally",
@@ -193,16 +182,15 @@
             "model": "Stratos",
             "year": 1974,
             "discipline": "H3(RWD)",
-            "statistics": {
-                "max_power": 241,
+            "specs": {
+                "power": 241,
                 "transmission": "5 speed - manual",
-                "max_weight": 850,
+                "weight": 850,
                 "drivetrain": "RWD",
                 "engine": 2418,
                 "cylinders": 6,
-                "aspiration": "natural"
-            },
-            "img": ""
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rally",
@@ -210,16 +198,15 @@
             "model": "240Z",
             "year": 1972,
             "discipline": "H3(RWD)",
-            "statistics": {
-                "max_power": 225,
+            "specs": {
+                "power": 225,
                 "transmission": "5 speed - manual",
-                "max_weight": 1000,
+                "weight": 1000,
                 "drivetrain": "RWD",
                 "engine": 2397,
                 "cylinders": 6,
-                "aspiration": "natural"
-            },
-            "img": ""
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rally",
@@ -227,16 +214,15 @@
             "model": "5 Turbo",
             "year": 1985,
             "discipline": "H3(RWD)",
-            "statistics": {
-                "max_power": 285,
+            "specs": {
+                "power": 285,
                 "transmission": "5 speed - manual",
-                "max_weight": 900,
+                "weight": 900,
                 "drivetrain": "RWD",
                 "engine": 1397,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rally",
@@ -244,16 +230,15 @@
             "model": "Sierra Cosworth RS500",
             "year": 1989,
             "discipline": "H3(RWD)",
-            "statistics": {
-                "max_power": 310,
+            "specs": {
+                "power": 310,
                 "transmission": "5 speed - manual",
-                "max_weight": 1175,
+                "weight": 1175,
                 "drivetrain": "RWD",
                 "engine": 1993,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rally",
@@ -261,16 +246,15 @@
             "model": "306 Maxi",
             "year": 1996,
             "discipline": "F2 Kit Car",
-            "statistics": {
-                "max_power": 280,
+            "specs": {
+                "power": 280,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 960,
+                "weight": 960,
                 "drivetrain": "FWD",
                 "engine": 1998,
                 "cylinders": 4,
-                "aspiration": "natural"
-            },
-            "img": ""
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rally",
@@ -278,16 +262,15 @@
             "model": "Ibiza Kitcar",
             "year": 1997,
             "discipline": "F2 Kit Car",
-            "statistics": {
-                "max_power": 270,
+            "specs": {
+                "power": 270,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 960,
+                "weight": 960,
                 "drivetrain": "FWD",
                 "engine": 1984,
                 "cylinders": 4,
-                "aspiration": "natural"
-            },
-            "img": ""
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rally",
@@ -295,16 +278,15 @@
             "model": "Golf Kitcar",
             "year": 1999,
             "discipline": "F2 Kit Car",
-            "statistics": {
-                "max_power": 270,
+            "specs": {
+                "power": 270,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 980,
+                "weight": 980,
                 "drivetrain": "FWD",
                 "engine": 1995,
                 "cylinders": 4,
-                "aspiration": "natural"
-            },
-            "img": ""
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rally",
@@ -312,16 +294,15 @@
             "model": "037 Evo 2",
             "year": 1983,
             "discipline": "Group B(RWD)",
-            "statistics": {
-                "max_power": 330,
+            "specs": {
+                "power": 330,
                 "transmission": "5 speed - manual",
-                "max_weight": 960,
+                "weight": 960,
                 "drivetrain": "RWD",
                 "engine": 2111,
                 "cylinders": 4,
-                "aspiration": "supercharger"
-            },
-            "img": ""
+                "aspiration": ["supercharger"]
+            }
         },
         {
             "type": "Rally",
@@ -329,16 +310,15 @@
             "model": "Manta 400",
             "year": 1986,
             "discipline": "Group B(RWD)",
-            "statistics": {
-                "max_power": 275,
+            "specs": {
+                "power": 275,
                 "transmission": "5 speed - manual",
-                "max_weight": 980,
+                "weight": 980,
                 "drivetrain": "RWD",
                 "engine": 2410,
                 "cylinders": 4,
-                "aspiration": "natural"
-            },
-            "img": ""
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rally",
@@ -346,16 +326,15 @@
             "model": "M1 Procar Rally",
             "year": 1982,
             "discipline": "Group B(RWD)",
-            "statistics": {
-                "max_power": 430,
+            "specs": {
+                "power": 430,
                 "transmission": "5 speed - manual",
-                "max_weight": 1150,
+                "weight": 1150,
                 "drivetrain": "RWD",
                 "engine": 3453,
                 "cylinders": 6,
-                "aspiration": "natural"
-            },
-            "img": ""
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rally",
@@ -363,16 +342,15 @@
             "model": "911 SC RS",
             "year": 1984,
             "discipline": "Group B(RWD)",
-            "statistics": {
-                "max_power": 290,
+            "specs": {
+                "power": 290,
                 "transmission": "5 speed - manual",
-                "max_weight": 960,
+                "weight": 960,
                 "drivetrain": "RWD",
                 "engine": 2994,
                 "cylinders": 6,
-                "aspiration": "natural"
-            },
-            "img": ""
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rally",
@@ -380,16 +358,15 @@
             "model": "Sport Quattro S1 E2",
             "year": 1986,
             "discipline": "Group B(4WD)",
-            "statistics": {
-                "max_power": 550,
+            "specs": {
+                "power": 550,
                 "transmission": "5 speed - manual",
-                "max_weight": 1090,
+                "weight": 1090,
                 "drivetrain": "4WD",
                 "engine": 2110,
                 "cylinders": 5,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rally",
@@ -397,16 +374,15 @@
             "model": "205 T16 Evo 2",
             "year": 1986,
             "discipline": "Group B(4WD)",
-            "statistics": {
-                "max_power": 480,
+            "specs": {
+                "power": 480,
                 "transmission": "5 speed - manual",
-                "max_weight": 910,
+                "weight": 910,
                 "drivetrain": "4WD",
                 "engine": 1775,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rally",
@@ -414,16 +390,15 @@
             "model": "Delta S4",
             "year": 1986,
             "discipline": "Group B(4WD)",
-            "statistics": {
-                "max_power": 450,
+            "specs": {
+                "power": 450,
                 "transmission": "5 speed - manual",
-                "max_weight": 890,
+                "weight": 890,
                 "drivetrain": "4WD",
                 "engine": 1759,
                 "cylinders": 4,
                 "aspiration": ["turbo", "supercharger"]
-            },
-            "img": ""
+            }
         },
         {
             "type": "Rally",
@@ -431,16 +406,15 @@
             "model": "RS200",
             "year": 1986,
             "discipline": "Group B(4WD)",
-            "statistics": {
-                "max_power": 450,
+            "specs": {
+                "power": 450,
                 "transmission": "5 speed - manual",
-                "max_weight": 1080,
+                "weight": 1080,
                 "drivetrain": "4WD",
                 "engine": 1803,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rally",
@@ -448,16 +422,15 @@
             "model": "Metro 6R4",
             "year": 1986,
             "discipline": "Group B(4WD)",
-            "statistics": {
-                "max_power": 410,
+            "specs": {
+                "power": 410,
                 "transmission": "5 speed - manual",
-                "max_weight": 1040,
+                "weight": 1040,
                 "drivetrain": "4WD",
                 "engine": 2991,
                 "cylinders": 6,
-                "aspiration": "natural"
-            },
-            "img": ""
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rally",
@@ -465,16 +438,15 @@
             "model": "Fiesta R2",
             "year": 2017,
             "discipline": "R2",
-            "statistics": {
-                "max_power": 180,
+            "specs": {
+                "power": 180,
                 "transmission": "5 speed - manual sequential",
-                "max_weight": 1030,
+                "weight": 1030,
                 "drivetrain": "FWD",
                 "engine": 1000,
                 "cylinders": 3,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rally",
@@ -482,16 +454,15 @@
             "model": "Adam R2",
             "year": 2013,
             "discipline": "R2",
-            "statistics": {
-                "max_power": 185,
+            "specs": {
+                "power": 185,
                 "transmission": "5 speed - manual sequential",
-                "max_weight": 1030,
+                "weight": 1030,
                 "drivetrain": "FWD",
                 "engine": 1598,
                 "cylinders": 4,
-                "aspiration": "natural"
-            },
-            "img": ""
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rally",
@@ -499,16 +470,15 @@
             "model": "208 R2",
             "year": 2018,
             "discipline": "R2",
-            "statistics": {
-                "max_power": 185,
+            "specs": {
+                "power": 185,
                 "transmission": "5 speed - manual sequential",
-                "max_weight": 1030,
+                "weight": 1030,
                 "drivetrain": "FWD",
                 "engine": 1598,
                 "cylinders": 4,
-                "aspiration": "natural"
-            },
-            "img": ""
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rally",
@@ -516,16 +486,15 @@
             "model": "Lancer Evolution VI",
             "year": 1999,
             "discipline": "Group A",
-            "statistics": {
-                "max_power": 300,
+            "specs": {
+                "power": 300,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 1230,
+                "weight": 1230,
                 "drivetrain": "4WD",
                 "engine": 1997,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rally",
@@ -533,16 +502,15 @@
             "model": "Impreza 1995",
             "year": 1995,
             "discipline": "Group A",
-            "statistics": {
-                "max_power": 320,
+            "specs": {
+                "power": 320,
                 "transmission": "6 speed - manual",
-                "max_weight": 1230,
+                "weight": 1230,
                 "drivetrain": "4WD",
                 "engine": 1994,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rally",
@@ -550,16 +518,15 @@
             "model": "Legacy RS",
             "year": 1992,
             "discipline": "Group A",
-            "statistics": {
-                "max_power": 300,
+            "specs": {
+                "power": 300,
                 "transmission": "6 speed - manual",
-                "max_weight": 1150,
+                "weight": 1150,
                 "drivetrain": "4WD",
                 "engine": 1994,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rally",
@@ -567,16 +534,15 @@
             "model": "Delta HF Integrale",
             "year": 1992,
             "discipline": "Group A",
-            "statistics": {
-                "max_power": 330,
+            "specs": {
+                "power": 330,
                 "transmission": "6 speed - manual",
-                "max_weight": 1100,
+                "weight": 1100,
                 "drivetrain": "4WD",
                 "engine": 1995,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rally",
@@ -584,16 +550,15 @@
             "model": "Escort RS Cosworth",
             "year": 1993,
             "discipline": "Group A",
-            "statistics": {
-                "max_power": 310,
+            "specs": {
+                "power": 310,
                 "transmission": "7 speed - manual",
-                "max_weight": 1220,
+                "weight": 1220,
                 "drivetrain": "4WD",
                 "engine": 1994,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rally",
@@ -601,16 +566,15 @@
             "model": "WRX STI NR4",
             "year": 2015,
             "discipline": "NR4/R4",
-            "statistics": {
-                "max_power": 280,
+            "specs": {
+                "power": 280,
                 "transmission": "5 speed - manual sequential",
-                "max_weight": 1393,
+                "weight": 1393,
                 "drivetrain": "4WD",
                 "engine": 1994,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rally",
@@ -618,16 +582,15 @@
             "model": "Lancer Evolution X",
             "year": 2013,
             "discipline": "NR4/R4",
-            "statistics": {
-                "max_power": 300,
+            "specs": {
+                "power": 300,
                 "transmission": "5 speed - manual",
-                "max_weight": 1230,
+                "weight": 1230,
                 "drivetrain": "4WD",
                 "engine": 1996,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rally",
@@ -635,16 +598,15 @@
             "model": "Focus RS Rally 2001",
             "year": 2001,
             "discipline": "4WD Up to 2000cc",
-            "statistics": {
-                "max_power": 300,
+            "specs": {
+                "power": 300,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 1230,
+                "weight": 1230,
                 "drivetrain": "4WD",
                 "engine": 1998,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rally",
@@ -652,16 +614,15 @@
             "model": "C4 Rally",
             "year": 2010,
             "discipline": "4WD Up to 2000cc",
-            "statistics": {
-                "max_power": 315,
+            "specs": {
+                "power": 315,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 1230,
+                "weight": 1230,
                 "drivetrain": "4WD",
                 "engine": 1998,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rally",
@@ -669,16 +630,15 @@
             "model": "Fabia Rally",
             "year": 2005,
             "discipline": "4WD Up to 2000cc",
-            "statistics": {
-                "max_power": 300,
+            "specs": {
+                "power": 300,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 1230,
+                "weight": 1230,
                 "drivetrain": "4WD",
                 "engine": 1999,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rally",
@@ -686,16 +646,15 @@
             "model": "Impreza S4 Rally",
             "year": 1998,
             "discipline": "4WD Up to 2000cc",
-            "statistics": {
-                "max_power": 300,
+            "specs": {
+                "power": 300,
                 "transmission": "6 speed - manual",
-                "max_weight": 1230,
+                "weight": 1230,
                 "drivetrain": "4WD",
                 "engine": 1994,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rally",
@@ -703,16 +662,15 @@
             "model": "Impreza (2001)",
             "year": 2001,
             "discipline": "4WD Up to 2000cc",
-            "statistics": {
-                "max_power": 300,
+            "specs": {
+                "power": 300,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 1230,
+                "weight": 1230,
                 "drivetrain": "4WD",
                 "engine": 1998,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rally",
@@ -720,16 +678,15 @@
             "model": "Focus RS Rally 2007",
             "year": 2007,
             "discipline": "4WD Up to 2000cc",
-            "statistics": {
-                "max_power": 315,
+            "specs": {
+                "power": 315,
                 "transmission": "5 speed - manual sequential",
-                "max_weight": 1230,
+                "weight": 1230,
                 "drivetrain": "4WD",
                 "engine": 1998,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rally",
@@ -737,16 +694,15 @@
             "model": "Impreza",
             "year": 2008,
             "discipline": "4WD Up to 2000cc",
-            "statistics": {
-                "max_power": 300,
+            "specs": {
+                "power": 300,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 1230,
+                "weight": 1230,
                 "drivetrain": "4WD",
                 "engine": 1994,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rally",
@@ -754,16 +710,15 @@
             "model": "206 Rally",
             "year": 2002,
             "discipline": "4WD Up to 2000cc",
-            "statistics": {
-                "max_power": 300,
+            "specs": {
+                "power": 300,
                 "transmission": "5 speed - manual sequential",
-                "max_weight": 1230,
+                "weight": 1230,
                 "drivetrain": "4WD",
                 "engine": 1998,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rally",
@@ -771,16 +726,15 @@
             "model": "Fiesta R5",
             "year": 2017,
             "discipline": "R5",
-            "statistics": {
-                "max_power": 280,
+            "specs": {
+                "power": 280,
                 "transmission": "5 speed - manual sequential",
-                "max_weight": 1230,
+                "weight": 1230,
                 "drivetrain": "4WD",
                 "engine": 1600,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rally",
@@ -788,16 +742,15 @@
             "model": "208 T16 R5",
             "year": 2015,
             "discipline": "R5",
-            "statistics": {
-                "max_power": 280,
+            "specs": {
+                "power": 280,
                 "transmission": "5 speed - manual sequential",
-                "max_weight": 1230,
+                "weight": 1230,
                 "drivetrain": "4WD",
                 "engine": 1598,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rally",
@@ -805,16 +758,15 @@
             "model": "Space Star R5",
             "year": 2015,
             "discipline": "R5",
-            "statistics": {
-                "max_power": 280,
+            "specs": {
+                "power": 280,
                 "transmission": "5 speed - manual sequential",
-                "max_weight": 1230,
+                "weight": 1230,
                 "drivetrain": "4WD",
                 "engine": 1620,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rally",
@@ -822,16 +774,15 @@
             "model": "Fabia R5",
             "year": 2018,
             "discipline": "R5",
-            "statistics": {
-                "max_power": 280,
+            "specs": {
+                "power": 280,
                 "transmission": "5 speed - manual sequential",
-                "max_weight": 1230,
+                "weight": 1230,
                 "drivetrain": "4WD",
                 "engine": 1620,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rally",
@@ -839,16 +790,15 @@
             "model": "C3 R5",
             "year": 2018,
             "discipline": "R5",
-            "statistics": {
-                "max_power": 282,
+            "specs": {
+                "power": 282,
                 "transmission": "5 speed - manual sequential",
-                "max_weight": 1230,
+                "weight": 1230,
                 "drivetrain": "4WD",
                 "engine": 1598,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rally",
@@ -856,16 +806,15 @@
             "model": "Polo GTI R5",
             "year": 2018,
             "discipline": "R5",
-            "statistics": {
-                "max_power": 272,
+            "specs": {
+                "power": 272,
                 "transmission": "5 speed - manual sequential",
-                "max_weight": 1230,
+                "weight": 1230,
                 "drivetrain": "4WD",
                 "engine": 1620,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rally",
@@ -873,16 +822,15 @@
             "model": "Fiesta R5 MKII",
             "year": 2019,
             "discipline": "R5",
-            "statistics": {
-                "max_power": 290,
+            "specs": {
+                "power": 290,
                 "transmission": "5 speed - manual sequential",
-                "max_weight": 1230,
+                "weight": 1230,
                 "drivetrain": "4WD",
                 "engine": 1600,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rally",
@@ -890,16 +838,15 @@
             "model": "M2 Competition",
             "year": 2017,
             "discipline": "Rally GT",
-            "statistics": {
-                "max_power": 400,
+            "specs": {
+                "power": 400,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 1200,
+                "weight": 1200,
                 "drivetrain": "RWD",
                 "engine": 2979,
                 "cylinders": 6,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rally",
@@ -907,16 +854,15 @@
             "model": "Camaro GT4.R",
             "year": 2019,
             "discipline": "Rally GT",
-            "statistics": {
-                "max_power": 460,
+            "specs": {
+                "power": 460,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 1450,
+                "weight": 1450,
                 "drivetrain": "RWD",
                 "engine": 6200,
                 "cylinders": 8,
-                "aspiration": "natural"
-            },
-            "img": ""
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rally",
@@ -924,16 +870,15 @@
             "model": "911 RGT Rally Spec",
             "year": 2007,
             "discipline": "Rally GT",
-            "statistics": {
-                "max_power": 425,
+            "specs": {
+                "power": 425,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 1250,
+                "weight": 1250,
                 "drivetrain": "RWD",
                 "engine": 3797,
                 "cylinders": 6,
-                "aspiration": "natural"
-            },
-            "img": ""
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rally",
@@ -941,16 +886,15 @@
             "model": "Mustang GT4",
             "year": 2019,
             "discipline": "Rally GT",
-            "statistics": {
-                "max_power": 500,
+            "specs": {
+                "power": 500,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 1550,
+                "weight": 1550,
                 "drivetrain": "RWD",
                 "engine": 5200,
                 "cylinders": 8,
-                "aspiration": "natural"
-            },
-            "img": ""
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rally",
@@ -958,16 +902,15 @@
             "model": "V8 Vantage GT4",
             "year": 2012,
             "discipline": "Rally GT",
-            "statistics": {
-                "max_power": 440,
+            "specs": {
+                "power": 440,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 1300,
+                "weight": 1300,
                 "drivetrain": "RWD",
                 "engine": 4735,
                 "cylinders": 8,
-                "aspiration": "natural"
-            },
-            "img": ""
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rallycross",
@@ -975,16 +918,15 @@
             "model": "Polo S1600",
             "year": 2014,
             "discipline": "RX Super 1600S",
-            "statistics": {
-                "max_power": 240,
+            "specs": {
+                "power": 240,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 1000,
+                "weight": 1000,
                 "drivetrain": "FWD",
                 "engine": 1598,
                 "cylinders": 4,
-                "aspiration": "natural"
-            },
-            "img": ""
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rallycross",
@@ -992,16 +934,15 @@
             "model": "Clio R.S. S1600",
             "year": 2006,
             "discipline": "RX Super 1600S",
-            "statistics": {
-                "max_power": 220,
+            "specs": {
+                "power": 220,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 1000,
+                "weight": 1000,
                 "drivetrain": "FWD",
                 "engine": 1598,
                 "cylinders": 4,
-                "aspiration": "natural"
-            },
-            "img": ""
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rallycross",
@@ -1009,16 +950,15 @@
             "model": "Corsa Super 1600",
             "year": 2003,
             "discipline": "RX Super 1600S",
-            "statistics": {
-                "max_power": 224,
+            "specs": {
+                "power": 224,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 1000,
+                "weight": 1000,
                 "drivetrain": "FWD",
                 "engine": 1598,
                 "cylinders": 4,
-                "aspiration": "natural"
-            },
-            "img": ""
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rallycross",
@@ -1026,16 +966,15 @@
             "model": "Xtrem",
             "year": 2016,
             "discipline": "Crosskart",
-            "statistics": {
-                "max_power": 150,
+            "specs": {
+                "power": 150,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 312,
+                "weight": 312,
                 "drivetrain": "RWD",
                 "engine": 750,
                 "cylinders": 4,
-                "aspiration": "natural"
-            },
-            "img": ""
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rallycross",
@@ -1043,16 +982,15 @@
             "model": "Delta S4 Rallycross",
             "year": 1987,
             "discipline": "RX Group B",
-            "statistics": {
-                "max_power": 600,
+            "specs": {
+                "power": 600,
                 "transmission": "5 speed - manual",
-                "max_weight": 930,
+                "weight": 930,
                 "drivetrain": "4WD",
                 "engine": 1759,
                 "cylinders": 4,
                 "aspiration": ["turbo", "supercharger"]
-            },
-            "img": ""
+            }
         },
         {
             "type": "Rallycross",
@@ -1060,16 +998,15 @@
             "model": "RS200 Evolution",
             "year": 1986,
             "discipline": "RX Group B",
-            "statistics": {
-                "max_power": 580,
+            "specs": {
+                "power": 580,
                 "transmission": "5 speed - manual",
-                "max_weight": 930,
+                "weight": 930,
                 "drivetrain": "4WD",
                 "engine": 2137,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rallycross",
@@ -1077,16 +1014,15 @@
             "model": "205 T16 Rallycross",
             "year": 1990,
             "discipline": "RX Group B",
-            "statistics": {
-                "max_power": 510,
+            "specs": {
+                "power": 510,
                 "transmission": "5 speed - manual",
-                "max_weight": 875,
+                "weight": 875,
                 "drivetrain": "4WD",
                 "engine": 1775,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rallycross",
@@ -1094,16 +1030,15 @@
             "model": "Metro 6R4 Rallycross",
             "year": 1986,
             "discipline": "RX Group B",
-            "statistics": {
-                "max_power": 435,
+            "specs": {
+                "power": 435,
                 "transmission": "5 speed - manual",
-                "max_weight": 1040,
+                "weight": 1040,
                 "drivetrain": "4WD",
                 "engine": 2991,
                 "cylinders": 6,
-                "aspiration": "natural"
-            },
-            "img": ""
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rallycross",
@@ -1111,16 +1046,15 @@
             "model": "Fiesta OMSE Supercar Lites",
             "year": 2015,
             "discipline": "RX2",
-            "statistics": {
-                "max_power": 310,
+            "specs": {
+                "power": 310,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 1100,
+                "weight": 1100,
                 "drivetrain": "4WD",
                 "engine": 2400,
                 "cylinders": 4,
-                "aspiration": "natural"
-            },
-            "img": ""
+                "aspiration": ["natural"]
+            }
         },
         {
             "type": "Rallycross",
@@ -1128,16 +1062,15 @@
             "model": "Polo R Supercar",
             "year": 2018,
             "discipline": "RX Supercars",
-            "statistics": {
-                "max_power": 570,
+            "specs": {
+                "power": 570,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 1300,
+                "weight": 1300,
                 "drivetrain": "4WD",
                 "engine": 1998,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rallycross",
@@ -1145,16 +1078,15 @@
             "model": "S1 EKS RX Quattro",
             "year": 2018,
             "discipline": "RX Supercars",
-            "statistics": {
-                "max_power": 600,
+            "specs": {
+                "power": 600,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 1300,
+                "weight": 1300,
                 "drivetrain": "4WD",
                 "engine": 1998,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rallycross",
@@ -1162,16 +1094,15 @@
             "model": "208 WRX",
             "year": 2016,
             "discipline": "RX Supercars",
-            "statistics": {
-                "max_power": 600,
+            "specs": {
+                "power": 600,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 1300,
+                "weight": 1300,
                 "drivetrain": "4WD",
                 "engine": 1998,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rallycross",
@@ -1179,16 +1110,15 @@
             "model": "Megane RS RX",
             "year": 2018,
             "discipline": "RX Supercars",
-            "statistics": {
-                "max_power": 600,
+            "specs": {
+                "power": 600,
                 "transmission": "5 speed - manual sequential",
-                "max_weight": 1300,
+                "weight": 1300,
                 "drivetrain": "4WD",
                 "engine": 1998,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rallycross",
@@ -1196,16 +1126,15 @@
             "model": "Fiesta Rallycross (MK8)",
             "year": 2018,
             "discipline": "RX Supercars",
-            "statistics": {
-                "max_power": 600,
+            "specs": {
+                "power": 600,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 1225,
+                "weight": 1225,
                 "drivetrain": "4WD",
                 "engine": 1998,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rallycross",
@@ -1213,16 +1142,15 @@
             "model": "Fiesta Rallycross (MK7)",
             "year": 2016,
             "discipline": "RX Supercars",
-            "statistics": {
-                "max_power": 600,
+            "specs": {
+                "power": 600,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 1300,
+                "weight": 1300,
                 "drivetrain": "4WD",
                 "engine": 1998,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rallycross",
@@ -1230,16 +1158,15 @@
             "model": "WRX STI Rallycross",
             "year": 2018,
             "discipline": "RX Supercars",
-            "statistics": {
-                "max_power": 600,
+            "specs": {
+                "power": 600,
                 "transmission": "6 speed - manual",
-                "max_weight": 1250,
+                "weight": 1250,
                 "drivetrain": "4WD",
                 "engine": 1998,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rallycross",
@@ -1247,16 +1174,15 @@
             "model": "Megane R.S. RX",
             "year": 2019,
             "discipline": "RX Supercars 2019",
-            "statistics": {
-                "max_power": 600,
+            "specs": {
+                "power": 600,
                 "transmission": "5 speed - manual sequential",
-                "max_weight": 1225,
+                "weight": 1225,
                 "drivetrain": "4WD",
                 "engine": 1998,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rallycross",
@@ -1264,16 +1190,15 @@
             "model": "208 WRX",
             "year": 2019,
             "discipline": "RX Supercars 2019",
-            "statistics": {
-                "max_power": 600,
+            "specs": {
+                "power": 600,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 1225,
+                "weight": 1225,
                 "drivetrain": "4WD",
                 "engine": 1998,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rallycross",
@@ -1281,16 +1206,15 @@
             "model": "Clio R.S. RX",
             "year": 2019,
             "discipline": "RX Supercars 2019",
-            "statistics": {
-                "max_power": 600,
+            "specs": {
+                "power": 600,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 1225,
+                "weight": 1225,
                 "drivetrain": "4WD",
                 "engine": 1998,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rallycross",
@@ -1298,16 +1222,15 @@
             "model": "Fiesta RXS Evo 5",
             "year": 2019,
             "discipline": "RX Supercars 2019",
-            "statistics": {
-                "max_power": 600,
+            "specs": {
+                "power": 600,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 1225,
+                "weight": 1225,
                 "drivetrain": "4WD",
                 "engine": 1998,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rallycross",
@@ -1315,16 +1238,15 @@
             "model": "Fiesta Rallycross (MK8)",
             "year": 2019,
             "discipline": "RX Supercars 2019",
-            "statistics": {
-                "max_power": 600,
+            "specs": {
+                "power": 600,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 1225,
+                "weight": 1225,
                 "drivetrain": "4WD",
                 "engine": 1998,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rallycross",
@@ -1332,16 +1254,15 @@
             "model": "Cooper SX1",
             "year": 2019,
             "discipline": "RX Supercars 2019",
-            "statistics": {
-                "max_power": 600,
+            "specs": {
+                "power": 600,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 1225,
+                "weight": 1225,
                 "drivetrain": "4WD",
                 "engine": 1998,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rallycross",
@@ -1349,16 +1270,15 @@
             "model": "Fiesta Rallycross (STARD)",
             "year": 2019,
             "discipline": "RX Supercars 2019",
-            "statistics": {
-                "max_power": 600,
+            "specs": {
+                "power": 600,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 1225,
+                "weight": 1225,
                 "drivetrain": "4WD",
                 "engine": 1998,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rallycross",
@@ -1366,16 +1286,15 @@
             "model": "Ibiza RX",
             "year": 2019,
             "discipline": "RX Supercars 2019",
-            "statistics": {
-                "max_power": 600,
+            "specs": {
+                "power": 600,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 1225,
+                "weight": 1225,
                 "drivetrain": "4WD",
                 "engine": 1998,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         },
         {
             "type": "Rallycross",
@@ -1383,16 +1302,15 @@
             "model": "S1 EKS RX Quattro",
             "year": 2019,
             "discipline": "RX Supercars 2019",
-            "statistics": {
-                "max_power": 600,
+            "specs": {
+                "power": 600,
                 "transmission": "6 speed - manual sequential",
-                "max_weight": 1225,
+                "weight": 1225,
                 "drivetrain": "4WD",
                 "engine": 1998,
                 "cylinders": 4,
-                "aspiration": "turbo"
-            },
-            "img": ""
+                "aspiration": ["turbo"]
+            }
         }
     ]
 }

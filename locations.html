@@ -11,9 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/header-footer.css">
-    <link rel="stylesheet" href="css/locations.css">
     <script type="module" src="js/convertLocations.js" defer></script>
-    <!-- <script src="js/locations.js" defer></script> -->
     <script type="module" src="js/global.js" defer></script>
     <script src="js/menu.js" defer></script>
 </head>
@@ -59,22 +57,26 @@
                 </li>
                 <li id="btn-filter">
                     <button id="filter-icon" class="show fa-solid fa-sliders"></button>
-                    <form action="locations.html" method="get">
-                        <ul id="filter-list">
-                            <li>
-                                <a name="event" id="event" class="filter">Event</a>
-                                <aside id="event-dropdown" class="dropdown hide"></aside>
-                            </li>
-                            <li>
-                                <a name="country" id="country" class="filter">Country</a>
-                                <aside id="country-dropdown" class="dropdown hide"></aside>
-                            </li>
-                            <li>
-                                <a name="surface" id="surface" class="filter">Surface</a>
-                                <aside id="surface-dropdown" class="dropdown hide"></aside>
-                            </li>
-                        </ul>
-                    </form>
+                    <ul id="filter-list">
+                        <li>
+                            <a name="event" id="event" class="filter">Event</a>
+                            <aside id="event-dropdown" class="dropdown hide">
+                                <ul id="event-dropdown-content" class="dropdown-content"></ul>
+                            </aside>
+                        </li>
+                        <li>
+                            <a name="country" id="country" class="filter">Country</a>
+                            <aside id="country-dropdown" class="dropdown hide">
+                                <ul id="country-dropdown-content" class="dropdown-content"></ul>
+                            </aside>
+                        </li>
+                        <li>
+                            <a name="surface" id="surface" class="filter">Surface</a>
+                            <aside id="surface-dropdown" class="dropdown hide">
+                                <ul id="surface-dropdown-content" class="dropdown-content"></ul>
+                            </aside>
+                        </li>
+                    </ul>
                     <ul id="filter-open-icons">
                         <li>
                             <button id="filter-confirm" class="fa-solid fa-check"></button>

@@ -7,7 +7,6 @@ a {
     text-decoration: none;
     color: transparent;
     text-shadow: 0 0 0 var(--shadow);
-    font-family: var(--font-comfortaa);
     font-weight: 700;
 }
 

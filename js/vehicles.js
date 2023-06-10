@@ -1,116 +1,98 @@
-//* POWER FILTER *//
-let powerRangeMin = 0;
-const selectedPower = document.getElementById("power-range-selected");
-const powerRange = document.querySelectorAll(".power-slider input");
-const powerInput = document.querySelectorAll(".power-input input");
-
-//* WEIGHT FILTER *//
-let weightRangeMin = 0;
-const selectedWeight = document.getElementById("weight-range-selected");
-const weightRange = document.querySelectorAll(".weight-slider input");
-const weightInput = document.querySelectorAll(".weight-input input");
-
-//* ENGINE FILTER *//
-let engineRangeMin = 0;
-const selectedEngine = document.getElementById("engine-range-selected");
-const engineRange = document.querySelectorAll(".engine-slider input");
-const engineInput = document.querySelectorAll(".engine-input input");
-
-function filterPowerRange(e) {
-    let minRange = parseInt(powerRange[0].value);
-    let maxRange = parseInt(powerRange[1].value);
+function filterPowerRange(e, powerRangeMin, selectedPower, powerRange, powerInput) {
+    let minRange = parseInt(powerRange[0].value) - 100;
+    let maxRange = parseInt(powerRange[1].value) - 100;
 
     if (maxRange - minRange < powerRangeMin) {
         if (e.target.className === "min") {
-            powerInput[0].value = maxRange - powerRangeMin;
+            powerRange[0].value = (maxRange + 100) - powerRangeMin;
         } else {
-            powerInput[1].value = minRange + powerRangeMin;
+            powerRange[1].value = (minRange + 100) + powerRangeMin;
         }
     } else {
-        powerInput[0].value = minRange;
-        powerInput[1].value = maxRange;
-        selectedPower.style.left = (minRange / powerRange[0].max) * 100 + "%";
-        selectedPower.style.right = 100 - (maxRange / powerRange[1].max) * 100 + "%";
+        powerInput[0].value = minRange + 100;
+        powerInput[1].value = maxRange + 100;
+        selectedPower.style.left = (minRange / (powerRange[0].max - 100)) * 100 + "%";
+        selectedPower.style.right = 100 - (maxRange / (powerRange[1].max - 100)) * 100 + "%";
     }
 }
 
-function filterPowerInput(e) {
-    let minPrice = powerInput[0].value;
-    let maxPrice = powerInput[1].value;
+function filterPowerInput(e, powerRangeMin, selectedPower, powerRange, powerInput) {
+    let minPower = parseInt(powerInput[0].value) - 100;
+    let maxPower = parseInt(powerInput[1].value) - 100;
 
-    if (maxPrice - minPrice >= powerRangeMin && maxPrice <= powerRange[1].max) {
+    if (maxPower - minPower >= powerRangeMin && maxPower <= (powerRange[1].max - 100)) {
         if (e.target.className === "min") {
-            powerRange[0].value = minPrice;
-            selectedPower.style.left = (minPrice / powerRange[0].max) * 100 + "%";
+            powerRange[0].value = minPower + 100;
+            selectedPower.style.left = (minPower / (powerRange[0].max - 100)) * 100 + "%";
         } else {
-            powerRange[1].value = maxPrice;
-            selectedPower.style.right = 100 - (maxPrice / powerRange[1].max) * 100 + "%";
+            powerRange[1].value = maxPower + 100;
+            selectedPower.style.right = 100 - (maxPower / (powerRange[1].max - 100)) * 100 + "%";
         }
     }
 }
 
-function filterWeightRange(e) {
-    let minRange = parseInt(weightRange[0].value);
-    let maxRange = parseInt(weightRange[1].value);
+function filterWeightRange(e, weightRangeMin, selectedWeight, weightRange, weightInput) {
+    let minRange = parseInt(weightRange[0].value) - 312;
+    let maxRange = parseInt(weightRange[1].value) - 312;
 
     if (maxRange - minRange < weightRangeMin) {
         if (e.target.className === "min") {
-            weightInput[0].value = maxRange - weightRangeMin;
+            weightRange[0].value = (maxRange + 312) - weightRangeMin;
         } else {
-            weightInput[1].value = minRange + weightRangeMin;
+            weightRange[1].value = (minRange + 312) + weightRangeMin;
         }
     } else {
-        weightInput[0].value = minRange;
-        weightInput[1].value = maxRange;
-        selectedWeight.style.left = (minRange / weightRange[0].max) * 100 + "%";
-        selectedWeight.style.right = 100 - (maxRange / weightRange[1].max) * 100 + "%";
+        weightInput[0].value = minRange + 312;
+        weightInput[1].value = maxRange + 312;
+        selectedWeight.style.left = (minRange / (weightRange[0].max - 312)) * 100 + "%";
+        selectedWeight.style.right = 100 - (maxRange / (weightRange[1].max - 312)) * 100 + "%";
     }
 }
 
-function filterWeightInput(e) {
-    let minPrice = weightInput[0].value;
-    let maxPrice = weightInput[1].value;
+function filterWeightInput(e, weightRangeMin, selectedWeight, weightRange, weightInput) {
+    let minWeight = parseInt(weightInput[0].value) - 312;
+    let maxWeight = parseInt(weightInput[1].value) - 312;
 
-    if (maxPrice - minPrice >= weightRangeMin && maxPrice <= weightRange[1].max) {
+    if (maxWeight - minWeight >= weightRangeMin && maxWeight <= (weightRange[1].max - 312)) {
         if (e.target.className === "min") {
-            weightRange[0].value = minPrice;
-            selectedWeight.style.left = (minPrice / weightRange[0].max) * 100 + "%";
+            weightRange[0].value = minWeight + 312;
+            selectedWeight.style.left = (minWeight / (weightRange[0].max - 312)) * 100 + "%";
         } else {
-            weightRange[1].value = maxPrice;
-            selectedWeight.style.right = 100 - (maxPrice / weightRange[1].max) * 100 + "%";
+            weightRange[1].value = maxWeight + 312;
+            selectedWeight.style.right = 100 - (maxWeight / (weightRange[1].max - 312)) * 100 + "%";
         }
     }
 }
 
-function filterEngineRange(e) {
-    let minRange = parseInt(engineRange[0].value);
-    let maxRange = parseInt(engineRange[1].value);
+function filterEngineRange(e, engineRangeMin, selectedEngine, engineRange, engineInput) {
+    let minRange = parseInt(engineRange[0].value) - 750;
+    let maxRange = parseInt(engineRange[1].value) - 750;
 
     if (maxRange - minRange < engineRangeMin) {
         if (e.target.className === "min") {
-            engineInput[0].value = maxRange - engineRangeMin;
+            engineRange[0].value = (maxRange + 750) - engineRangeMin;
         } else {
-            engineInput[1].value = minRange + engineRangeMin;
+            engineRange[1].value = (minRange + 750) + engineRangeMin;
         }
     } else {
-        engineInput[0].value = minRange;
-        engineInput[1].value = maxRange;
-        selectedEngine.style.left = (minRange / engineRange[0].max) * 100 + "%";
-        selectedEngine.style.right = 100 - (maxRange / engineRange[1].max) * 100 + "%";
+        engineInput[0].value = minRange + 750;
+        engineInput[1].value = maxRange + 750;
+        selectedEngine.style.left = (minRange / (engineRange[0].max - 750)) * 100 + "%";
+        selectedEngine.style.right = 100 - (maxRange / (engineRange[1].max - 750)) * 100 + "%";
     }
 }
 
-function filterEngineInput(e) {
-    let minPrice = engineInput[0].value;
-    let maxPrice = engineInput[1].value;
+function filterEngineInput(e, engineRangeMin, selectedEngine, engineRange, engineInput) {
+    let minEngine = parseInt(engineInput[0].value) - 750;
+    let maxEngine = parseInt(engineInput[1].value) - 750;
 
-    if (maxPrice - minPrice >= engineRangeMin && maxPrice <= engineRange[1].max) {
+    if (maxEngine - minEngine >= engineRangeMin && maxEngine <= (engineRange[1].max - 750)) {
         if (e.target.className === "min") {
-            engineRange[0].value = minPrice;
-            selectedEngine.style.left = (minPrice / engineRange[0].max) * 100 + "%";
+            engineRange[0].value = minEngine + 750;
+            selectedEngine.style.left = (minEngine / (engineRange[0].max - 750)) * 100 + "%";
         } else {
-            engineRange[1].value = maxPrice;
-            selectedEngine.style.right = 100 - (maxPrice / engineRange[1].max) * 100 + "%";
+            engineRange[1].value = maxEngine + 750;
+            selectedEngine.style.right = 100 - (maxEngine / (engineRange[1].max - 750)) * 100 + "%";
         }
     }
 }

@@ -3,17 +3,23 @@ import { filterPowerRange, filterPowerInput, filterWeightRange, filterWeightInpu
 import { toggleForward, toggleReverse } from "./locations.js";
 import { findVehicleKeyData, convertVehicle, vehicleFilters } from "./convertVehicles.js";
 import { findLocationKeyData, convertLocation, locationFilters } from "./convertLocations.js";
+import { findDLCKeyData, convertDLC } from "./convertDLC.js";
 
-if (window.location.pathname.includes("/vehicles.html")) {
+if (window.location.pathname.includes("vehicles.html")) {
     await findVehicleKeyData();
     await convertVehicle();
     await vehicleFilters();
 }
 
-if (window.location.pathname.includes( "/locations.html")) {
+if (window.location.pathname.includes("locations.html")) {
     await findLocationKeyData();
     await convertLocation();
     await locationFilters();
+}
+
+if (window.location.pathname.includes("dlc.html")) {
+    await findDLCKeyData();
+    await convertDLC();
 }
 
 //* PAGE *//
@@ -186,77 +192,92 @@ window.onload = centerImg;
 //     filterClosed();
 //     showTiles();
 // });
-
-//* SEARCH BUTTON *//
-searchBtn.addEventListener("click", function(e) {
-    e.stopPropagation();
-    if (filterBtn.classList.value.includes("filter-open")) {
+if (window.location.pathname.includes("locations.html") || window.location.pathname.includes("vehicles.html")) {
+    //* SEARCH BUTTON *//
+    searchBtn.addEventListener("click", function(e) {
+        e.stopPropagation();
+        if (filterBtn.classList.value.includes("filter-open")) {
+            filterClosed();
+        }
+        if (tileOpen) {
+            showTiles();
+        }
+        searchOpen();
+    });
+    
+    searchInput.addEventListener("click", function(e) {
+        e.stopPropagation();
+    });
+    
+    //* FILTERS *//
+    filterBtn.addEventListener("click", function(e) {
+        e.stopPropagation();
+        if (searchBtn.classList.value.includes("search-open")) {
+            searchClosed();
+        }
+        if (tileOpen) {
+            showTiles();
+        }
+        filterOpen();
+    });
+    
+    filterCancel.addEventListener("click", function(e) {
+        e.stopPropagation();
         filterClosed();
-    }
-    if (tileOpen) {
-        showTiles();
-    }
-    searchOpen();
-});
-
-searchInput.addEventListener("click", function(e) {
-    e.stopPropagation();
-});
-
-//* FILTERS *//
-filterBtn.addEventListener("click", function(e) {
-    e.stopPropagation();
-    if (searchBtn.classList.value.includes("search-open")) {
-        searchClosed();
-    }
-    if (tileOpen) {
-        showTiles();
-    }
-    filterOpen();
-});
-
-filterCancel.addEventListener("click", function(e) {
-    e.stopPropagation();
-    filterClosed();
-});
-
-filters.forEach(filter => filter.addEventListener("mouseover", showDropdown));
-filters.forEach(filter => filter.addEventListener("mouseout", hideDropdown));
-filters.forEach(filter => filter.addEventListener("click", toggleDropdown));
-
-dropdowns.forEach(dropdown => dropdown.addEventListener("mouseenter", () => {
-    dropdown.classList.remove("hide");
-    for (let i = 0; i < filters.length; i++) {
-        if (dropdown.id.includes(filters[i].id + "-dropdown")) {
-            filters[i].classList.add("filter-selected");
+    });
+    
+    filters.forEach(filter => filter.addEventListener("mouseover", showDropdown));
+    filters.forEach(filter => filter.addEventListener("mouseout", hideDropdown));
+    filters.forEach(filter => filter.addEventListener("click", toggleDropdown));
+    
+    dropdowns.forEach(dropdown => dropdown.addEventListener("mouseenter", () => {
+        dropdown.classList.remove("hide");
+        for (let i = 0; i < filters.length; i++) {
+            if (dropdown.id.includes(filters[i].id + "-dropdown")) {
+                filters[i].classList.add("filter-selected");
+            }
         }
-    }
-}));
-
-dropdowns.forEach(dropdown => dropdown.addEventListener("mouseleave", () => {
-    dropdown.classList.add("hide");
-    for (let i = 0; i < filters.length; i++) {
-        if (dropdown.id.includes(filters[i].id + "-dropdown")) {
-            filters[i].classList.remove("filter-selected");
+    }));
+    
+    dropdowns.forEach(dropdown => dropdown.addEventListener("mouseleave", () => {
+        dropdown.classList.add("hide");
+        for (let i = 0; i < filters.length; i++) {
+            if (dropdown.id.includes(filters[i].id + "-dropdown")) {
+                filters[i].classList.remove("filter-selected");
+            }
         }
-    }
-}));
+    }));
+    
+    dropdowns.forEach(dropdown => dropdown.addEventListener("click", (e) => {
+        e.stopPropagation();
+    }));
+}
 
-dropdowns.forEach(dropdown => dropdown.addEventListener("click", (e) => {
-    e.stopPropagation();
-}));
+if (window.location.pathname.includes("vehicles.html")) {
+    //* FILTER POWER *//
+    powerRange.forEach((input) => input.addEventListener("input", (e) => filterPowerRange(e, powerRangeMin, selectedPower, powerRange, powerInput)));
+    powerInput.forEach((input) => input.addEventListener("input", (e) => filterPowerInput(e, powerRangeMin, selectedPower, powerRange, powerInput)));
+    
+    //* FILTER WEIGHT *//
+    weightRange.forEach((input) => input.addEventListener("input", (e) => filterWeightRange(e, weightRangeMin, selectedWeight, weightRange, weightInput)));
+    weightInput.forEach((input) => input.addEventListener("input", (e) => filterWeightInput(e, weightRangeMin, selectedWeight, weightRange, weightInput)));
+    
+    //* FILTER ENGINE *//
+    engineRange.forEach((input) => input.addEventListener("input", (e) => filterEngineRange(e, engineRangeMin, selectedEngine, engineRange, engineInput)));
+    engineInput.forEach((input) => input.addEventListener("input", (e) => filterEngineRange(e, engineRangeMin, selectedEngine, engineRange, engineInput)));
+}
 
-//* FILTER POWER *//
-powerRange.forEach((input) => input.addEventListener("input", (e) => filterPowerRange(e, powerRangeMin, selectedPower, powerRange, powerInput)));
-powerInput.forEach((input) => input.addEventListener("input", (e) => filterPowerInput(e, powerRangeMin, selectedPower, powerRange, powerInput)));
+if (window.location.pathname.includes("/locations.html")) {
+    forwardTab.forEach(tab => tab.addEventListener("click", () => {
+        toggleForward();
+    }));
+    
+    reverseTab.forEach(tab => tab.addEventListener("click", () => {
+        toggleReverse();
+    }));
+}
 
-//* FILTER WEIGHT *//
-weightRange.forEach((input) => input.addEventListener("input", (e) => filterWeightRange(e, weightRangeMin, selectedWeight, weightRange, weightInput)));
-weightInput.forEach((input) => input.addEventListener("input", (e) => filterWeightInput(e, weightRangeMin, selectedWeight, weightRange, weightInput)));
 
-//* FILTER ENGINE *//
-engineRange.forEach((input) => input.addEventListener("input", (e) => filterEngineRange(e, engineRangeMin, selectedEngine, engineRange, engineInput)));
-engineInput.forEach((input) => input.addEventListener("input", (e) => filterEngineRange(e, engineRangeMin, selectedEngine, engineRange, engineInput)));
 
 //* TILES *//
 tiles.forEach(tile => tile.addEventListener("click", function(e) {
@@ -271,14 +292,6 @@ tiles.forEach(tile => tile.addEventListener("click", function(e) {
             modal.classList.toggle("hide");
         }
     })
-}));
-
-forwardTab.forEach(tab => tab.addEventListener("click", () => {
-    toggleForward();
-}));
-
-reverseTab.forEach(tab => tab.addEventListener("click", () => {
-    toggleReverse();
 }));
 
 tileCloseBtn.forEach(btn => btn.addEventListener("click", function(e) {

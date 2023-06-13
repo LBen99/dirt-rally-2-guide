@@ -4,22 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Marketplace</title>
+    <title>DR2 DLC</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/header-footer.css">
-    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/dlc.css">
+    <!-- <script type="module" src="js/convertLocations.js" defer></script> -->
+    <script type="module" src="js/global.js" defer></script>
     <script src="js/menu.js" defer></script>
-    <script src="js/cart.js" defer></script>
 </head>
 <body>
     <div id="wrapper">
         <header>
             <nav>
-                <a href="index.html"><img src="images/logo.png" alt="The Marketplace Logo"></a>
+                <a href="index.html"><img src="" alt="Dirt Rally 2 Guide logo"></a>
 
                 <button id="menu-icon" class="closed">
                     <span></span>
@@ -29,7 +30,10 @@
 
                 <ul id="web-menu">
                     <li>
-                        <a href="shop.html">Shop</a>
+                        <a href="vehicles.html">Vehicles</a>
+                    </li>
+                    <li>
+                        <a href="locations.html">Locations</a>
                     </li>
                     <li>
                         <a href="about.html">About</a>
@@ -41,7 +45,10 @@
         <aside id="mobile-menu" class="closed">
             <ul id="mobile-links" class="closed">
                 <li>
-                    <a href="shop.html">Shop</a>
+                    <a href="vehicles.html">Vehicles</a>
+                </li>
+                <li>
+                    <a href="locations.html">Locations</a>
                 </li>
                 <li>
                     <a href="about.html">About</a>
@@ -50,7 +57,11 @@
         </aside>
     
         <main>
-            <div id="cart-products">
+            <section id="dlcContainer" class="container">
+                <ul id="dlc-list"></ul>
+            </section>
+            <!-- <div id="cart-products">
+            
                 <article class="cart-product">
                     <img class="cart-product-img" src="images/products/couch.jpg" alt="couch image">
                     <h2 class="cart-product-name">Couch</h2>
@@ -81,7 +92,7 @@
                 <h1 id="cart-total">$<span id="cart-price">1970</span></h1>
                 <button id="checkout" class="btn-primary">Checkout</button>
                 <button id="continue" class="btn-secondary">Continue Shopping</button>
-            </section>
+            </section> -->
         </main>
     
         <footer>
@@ -100,15 +111,6 @@
                     <a href="https://www.facebook.com">
                         <i class="fa-brands fa-facebook"></i>
                     </a>
-                </li>
-            </ul>
-
-            <ul id="visit">
-                <li>
-                    <h3>Visit Us</h3>
-                </li>
-                <li>
-                    <p>Mon - Fri | 9am - 7pm<br>Sat - Sun | 11am - 5pm<br><br><a href="">Store Locator</a></p>
                 </li>
             </ul>
         </footer>

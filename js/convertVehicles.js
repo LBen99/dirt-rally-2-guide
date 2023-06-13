@@ -226,3 +226,5 @@ export async function vehicleFilters() {
         );
     });
 }
+
+export {types, disciplines, manufacturers, power, transmission, weight, drivetrain, engine, cylinders, aspiration}

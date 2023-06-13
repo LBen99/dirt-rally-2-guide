@@ -1,0 +1,458 @@
+{
+    "dlcPacks": [
+        {
+            "name": "Season 1",
+            "vehicles": [
+                {
+                    "manufacturer": "Skoda",
+                    "model": "Fabia Rally"
+                },
+                {
+                    "manufacturer": "Citroen",
+                    "model": "C4 Rally"
+                },
+                {
+                    "manufacturer": "BMW",
+                    "model": "M1 Procar Rally"
+                },
+                {
+                    "manufacturer": "Opel",
+                    "model": "Manta 400"
+                },
+                {
+                    "manufacturer": "Ford",
+                    "model": "Focus RS Rally 2007"
+                },
+                {
+                    "manufacturer": "Subaru",
+                    "model": "Impreza"
+                }
+            ],
+            "locations": [
+                {
+                    "name": "Monte Carlo",
+                    "country": "Monaco"
+                },
+                {
+                    "name": "Värmland",
+                    "country": "Sweden"
+                },
+                {
+                    "name": "Baumholder",
+                    "country": "Germany"
+                }
+            ]
+        },
+        {
+            "name": "Season 2",
+            "vehicles": [
+                {
+                    "manufacturer": "Peugot",
+                    "model": "205 T16 Rallycross"
+                },
+                {
+                    "manufacturer": "Ford",
+                    "model": "RS200 Evolution"
+                },
+                {
+                    "manufacturer": "Porsche",
+                    "model": "911 SC RS"
+                },
+                {
+                    "manufacturer": "Lancia",
+                    "model": "037 Evo 2"
+                },
+                {
+                    "manufacturer": "Lancia",
+                    "model": "Delta S4 Rallycross"
+                },
+                {
+                    "manufacturer": "MG",
+                    "model": "Metro 6R4 Rallycross"
+                }
+            ],
+            "locations": [
+                {
+                    "name": "Bikernieki",
+                    "country": "Latvia"
+                },
+                {
+                    "name": "Powys",
+                    "country": "Wales"
+                },
+                {
+                    "name": "Estering",
+                    "country": "Germany"
+                }
+            ]
+        },
+        {
+            "name": "Season 3",
+            "vehicles": [
+                {
+                    "manufacturer": "Subaru",
+                    "model": "Impreza (2001)"
+                },
+                {
+                    "manufacturer": "Ford",
+                    "model": "Focus RS Rally 2001"
+                },
+                {
+                    "manufacturer": "Peugot",
+                    "model": "306 Maxi"
+                },
+                {
+                    "manufacturer": "Seat",
+                    "model": "Ibiza Kitcar"
+                },
+                {
+                    "manufacturer": "Peugot",
+                    "model": "206 Rally"
+                },
+                {
+                    "manufacturer": "Volkswagen",
+                    "model": "Golf Kitcar"
+                }
+            ],
+            "locations": [
+                {
+                    "name": "Argolis",
+                    "country": "Greece"
+                },
+                {
+                    "name": "Yas Marina Circuit",
+                    "country": "Abu Dhabi"
+                },
+                {
+                    "name": "Jämsä",
+                    "country": "Finland"
+                }
+            ]
+        },
+        {
+            "name": "Season 4",
+            "vehicles": [
+                {
+                    "manufacturer": "Renault Sport",
+                    "model": "Clio R.S. RX"
+                },
+                {
+                    "manufacturer": "Renault Sport",
+                    "model": "Megane R.S. RX"
+                },
+                {
+                    "manufacturer": "Ford",
+                    "model": "Fiesta Rallycross (MK8)"
+                },
+                {
+                    "manufacturer": "Peugot",
+                    "model": "208 WRX"
+                },
+                {
+                    "manufacturer": "Ford",
+                    "model": "Fiesta Rallycross (STARD)"
+                },
+                {
+                    "manufacturer": "Ford",
+                    "model": "Fiesta RXS Evo 5"
+                },
+                {
+                    "manufacturer": "Audi",
+                    "model": "S1 EKS RX Quattro"
+                },
+                {
+                    "manufacturer": "Seat",
+                    "model": "Ibiza RX"
+                }
+            ],
+            "locations": [
+                {
+                    "name": "Killarney International Raceway",
+                    "country": "South Africa"
+                },
+                {
+                    "name": "Lydden Hill",
+                    "country": "England"
+                }
+            ]
+        },
+        {
+            "name": "Colin McRae: FLAT OUT Pack",
+            "vehicles": [
+                {
+                    "manufacturer": "Subaru",
+                    "model": "Legacy RS"
+                },
+                {
+                    "manufacturer": "Audi",
+                    "model": "S1 EKS RX Quattro"
+                },
+                {
+                    "manufacturer": "Ford",
+                    "model": "Escort MK II"
+                },
+                {
+                    "manufacturer": "Lancia",
+                    "model": "Delta HF Integrale"
+                },
+                {
+                    "manufacturer": "Subaru",
+                    "model": "Impreza 1995"
+                },
+                {
+                    "manufacturer": "Ford",
+                    "model": "Sierra Cosworth RS500"
+                }
+            ]
+        },
+        {
+            "name": "Deluxe Content Packs",
+            "content": [
+                {
+                    "name": "H2 RWD Double Pack",
+                    "vehicles": [
+                        {
+                            "manufacturer": "Lancia",
+                            "model": "037 Evo 2"
+                        },
+                        {
+                            "manufacturer": "Porsche",
+                            "model": "911 RGT Rally Spec"
+                        }
+                    ]
+                },
+                {
+                    "name": "Opel Manta 400",
+                    "vehicles": [
+                        {
+                            "manufacturer": "Opel",
+                            "model": "Manta 400"
+                        }
+                    ]
+                },
+                {
+                    "name": "Sweden Rally",
+                    "locations": [
+                        {
+                            "name": "Värmland",
+                            "country": "Sweden"
+                        }
+                    ]
+                },
+                {
+                    "name": "BMW M1 Procar Rally",
+                    "vehicles": [
+                        {
+                            "manufacturer": "BMW", 
+                            "model": "M1 Procar Rally"
+                        }
+                    ]
+                },
+                {
+                    "name": "Deluxe Upgrade",
+                    "content": [
+                        {
+                            "name": "Season 1",
+                            "vehicles": [
+                                {
+                                    "manufacturer": "Skoda",
+                                    "model": "Fabia Rally"
+                                },
+                                {
+                                    "manufacturer": "Citroen",
+                                    "model": "C4 Rally"
+                                },
+                                {
+                                    "manufacturer": "BMW",
+                                    "model": "M1 Procar Rally"
+                                },
+                                {
+                                    "manufacturer": "Opel",
+                                    "model": "Manta 400"
+                                },
+                                {
+                                    "manufacturer": "Ford",
+                                    "model": "Focus RS Rally 2007"
+                                },
+                                {
+                                    "manufacturer": "Subaru",
+                                    "model": "Impreza"
+                                }
+                            ],
+                            "locations": [
+                                {
+                                    "name": "Monte Carlo",
+                                    "country": "Monaco"
+                                },
+                                {
+                                    "name": "Värmland",
+                                    "country": "Sweden"
+                                },
+                                {
+                                    "name": "Baumholder",
+                                    "country": "Germany"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Season 2",
+                            "vehicles": [
+                                {
+                                    "manufacturer": "Peugot",
+                                    "model": "205 T16 Rallycross"
+                                },
+                                {
+                                    "manufacturer": "Ford",
+                                    "model": "RS200 Evolution"
+                                },
+                                {
+                                    "manufacturer": "Porsche",
+                                    "model": "911 SC RS"
+                                    },
+                                {
+                                    "manufacturer": "Lancia",
+                                    "model": "037 Evo 2"
+                                },
+                                {
+                                    "manufacturer": "Lancia",
+                                    "model": "Delta S4 Rallycross"
+                                },
+                                {
+                                    "manufacturer": "MG",
+                                    "model": "Metro 6R4 Rallycross"
+                                }
+                            ],
+                            "locations": [
+                                {
+                                    "name": "Bikernieki",
+                                    "country": "Latvia"
+                                },
+                                {
+                                    "name": "Powys",
+                                    "country": "Wales"
+                                },
+                                {
+                                    "name": "Estering",
+                                    "country": "Germany"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Ford Focus RS Rally 2007",
+                    "vehicles": [
+                        {
+                            "manufacturer": "Ford",
+                            "model": "Focus RS Rally 2007"
+                        }
+                    ]
+                },
+                {
+                    "name": "Subaru Impreza",
+                    "vehicles": [
+                        {
+                            "manufacturer": "Subaru",
+                            "model": "Impreza"
+                        }
+                    ]
+                },
+                {
+                    "name": "Deluxe Upgrade 2.0",
+                    "content": [
+                        {
+                            "name": "Season 3",
+                            "vehicles": [
+                                {
+                                    "manufacturer": "Subaru",
+                                    "model": "Impreza (2001)"
+                                },
+                                {
+                                    "manufacturer": "Ford",
+                                    "model": "Focus RS Rally 2001"
+                                },
+                                {
+                                    "manufacturer": "Peugot",
+                                    "model": "306 Maxi"
+                                },
+                                {
+                                    "manufacturer": "Seat",
+                                    "model": "Ibiza Kitcar"
+                                },
+                                {
+                                    "manufacturer": "Peugot",
+                                    "model": "206 Rally"
+                                },
+                                {
+                                    "manufacturer": "Volkswagen",
+                                    "model": "Golf Kitcar"
+                                }
+                            ],
+                            "locations": [
+                                {
+                                    "name": "Argolis",
+                                    "country": "Greece"
+                                },
+                                {
+                                    "name": "Yas Marina Circuit",
+                                    "country": "Abu Dhabi"
+                                },
+                                {
+                                    "name": "Jämsä",
+                                    "country": "Finland"
+                                }
+                            ] 
+                        },
+                        {
+                            "name": "Season 4",
+                            "vehicles": [
+                                {
+                                    "manufacturer": "Renault Sport",
+                                    "model": "Clio R.S. RX"
+                                },
+                                {
+                                    "manufacturer": "Renault Sport",
+                                    "model": "Megane R.S. RX"
+                                },
+                                {
+                                    "manufacturer": "Ford",
+                                    "model": "Fiesta Rallycross (MK8)"
+                                },
+                                {
+                                    "manufacturer": "Peugot",
+                                    "model": "208 WRX"
+                                },
+                                {
+                                    "manufacturer": "Ford",
+                                    "model": "Fiesta Rallycross (STARD)"
+                                },
+                                {
+                                    "manufacturer": "Ford",
+                                    "model": "Fiesta RXS Evo 5"
+                                },
+                                {
+                                    "manufacturer": "Audi",
+                                    "model": "S1 EKS RX Quattro"
+                                },
+                                {
+                                    "manufacturer": "Seat",
+                                    "model": "Ibiza RX"
+                                }
+                            ],
+                            "locations": [
+                                {
+                                    "name": "Killarney International Raceway",
+                                    "country": "South Africa"
+                                },
+                                {
+                                    "name": "Lydden Hill",
+                                    "country": "England"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

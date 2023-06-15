@@ -109,6 +109,220 @@ export async function convertVehicle() {
 
 }
 
+// const filteredVehicles = [];
+// const ids = [];
+// export async function activeFilters(keyName, keyValue, checked, type, dataFilter) {
+//     const tiles = document.querySelectorAll(".tile");
+    // const filter = (vehicle, vehicleData, existingFilter) => {
+                        
+    //     existingFilter();
+
+    //     for (let item of vehicleData) {
+    //         let id = `${ item.manufacturer } ${ item.model } ${ item.discipline }`
+    //         id = id.replace(/ /g, "-").toLowerCase();
+    //         if (type === "range" || type === "number") {
+    //             if (dataFilter.specs[keyName][0] <= item.specs[keyName]) {
+    //                 if (dataFilter.specs[keyName][1] >= item.specs[keyName]) {
+    //                     if (!filteredVehicles.includes(item)) {
+    //                         filteredVehicles.push(item);
+    //                         ids.push(id);
+    //                     }
+    //                 } else {
+    //                     if (filteredVehicles.includes(item)) {
+    //                         filteredVehicles.splice(filteredVehicles.indexOf(item), 1);
+    //                         ids.splice(ids.indexOf(id), 1);
+    //                     }
+    //                 }
+    //             } else if (dataFilter.specs[keyName][1] >= item.specs[keyName]) {
+    //                 if (dataFilter.specs[keyName][0] <= item.specs[keyName]) {
+    //                     if (!filteredVehicles.includes(item)) {
+    //                         filteredVehicles.push(item);
+    //                         ids.push(id);
+    //                     }
+    //                 } else {
+    //                     if (filteredVehicles.includes(item)) {
+    //                         filteredVehicles.splice(filteredVehicles.indexOf(item), 1);
+    //                         ids.splice(ids.indexOf(id), 1);
+    //                     }
+    //                 }
+    //             }
+    //         } else {
+    //             if (!checked) {
+    //                 if (keyName in dataFilter.specs) {
+    //                     if (item["specs"][`${ keyName }`].includes(keyValue) && !checked) {
+    //                         if (item["specs"][`${ keyName }`] === keyValue) {
+    //                             filteredVehicles.splice(filteredVehicles.indexOf(item), 1);
+    //                             ids.splice(ids.indexOf(id), 1);
+    //                         }
+    //                     }
+    //                 } else {
+    //                     if (item[`${ keyName }`].includes(keyValue) && !checked) {
+    //                         if (item[`${ keyName }`] === keyValue) {
+    //                             filteredVehicles.splice(filteredVehicles.indexOf(item), 1);
+    //                             ids.splice(ids.indexOf(id), 1);
+    //                         }
+    //                     }
+    //                 } 
+    //             } else if (vehicle(item) && !filteredVehicles.includes(item) && checked) {
+    //                 filteredVehicles.push(item);
+    //                 ids.push(id)
+    //             }
+    //         }
+    //     }
+    // }
+    
+    // const filterData = item => {
+    //     if (type === "range" || type === "number") {
+    //         return filteredVehicles
+    //     } else {
+    //         if (keyName in dataFilter.specs) {
+    //             for (const [key, value] of Object.entries(dataFilter.specs)) {
+    //                 for (let i = 0; i < value.length; i++) {
+    //                     if (item["specs"][key] == value[i]) {
+    //                         return filteredVehicles;
+    //                     }
+    //                 }
+    //             }      
+    //         } else {
+    //             for (const [key, value] of Object.entries(dataFilter)) {
+    //                 for (let i = 0; i < value.length; i++) {
+    //                     if (item[key] == value[i]) {
+    //                         return filteredVehicles;
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     } 
+    // }
+
+    // const existingFilter = filter => {
+    //     if (filteredVehicles.length > 0 && checked) {
+    //         const newArr = filteredVehicles.filter((vehicle) => {
+    //             if (keyName in dataFilter.specs) {
+    //                 for (const [key, value] of Object.entries(dataFilter.specs)) {
+    //                     for (let i = 0; i < dataFilter.specs[key].length; i++) {
+    //                         return vehicle.specs[keyName] === value[i]
+    //                     }
+    //                 }
+    //             } else {
+    //                 for (const [key, value] of Object.entries(dataFilter)) {
+    //                     for (let i = 0; i < dataFilter[key].length; i++) {
+    //                         let val = () => vehicle[key] === value[i++]
+    //                         const fv = filteredVehicles.some(val)
+    //                         if (!fv) {
+    //                             filteredVehicles.slice(filteredVehicles.indexOf(vehicle), 1)
+    //                         }
+    //                         return fv
+    //                     }
+    //                 }
+    //             }
+    //         });
+    //         console.log(newArr)
+    //     }
+    // }
+
+
+//     const filter = (vehicle, vehicleData) => {
+//         for (let item of vehicleData) {
+//             let id = `${ item.manufacturer } ${ item.model } ${ item.discipline }`
+//             id = id.replace(/ /g, "-").toLowerCase();
+//             if (type === "range" || type === "number") {
+//                 if (dataFilter.specs[keyName][0] <= item.specs[keyName]) {
+//                     if (dataFilter.specs[keyName][1] >= item.specs[keyName]) {
+//                         if (!filteredVehicles.includes(item)) {
+//                             filteredVehicles.push(item);
+//                             ids.push(id);
+//                         }
+//                     } else {
+//                         if (filteredVehicles.includes(item)) {
+//                             filteredVehicles.splice(filteredVehicles.indexOf(item), 1);
+//                             ids.splice(ids.indexOf(id), 1);
+//                         }
+//                     }
+//                 } else if (dataFilter.specs[keyName][1] >= item.specs[keyName]) {
+//                     if (dataFilter.specs[keyName][0] <= item.specs[keyName]) {
+//                         if (!filteredVehicles.includes(item)) {
+//                             filteredVehicles.push(item);
+//                             ids.push(id);
+//                         }
+//                     } else {
+//                         if (filteredVehicles.includes(item)) {
+//                             filteredVehicles.splice(filteredVehicles.indexOf(item), 1);
+//                             ids.splice(ids.indexOf(id), 1);
+//                         }
+//                     }
+//                 }
+//             } else {
+//                 if (!checked) {
+//                     if (keyName in dataFilter.specs) {
+//                         if (item["specs"][`${ keyName }`].includes(keyValue) && !checked) {
+//                             if (item["specs"][`${ keyName }`] === keyValue) {
+//                                 filteredVehicles.splice(filteredVehicles.indexOf(item), 1);
+//                                 ids.splice(ids.indexOf(id), 1);
+//                             }
+//                         }
+//                     } else {
+//                         if (item[`${ keyName }`].includes(keyValue) && !checked) {
+//                             if (item[`${ keyName }`] === keyValue) {
+//                                 filteredVehicles.splice(filteredVehicles.indexOf(item), 1);
+//                                 ids.splice(ids.indexOf(id), 1);
+//                             }
+//                         }
+//                     } 
+//                 } else if (vehicle(item) && !filteredVehicles.includes(item) && checked) {
+//                     filteredVehicles.push(item);
+//                     ids.push(id)
+//                 }
+//             }
+//         }
+//     }
+
+    
+//     const filterData = item => {
+//         if (type === "range" || type === "number") {
+//             return filteredVehicles
+//         } else {
+//             if (keyName in dataFilter.specs) {
+//                 for (const [key, value] of Object.entries(dataFilter.specs)) {
+//                     for (let i = 0; i < value.length; i++) {
+//                         if (item["specs"][key] == value[i]) {
+//                             return filteredVehicles;
+//                         }
+//                     }
+//                 }      
+//             } else {
+//                 for (const [key, value] of Object.entries(dataFilter)) {
+//                     for (let i = 0; i < value.length; i++) {
+//                         if (item[key] == value[i]) {
+//                             return filteredVehicles;
+//                         }
+//                     }
+//                 }
+//             }
+//         } 
+//     }
+
+  
+//     filter(filterData, vehicles)
+//     if (filteredVehicles.length === 0) {
+//         filter(filterData, vehicles);
+//     } else {
+//         filter(existingFilter, filteredVehicles);
+//     }
+
+//     for (let i = 0; i < tiles.length; i++) {
+//         if (ids.length === 0) {
+//             tiles[i].classList.remove("hide")
+//         } else {
+//             if (ids.includes(tiles[i].id)) {
+//                 tiles[i].classList.remove("hide");
+//             } else {
+//                 tiles[i].classList.add("hide")
+//             }
+//         }
+//     }
+// }
+
 export async function vehicleFilters() {
     types.forEach((type) => {
         typeDropdownContent.insertAdjacentHTML("beforeend",

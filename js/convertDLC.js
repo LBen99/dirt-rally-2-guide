@@ -3,18 +3,15 @@ import dlcData from "../data/dlc/dlc.json" assert { type: "json" };
 const dlcPacks = dlcData.dlcPacks;
 const dlcList = document.getElementById("dlc-list");
 
-const packs = [];
 const dlcVehicles = [];
 const dlcLocations = [];
-const deluxePack = [];
 const deluxeContent = [];
 const deluxeUpgrade = [];
+const dlcDelConImgs = [];
+const dlcDelUpgImgs = [];
 
 export async function findDLCKeyData() {
     dlcPacks.forEach((pack) => {
-        if (!pack.content) {
-            packs.push(pack.name);
-        }
         if (pack.vehicles) {
             for (let i = 0; i < pack.vehicles.length; i++) {
                 dlcVehicles.push(pack.vehicles[i]);
@@ -26,7 +23,6 @@ export async function findDLCKeyData() {
             }
         }
         if (pack.content) {
-            deluxePack.push(pack.name)
             for (let i = 0; i < pack.content.length; i++) {
                 if (pack.content[i].content) {
                     for (let j = 0; j < pack.content[i].content.length; j++) {
@@ -41,54 +37,22 @@ export async function findDLCKeyData() {
 }
 
 export async function convertDLC() {
-    packs.forEach((pack) => {
-        let packId = pack;
-        packId = packId.replace(/ /g, "-").toLowerCase();
+    dlcPacks.forEach(dlcPack => {
+        let packId = dlcPack.name.replace(/ /g, "-").toLowerCase();
+
         dlcList.insertAdjacentHTML(
             "beforeend",
             `<li id="dlc-${ packId }" class="dlc-collection tile">
-                <h2>${ pack }</h2>
-                <ul id="dlc-items-${ packId }"></ul>
-                <aside id="dlc-modal-${ packId }" class="modal hide">
-                    <ul id="modal-list-${ packId }" class="modal-list">
-                        <li id="modal-vehicles-${ packId }" class="modal-vehicles"></li>
-                        <li id="modal-locations-${ packId }" class="modal-locations"></li>
-                    </ul>
-                </aside>
+                <h2>${ dlcPack.name }</h2>
+                <ul id="dlc-items-${ packId }" class="dlc-tile-items"></ul>
+                <a id="prev-btn-${ packId }" class="prev-btn fa-solid fa-chevron-left"></a>
+                <a id="next-btn-${ packId }" class="next-btn fa-solid fa-chevron-right"></a>
             </li>`
         );
-    });
-    dlcPacks.forEach(dlcPack => {
-        let packId = dlcPack.name.replace(/ /g, "-").toLowerCase();
-        const dlcCollection = document.getElementById("dlc-items-" + packId);
-        const modalVehicles = document.getElementById("modal-vehicles-" + packId);
-        const modalLocations = document.getElementById("modal-locations-" + packId);
+
+        const dlcItems = document.getElementById("dlc-items-" + packId);
+
         for (const value of Object.values(dlcPack)) {
-            dlcVehicles.forEach(dlcVehicle => {
-                let vehicleId = dlcVehicle.manufacturer + " " + dlcVehicle.model;
-                vehicleId = vehicleId.replace(/ /g, "-").toLowerCase();
-                if (dlcCollection && value.includes(dlcVehicle)) {
-                    let img = dlcVehicle.manufacturer + "-" + dlcVehicle.model
-                    img = img.replace(/ /g, "-").replace(/\//g, "").toLowerCase();
-                    if (!document.getElementById(vehicleId)) {
-                        dlcCollection.insertAdjacentHTML(
-                            "beforeend",
-                            `<li id="${ vehicleId }" class="dlc-content">
-                                <h2 class="tile-name vehicle-manufacturer">${ dlcVehicle.manufacturer }</h2>
-                                <h3 class="tile-name vehicle-model">${ dlcVehicle.model }</h3>
-                            </li>`
-                        );
-                        modalVehicles.insertAdjacentHTML(
-                            "beforeend",
-                            `<li class="modal-content">
-                                <img src="images/vehicles/${ img }.jpg" alt="" class="vehicle-img tile-img">
-                                <h2 class="tile-name vehicle-manufacturer">${ dlcVehicle.manufacturer }</h2>
-                                <h3 class="tile-name vehicle-model">${ dlcVehicle.model }</h3>
-                            </li>`
-                        );
-                    }
-                }
-            });
             dlcLocations.forEach(dlcLocation => {
                 let locationId = dlcLocation.name + " " + dlcLocation.country;
                 locationId = locationId.replace(/ /g, "-").toLowerCase();
@@ -96,186 +60,174 @@ export async function convertDLC() {
                     let img = dlcLocation.name + "-" + dlcLocation.country
                     img = img.replace(/ /g, "-").replace(/\//g, "").toLowerCase();
                     if (!document.getElementById(locationId)) {
-                        dlcCollection.insertAdjacentHTML(
+                        dlcItems.insertAdjacentHTML(
                             "beforeend",
-                            `<li id="${ locationId }" class="dlc-content">
-                                <h2 class="tile-name location-name">${ dlcLocation.name }</h2>
-                                <h3 class="tile-name location-country">${ dlcLocation.country }</h3>
-                            </li>`
-                        );
-                        modalLocations.insertAdjacentHTML(
-                            "beforeend",
-                            `<li class="modal-content">
+                            `<li id="dlc-tile-${ locationId }" class="tile dlc-slider-tile frosted-glass">
+                                <div id="${ locationId }-blur" class="background-blur hide"></div>
                                 <img src="images/locations/${ img }.jpg" alt="" class="location-img tile-img">
-                                <h2 class="tile-name location-name">${ dlcLocation.name }</h2>
-                                <h3 class="tile-name location-country">${ dlcLocation.country }</h3>
+                                <ul id="dlc-text-list-${ locationId }" class="dlc-text-list hide">
+                                    <li>
+                                        <h2 class="dlc-location">${ dlcLocation.name }</h2>
+                                        <h3 class="dlc-country">${ dlcLocation.country }</h3>
+                                    </li>
+                                </ul>
                             </li>`
                         );
                     }
                 }
             });
             
+            dlcVehicles.forEach(dlcVehicle => {
+                let vehicleId = dlcVehicle.manufacturer + " " + dlcVehicle.model;
+                vehicleId = vehicleId.replace(/ /g, "-").toLowerCase();
+                if (value.includes(dlcVehicle)) {
+                    let img = dlcVehicle.manufacturer + "-" + dlcVehicle.model
+                    img = img.replace(/ /g, "-").replace(/\//g, "").toLowerCase();
+                    if (!document.getElementById(vehicleId)) {
+                        dlcItems.insertAdjacentHTML(
+                            "beforeend",
+                            `<li id="dlc-tile-${ vehicleId }" class="tile dlc-slider-tile frosted-glass">
+                                <div id="${ vehicleId }-blur" class="background-blur hide"></div>
+                                <img src="images/vehicles/${ img }.jpg" alt="" class="vehicle-img tile-img">
+                                <ul id="dlc-text-list-${ vehicleId }" class="dlc-text-list hide">
+                                    <li>
+                                        <h2 class="dlc-manufacturer">${ dlcVehicle.manufacturer }</h2>
+                                        <h3 class="dlc-model">${ dlcVehicle.model }</h3>
+                                    </li>
+                                </ul>
+                            </li>`
+                        );
+                    }
+                }
+            });
         }
     });
-    const dPackId = deluxePack[0].replace(/ /g, "-").toLowerCase();
-    dlcList.insertAdjacentHTML(
-        "beforeend",
-        `<li id="dlc-${ dPackId }" class="tile dlc-collection">
-            <h2>${ deluxePack[0] }</h2>
-            <ul id="dlc-items-${ dPackId }"></ul>
-        </li>`
-    );
 
     deluxeContent.forEach(item => {
-        const dlcCollection = document.getElementById("dlc-items-" + dPackId);
+        const delConImgs = []
+        const dlcCollection = document.getElementById("dlc-items-deluxe-content-packs");
         let dcpPackId = item.name.replace(/ /g, "-").toLowerCase();
+        if (item.locations) {
+            for (let i = 0; i < item.locations.length; i++) {
+                let img = "images/locations/" + item.locations[i].name + "-" + item.locations[i].country + ".jpg";
+                img = img.replace(/ /g, "-").toLowerCase();
+                delConImgs.push(img);
+            }
+        }
+        if (item.vehicles) {
+            for (let i = 0; i < item.vehicles.length; i++) {
+                let img = "images/vehicles/" + item.vehicles[i].manufacturer + "-" + item.vehicles[i].model + ".jpg";
+                img = img.replace(/ /g, "-").toLowerCase();
+                delConImgs.push(img);
+            }
+        }
+        dlcDelConImgs.push({name: item.name, arr: delConImgs});
+
         dlcCollection.insertAdjacentHTML(
             "beforeend",
-            `<li id="dlcdcp-${ dcpPackId }" class="tile dlcdcp-tile">
-                <h3>${ item.name }</h3>
-                <ul id="dlcdcp-items-${ dcpPackId }"></ul>
-                <aside id="dlcdcp-modal-${ dcpPackId }" class="modal dlcdcp-modal hide">
-                    <ul id="dlcdcp-modal-list-${ dcpPackId }" class="modal-list">
-                        <li id="dlcdcp-modal-vehicles-${ dcpPackId }" class="modal-vehicles"></li>
-                        <li id="dlcdcp-modal-locations-${ dcpPackId }" class="modal-locations"></li>
-                    </ul>
-                </aside>
+            `<li id="delcon-tile-${ dcpPackId }" class="tile dlc-slider-tile frosted-glass">
+                <div id="${ dcpPackId }-blur" class="background-blur hide"></div>
+                <ul id="delcon-text-list-${ dcpPackId }" class="dlc-text-list hide">
+                    <li class="collection-name">
+                        <h1>${ item.name }</h1>
+                    </li>
+                    <li class="collection-includes">
+                        <p>Includes</p>
+                    </li>
+                </ul>
             </li>`
         );
+        console.log(dlcCollection);
         
-        const dcpCollection = document.getElementById("dlcdcp-items-" + dcpPackId);
-        const modalVehicles = document.getElementById("dlcdcp-modal-vehicles-" + dcpPackId);
-        const modalLocations = document.getElementById("dlcdcp-modal-locations-" + dcpPackId);
+        const dcpCollection = document.getElementById("delcon-text-list-" + dcpPackId);
+
+        if (item.locations) {
+            for (let i = 0; i < item.locations.length; i++) {
+                let locationId = item.locations[i].name + " " + item.locations[i].country;
+                locationId = locationId.replace(/ /g, "-").toLowerCase();
+                let img = item.locations[i].name + "-" + item.locations[i].country;
+                img = img.replace(/ /g, "-").replace(/\//g, "").toLowerCase();
+
+                dcpCollection.insertAdjacentHTML(
+                    "beforeend",
+                    `<li id="dlcdcp-item-${ locationId }" class="collection-content">
+                        <p>- ${ item.locations[i].name }, ${ item.locations[i].country }</p>
+                    </li>`
+                );
+            }
+        }
+
         if (item.vehicles) {
             for (let i = 0; i < item.vehicles.length; i++) {
                 let vehicleId = item.vehicles[i].manufacturer + " " + item.vehicles[i].model;
                 vehicleId = vehicleId.replace(/ /g, "-").toLowerCase();
                 let img = item.vehicles[i].manufacturer + "-" + item.vehicles[i].model
                 img = img.replace(/ /g, "-").replace(/\//g, "").toLowerCase();
+
                 dcpCollection.insertAdjacentHTML(
                     "beforeend",
-                    `<li id="dlcdcp-item-${ vehicleId }" class="dlc-content">
-                        <h2 class="tile-name vehicle-manufacturer">${ item.vehicles[i].manufacturer }</h2>
-                        <h3 class="tile-name vehicle-model">${ item.vehicles[i].model }</h3>
-                    </li>`
-                );
-                modalVehicles.insertAdjacentHTML(
-                    "beforeend",
-                    `<li class="modal-content">
-                        <img src="images/vehicles/${ img }.jpg" alt="" class="vehicle-img tile-img">
-                        <h2 class="tile-name vehicle-manufacturer">${ item.vehicles[i].manufacturer }</h2>
-                        <h3 class="tile-name vehicle-model">${ item.vehicles[i].model }</h3>
-                    </li>`
-                );
-            }
-        }
-        if (item.locations) {
-            for (let i = 0; i < item.locations.length; i++) {
-                let locationId = item.locations[i].name + " " + item.locations[i].country;
-                locationId = locationId.replace(/ /g, "-").toLowerCase();
-                let img = item.locations[i].name + "-" + item.locations[i].country
-                img = img.replace(/ /g, "-").replace(/\//g, "").toLowerCase();
-                dcpCollection.insertAdjacentHTML(
-                    "beforeend",
-                    `<li id="dlcdcp-item-${ locationId }" class="dlc-content">
-                        <h2 class="tile-name location-name">${ item.locations[i].name }</h2>
-                        <h3 class="tile-name location-country">${ item.locations[i].country }</h3>
-                    </li>`
-                );
-                modalLocations.insertAdjacentHTML(
-                    "beforeend",
-                    `<li class="modal-content">
-                        <img src="images/locations/${ img }.jpg" alt="" class="location-img tile-img">
-                        <h2 class="tile-name location-name">${ item.locations[i].name }</h2>
-                        <h3 class="tile-name location-country">${ item.locations[i].country }</h3>
+                    `<li id="dlcdcp-item-${ vehicleId }" class="collection-content">
+                        <p>- ${ item.vehicles[i].manufacturer }, ${ item.vehicles[i].model }</p>
                     </li>`
                 );
             }
         }
     });
 
+    const delUpgImgs = [{name: "Deluxe Upgrade", arr: []}, {name: "Deluxe Upgrade 2.0", arr: []}];
     deluxeUpgrade.forEach(item => {
         const dlcCollection = document.getElementById("dlc-items-deluxe-content-packs");
         let collectionName = item.name  == "Season 1" || item.name == "Season 2" ? "Deluxe Upgrade" : "Deluxe Upgrade 2.0";
-        let collectionId = "delupg-" + collectionName.replace(/ /g, "-").toLowerCase();
-        let dcpPackId = item.name.replace(/ /g, "-").toLowerCase();
-        if (!document.getElementById(collectionId)) {
+        let collectionId = collectionName.replace(/ /g, "-").toLowerCase();
+        if (item.locations) {
+            for (let i = 0; i < item.locations.length; i++) {
+                let img = "images/locations/" + item.locations[i].name + "-" + item.locations[i].country + ".jpg";
+                img = img.replace(/ /g, "-").toLowerCase();
+                if (delUpgImgs[0].name === collectionName) {
+                    delUpgImgs[0].arr.push(img);
+                } else if (delUpgImgs[1].name === collectionName) {
+                    delUpgImgs[1].arr.push(img);
+                }
+            }
+        }
+        if (item.vehicles) {
+            for (let i = 0; i < item.vehicles.length; i++) {
+                let img = "images/vehicles/" + item.vehicles[i].manufacturer + "-" + item.vehicles[i].model + ".jpg";
+                img = img.replace(/ /g, "-").toLowerCase();
+                if (delUpgImgs[0].name === collectionName) {
+                    delUpgImgs[0].arr.push(img);
+                } else if (delUpgImgs[1].name === collectionName) {
+                    delUpgImgs[1].arr.push(img);
+                }
+            }
+        }
+        if (dlcDelUpgImgs.length < 1) {
+            dlcDelUpgImgs.push(delUpgImgs);
+        }
+        if (!document.getElementById("delupg-tile-" + collectionId)) {
             dlcCollection.insertAdjacentHTML(
                 "beforeend",
-                `<li id="${ collectionId }" class="tile">
-                    <h3>${ collectionName }</h3>
+                `<li id="delupg-tile-${ collectionId }" class="tile dlc-slider-tile frosted-glass">
+                    <div id="${ collectionId }-blur" class="background-blur hide"></div>
+                    <ul id="delupg-text-list-${ collectionId }" class="dlc-text-list hide">
+                        <li class="collection-name">
+                            <h1>${ collectionName }</h1>
+                        </li>
+                        <li class="collection-includes">
+                            <p>Includes</p>
+                        </li>
+                    </ul>
                 </li>`
             );
         }
-
-        const dcpCollection = document.getElementById(collectionId);
-        dcpCollection.insertAdjacentHTML(
-            "beforeend",
-            `<ul id="delupg-${ dcpPackId }" class="delupg-tile">
-                <h4>${ item.name }</h4>
-            </ul>
-            <aside id="delupg-modal-${ dcpPackId }" class="modal delupg-modal hide">
-                <ul id="delupg-modal-list-${ dcpPackId }" class="modal-list">
-                    <li class="modal-season">
-                        <h4>${ item.name }</h4>
-                        <ul  id="delupg-content-${ dcpPackId }">
-                            <li id="delupg-modal-vehicles-${ dcpPackId }" class="modal-vehicles"></li>
-                            <li id="delupg-modal-locations-${ dcpPackId }" class="modal-locations"></li>
-                        </ul>
-                    </li>
-                </ul>
-            </aside>`
-        )
-
-        const delUpgCollection = document.getElementById("delupg-content-" + dcpPackId);
-        const modalVehicles = document.getElementById("delupg-modal-vehicles-" + dcpPackId);
-        const modalLocations = document.getElementById("delupg-modal-locations-" + dcpPackId);
-        if (item.vehicles) {
-            for (let i = 0; i < item.vehicles.length; i++) {
-                let vehicleId = item.vehicles[i].manufacturer + " " + item.vehicles[i].model;
-                vehicleId = vehicleId.replace(/ /g, "-").toLowerCase();
-                let img = item.vehicles[i].manufacturer + "-" + item.vehicles[i].model
-                img = img.replace(/ /g, "-").replace(/\//g, "").toLowerCase();
-                delUpgCollection.insertAdjacentHTML(
-                    "beforeend",
-                    `<li id="delupg-item-${ vehicleId }" class="dlc-content">
-                        <h2 class="tile-name vehicle-manufacturer">${ item.vehicles[i].manufacturer }</h2>
-                        <h3 class="tile-name vehicle-model">${ item.vehicles[i].model }</h3>
-                    </li>`
-                );
-                modalVehicles.insertAdjacentHTML(
-                    "beforeend",
-                    `<li class="modal-content">
-                        <img src="images/vehicles/${ img }.jpg" alt="" class="vehicle-img tile-img">
-                        <h2 class="tile-name vehicle-manufacturer">${ item.vehicles[i].manufacturer }</h2>
-                        <h3 class="tile-name vehicle-model">${ item.vehicles[i].model }</h3>
-                    </li>`
-                );
-            }
-        }
-        if (item.locations) {
-            for (let i = 0; i < item.locations.length; i++) {
-                let locationId = item.locations[i].name + " " + item.locations[i].country;
-                locationId = locationId.replace(/ /g, "-").toLowerCase();
-                let img = item.locations[i].name + "-" + item.locations[i].country
-                img = img.replace(/ /g, "-").replace(/\//g, "").toLowerCase();
-                delUpgCollection.insertAdjacentHTML(
-                    "beforeend",
-                    `<li id="dlcdcp-item-${ locationId }" class="dlc-content">
-                        <img src="images/locations/${ img }.jpg" alt="" class="location-img tile-img">
-                        <h2 class="tile-name location-name">${ item.locations[i].name }</h2>
-                        <h3 class="tile-name location-country">${ item.locations[i].country }</h3>
-                    </li>`
-                );
-                modalLocations.insertAdjacentHTML(
-                    "beforeend",
-                    `<li class="modal-content">
-                        <img src="images/locations/${ img }.jpg" alt="" class="location-img tile-img">
-                        <h2 class="tile-name location-name">${ item.locations[i].name }</h2>
-                        <h3 class="tile-name location-country">${ item.locations[i].country }</h3>
-                    </li>`
-                );
-            }
-        }
+        const collectionList = document.getElementById("delupg-text-list-" + collectionId);
+            collectionList.insertAdjacentHTML(
+                "beforeend",
+                `<li class="collection-content">
+                    <p>- ${ item.name }</p>
+                </li>`
+            );
     });
 }
+
+export { dlcDelConImgs, dlcDelUpgImgs }

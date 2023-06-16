@@ -1,27 +1,3 @@
-//* IMPORTS *//
-import { filterPowerRange, filterPowerInput, filterWeightRange, filterWeightInput, filterEngineRange, filterEngineInput } from "./vehicles.js";
-import { toggleForward, toggleReverse } from "./locations.js";
-import { findVehicleKeyData, convertVehicle, vehicleFilters } from "./convertVehicles.js";
-import { findLocationKeyData, convertLocation, locationFilters } from "./convertLocations.js";
-import { findDLCKeyData, convertDLC, dlcDelConImgs, dlcDelUpgImgs } from "./convertDLC.js";
-
-if (window.location.pathname.includes("vehicles.html")) {
-    await findVehicleKeyData();
-    await convertVehicle();
-    await vehicleFilters();
-}
-
-if (window.location.pathname.includes("locations.html")) {
-    await findLocationKeyData();
-    await convertLocation();
-    await locationFilters();
-}
-
-if (window.location.pathname.includes("dlc.html")) {
-    await findDLCKeyData();
-    await convertDLC();
-}
-
 //* PAGE *//
 const wrapper = document.getElementById("wrapper");
 
@@ -32,14 +8,9 @@ const searchInput = document.getElementById("search-input");
 //*FILTER BUTTON *//
 const filterBtn = document.getElementById("btn-filter");
 const filterIcon = document.getElementById("filter-icon");
-const filterOpenIcons = document.getElementById("filter-open-icons");
-const filterConfirm = document.getElementById("filter-confirm");
-const filterReset = document.getElementById("filter-reset");
-const filterCancel = document.getElementById("filter-cancel");
 const filters = document.querySelectorAll(".filter");
 const filterList = document.getElementById("filter-list");
 const dropdowns = document.querySelectorAll(".dropdown");
-const dropdownItems = document.querySelectorAll(".dropdown-item");
 
 //* POWER FILTER *//
 let powerRangeMin = 0;
@@ -216,145 +187,26 @@ function hideDlcText() {
     });
 }
 
-dlcTiles.forEach(tile => {
-    tile.addEventListener("mouseenter", (e) => showDlcText(e));
-    tile.addEventListener("mouseleave", hideDlcText);
-});
-
-tileCarousel.forEach(carousel => {
-    let content = new Carousel(carousel.id, carousel.childNodes);
-    content.updateArr;
-    const nodes = [];
-    carousel.childNodes.forEach(child => {
-        nodes.push(child);
-    });
-
-    prevBtn.forEach(btn => btn.addEventListener("click", (e) => {
-        if (e.target.parentElement === carousel.parentElement) {
-            nodes.unshift(nodes.pop());
-            content = new Carousel(carousel.id, nodes);
-            content.updateArr;
-        }
-    }));
-    
-    nextBtn.forEach(btn => btn.addEventListener("click", (e) => {
-        if (e.target.parentElement === carousel.parentElement) {
-            nodes.push(nodes.shift());
-            content = new Carousel(carousel.id, nodes)
-            content.updateArr;
-        }
-    }));
-
-    if (carousel.id === "dlc-items-deluxe-content-packs") {
-        let tileImg = document.querySelectorAll(".tile-img");
-        let delConArr = [];
-        let delConImg = [];
-        dlcDelConImgs.forEach(item => {
-            let id = item.name.replace(/ /g, "-").toLowerCase();
-            let prefix = "delcon-tile-";
-            let pack = document.getElementById(prefix + id);
-            pack.insertAdjacentHTML(
-                "afterbegin",
-                `<img src="${ item.arr[item.arr.length - 1] }" alt="" id="dlc-${ id }-img" class="dlc-img tile-img">`
-            );
-            if (item.arr.length > 1) {
-                item.arr.map(img => {
-                    delConArr.push(img);
-                });
-                delConImg.push(document.getElementById("dlc-" + id + "-img"));
-            }
-        });
-        let upgArr = [];
-        let upg2Arr = [];
-        let packIds = [];
-        let upgImg = [];
-        dlcDelUpgImgs.forEach(item => {
-            item.map(item => {
-                let id = item.name.replace(/ /g, "-").toLowerCase();
-                let prefix = "delupg-tile-";
-                let pack = prefix + id;
-                if (item.name === "Deluxe Upgrade") {
-                    item.arr.forEach(img => upgArr.push(img));
-                    if (!packIds.includes(pack)) {
-                        packIds.push(pack);
-                    }
-                } else {
-                    item.arr.forEach(img => upg2Arr.push(img));
-                    if (!packIds.includes(pack)) {
-                        packIds.push(pack);
-                    }
-                }
-            });
-        });
-        packIds.forEach(id => {
-            let pack = document.getElementById(id);
-            if (pack.firstChild !== tileImg) {
-                if (pack.id === packIds[0]) {
-                    pack.insertAdjacentHTML(
-                        "beforeend",
-                        `<img src="${ upgArr[upgArr.length - 1] }" alt="" id="dlc-delupg-img" class="dlc-img tile-img img-swap no-before">`
-                    );
-                } else {
-                    pack.insertAdjacentHTML(
-                        "beforeend",
-                        `<img src="${ upg2Arr[upg2Arr.length - 1] }" alt="" id="dlc-delupg2-img" class="dlc-img tile-img img-swap no-before">`
-                    );
-                }
-            }
-        });
-        upgImg.push(document.getElementById("dlc-delupg-img"));
-        upgImg.push(document.getElementById("dlc-delupg2-img"));
-        changeImg(delConArr, delConImg[0]);
-        changeImg(upgArr, upgImg[0]);
-        changeImg(upg2Arr, upgImg[1]);
-    }
-});
-
-
-
-
-
-
-//* LOCATION *//
-const forwardTab = document.querySelectorAll(".forward-tab");
-const reverseTab = document.querySelectorAll(".reverse-tab");
-
 function searchOpen() {
     searchBtn.classList.add("search-open");
+    closeModal();
 }
 
 function searchClosed() {
     searchBtn.classList.remove("search-open");
 }
 
-function showIcons() {
-    filterOpenIcons.classList.add("show");
-    filterConfirm.classList.add("show");
-    filterReset.classList.add("show");
-    filterCancel.classList.add("show");
-}
-
-function hideIcons() {
-    filterOpenIcons.classList.remove("show");
-    filterConfirm.classList.remove("show");
-    filterReset.classList.remove("show");
-    filterCancel.classList.remove("show");
-}
-
 function filterOpen() {
     filterBtn.classList.add("filter-open");
     filterList.classList.add("open");
     filterIcon.classList.remove("show");
-    filterOpenIcons.classList.add("show");
-    showIcons();
+    closeModal();
 }
 
 function filterClosed() {
     filterBtn.classList.remove("filter-open");
     filterList.classList.remove("open");
     filterIcon.classList.add("show");
-    filterOpenIcons.classList.remove("show");
-    hideIcons();
 }
 
 function showDropdown() {
@@ -401,22 +253,11 @@ function centerImg() {
     tileImg.forEach(img => img.setAttribute("style", "left: " + posLeft + "px"));
 }
 
-function hideTiles() {
-    containers.forEach((container) => container.classList.add("tile-open"));
-    tileCloseBtn.forEach((btn) => {
-        btn.classList.remove("hide");
-    });
-}
-
 function showTiles() {
     containers.forEach((container) => container.classList.remove("tile-open"));
     tiles.forEach((tile) => {
         tile.classList.remove("hide");
-        // tile.removeAttribute("open");
     });
-    // tileCloseBtn.forEach((btn) => {
-    //     btn.classList.add("hide");
-    // });
     centerImg();
     window.onresize = centerImg;
 }
@@ -429,16 +270,24 @@ function closeModal() {
     })
 }
 
-//! EVENT LISTENERS !//
+function openModal(e) {
+    let location = e.target.id.replace("-details-btn", "");
+    modals.forEach(modal => {
+        if (modal.id.includes(location)) {
+            modal.classList.remove("hide")
+        }
+    });
+}
+
 window.onresize = centerImg;
 window.onload = centerImg;
 
-// wrapper.addEventListener("click", function(e) {
-//     searchClosed();
-//     filterClosed();
-//     showTiles();
-// });
 if (window.location.pathname.includes("locations.html") || window.location.pathname.includes("vehicles.html")) {
+    wrapper.addEventListener("click", function(e) {
+        searchClosed();
+        filterClosed();
+    });
+   
     //* SEARCH BUTTON *//
     searchBtn.addEventListener("click", function(e) {
         e.stopPropagation();
@@ -467,11 +316,6 @@ if (window.location.pathname.includes("locations.html") || window.location.pathn
         filterOpen();
     });
     
-    filterCancel.addEventListener("click", function(e) {
-        e.stopPropagation();
-        filterClosed();
-    });
-    
     filters.forEach(filter => filter.addEventListener("mouseover", showDropdown));
     filters.forEach(filter => filter.addEventListener("mouseout", hideDropdown));
     filters.forEach(filter => filter.addEventListener("click", toggleDropdown));
@@ -497,9 +341,125 @@ if (window.location.pathname.includes("locations.html") || window.location.pathn
     dropdowns.forEach(dropdown => dropdown.addEventListener("click", (e) => {
         e.stopPropagation();
     }));
+
+    tiles.forEach(tile => tile.addEventListener("click", () => {
+    searchClosed();
+    filterClosed();
+    window.onresize = tileImg.forEach(img => img.setAttribute("style", "left: 0"));
+    }));
+    
+    detailsBtn.forEach(btn => btn.addEventListener("click", (e) => {
+    closeModal();
+    openModal(e);
+    }));
+    
+    tileCloseBtn.forEach(btn => btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    closeModal();
+    btn.parentElement.parentElement.scrollIntoView({block: "center"});
+    }));
 }
 
 if (window.location.pathname.includes("vehicles.html")) {
+    function filterPowerRange(e, powerRangeMin, selectedPower, powerRange, powerInput) {
+        let minRange = parseInt(powerRange[0].value) - 100;
+        let maxRange = parseInt(powerRange[1].value) - 100;
+    
+        if (maxRange - minRange < powerRangeMin) {
+            if (e.target.className === "min") {
+                powerRange[0].value = (maxRange + 100) - powerRangeMin;
+            } else {
+                powerRange[1].value = (minRange + 100) + powerRangeMin;
+            }
+        } else {
+            powerInput[0].value = minRange + 100;
+            powerInput[1].value = maxRange + 100;
+            selectedPower.style.left = (minRange / (powerRange[0].max - 100)) * 100 + "%";
+            selectedPower.style.right = 100 - (maxRange / (powerRange[1].max - 100)) * 100 + "%";
+        }
+    }
+    
+    function filterPowerInput(e, powerRangeMin, selectedPower, powerRange, powerInput) {
+        let minPower = parseInt(powerInput[0].value) - 100;
+        let maxPower = parseInt(powerInput[1].value) - 100;
+    
+        if (maxPower - minPower >= powerRangeMin && maxPower <= (powerRange[1].max - 100)) {
+            if (e.target.className === "min") {
+                powerRange[0].value = minPower + 100;
+                selectedPower.style.left = (minPower / (powerRange[0].max - 100)) * 100 + "%";
+            } else {
+                powerRange[1].value = maxPower + 100;
+                selectedPower.style.right = 100 - (maxPower / (powerRange[1].max - 100)) * 100 + "%";
+            }
+        }
+    }
+    
+    function filterWeightRange(e, weightRangeMin, selectedWeight, weightRange, weightInput) {
+        let minRange = parseInt(weightRange[0].value) - 312;
+        let maxRange = parseInt(weightRange[1].value) - 312;
+    
+        if (maxRange - minRange < weightRangeMin) {
+            if (e.target.className === "min") {
+                weightRange[0].value = (maxRange + 312) - weightRangeMin;
+            } else {
+                weightRange[1].value = (minRange + 312) + weightRangeMin;
+            }
+        } else {
+            weightInput[0].value = minRange + 312;
+            weightInput[1].value = maxRange + 312;
+            selectedWeight.style.left = (minRange / (weightRange[0].max - 312)) * 100 + "%";
+            selectedWeight.style.right = 100 - (maxRange / (weightRange[1].max - 312)) * 100 + "%";
+        }
+    }
+    
+    function filterWeightInput(e, weightRangeMin, selectedWeight, weightRange, weightInput) {
+        let minWeight = parseInt(weightInput[0].value) - 312;
+        let maxWeight = parseInt(weightInput[1].value) - 312;
+    
+        if (maxWeight - minWeight >= weightRangeMin && maxWeight <= (weightRange[1].max - 312)) {
+            if (e.target.className === "min") {
+                weightRange[0].value = minWeight + 312;
+                selectedWeight.style.left = (minWeight / (weightRange[0].max - 312)) * 100 + "%";
+            } else {
+                weightRange[1].value = maxWeight + 312;
+                selectedWeight.style.right = 100 - (maxWeight / (weightRange[1].max - 312)) * 100 + "%";
+            }
+        }
+    }
+    
+    function filterEngineRange(e, engineRangeMin, selectedEngine, engineRange, engineInput) {
+        let minRange = parseInt(engineRange[0].value) - 750;
+        let maxRange = parseInt(engineRange[1].value) - 750;
+    
+        if (maxRange - minRange < engineRangeMin) {
+            if (e.target.className === "min") {
+                engineRange[0].value = (maxRange + 750) - engineRangeMin;
+            } else {
+                engineRange[1].value = (minRange + 750) + engineRangeMin;
+            }
+        } else {
+            engineInput[0].value = minRange + 750;
+            engineInput[1].value = maxRange + 750;
+            selectedEngine.style.left = (minRange / (engineRange[0].max - 750)) * 100 + "%";
+            selectedEngine.style.right = 100 - (maxRange / (engineRange[1].max - 750)) * 100 + "%";
+        }
+    }
+    
+    function filterEngineInput(e, engineRangeMin, selectedEngine, engineRange, engineInput) {
+        let minEngine = parseInt(engineInput[0].value) - 750;
+        let maxEngine = parseInt(engineInput[1].value) - 750;
+    
+        if (maxEngine - minEngine >= engineRangeMin && maxEngine <= (engineRange[1].max - 750)) {
+            if (e.target.className === "min") {
+                engineRange[0].value = minEngine + 750;
+                selectedEngine.style.left = (minEngine / (engineRange[0].max - 750)) * 100 + "%";
+            } else {
+                engineRange[1].value = maxEngine + 750;
+                selectedEngine.style.right = 100 - (maxEngine / (engineRange[1].max - 750)) * 100 + "%";
+            }
+        }
+    }
+
     //* FILTER POWER *//
     powerRange.forEach((input) => input.addEventListener("input", (e) => filterPowerRange(e, powerRangeMin, selectedPower, powerRange, powerInput)));
     powerInput.forEach((input) => input.addEventListener("input", (e) => filterPowerInput(e, powerRangeMin, selectedPower, powerRange, powerInput)));
@@ -510,104 +470,101 @@ if (window.location.pathname.includes("vehicles.html")) {
     
     //* FILTER ENGINE *//
     engineRange.forEach((input) => input.addEventListener("input", (e) => filterEngineRange(e, engineRangeMin, selectedEngine, engineRange, engineInput)));
-    engineInput.forEach((input) => input.addEventListener("input", (e) => filterEngineRange(e, engineRangeMin, selectedEngine, engineRange, engineInput)));
+    engineInput.forEach((input) => input.addEventListener("input", (e) => filterEngineInput(e, engineRangeMin, selectedEngine, engineRange, engineInput)));
 }
 
-if (window.location.pathname.includes("/locations.html")) {
-    forwardTab.forEach(tab => tab.addEventListener("click", () => {
-        toggleForward();
-    }));
+if (window.location.pathname.includes("dlc.html")) {
+    dlcTiles.forEach(tile => {
+        tile.addEventListener("mouseenter", (e) => showDlcText(e));
+        tile.addEventListener("mouseleave", hideDlcText);
+    });
     
-    reverseTab.forEach(tab => tab.addEventListener("click", () => {
-        toggleReverse();
-    }));
-}
-
-
-
-//* TILES *//
-tiles.forEach(tile => tile.addEventListener("click", function(e) {
-    e.stopPropagation();
-    // e.preventDefault();
-    // searchClosed();
-    // filterClosed();
-    window.onresize = tileImg.forEach(img => img.setAttribute("style", "left: 0"));
-
-    modals.forEach((modal) => {
-        if (modal.id === this.id + "-modal") {
-            modal.classList.toggle("hide");
+    tileCarousel.forEach(carousel => {
+        let content = new Carousel(carousel.id, carousel.childNodes);
+        content.updateArr;
+        const nodes = [];
+        carousel.childNodes.forEach(child => {
+            nodes.push(child);
+        });
+    
+        prevBtn.forEach(btn => btn.addEventListener("click", (e) => {
+            if (e.target.parentElement === carousel.parentElement) {
+                nodes.unshift(nodes.pop());
+                content = new Carousel(carousel.id, nodes);
+                content.updateArr;
+            }
+        }));
+        
+        nextBtn.forEach(btn => btn.addEventListener("click", (e) => {
+            if (e.target.parentElement === carousel.parentElement) {
+                nodes.push(nodes.shift());
+                content = new Carousel(carousel.id, nodes)
+                content.updateArr;
+            }
+        }));
+    
+        if (carousel.id === "dlc-items-deluxe-content-packs") {
+            let tileImg = document.querySelectorAll(".tile-img");
+            let delConArr = [];
+            let delConImg = [];
+            dlcDelConImgs.forEach(item => {
+                let id = item.name.replace(/ /g, "-").toLowerCase();
+                let prefix = "delcon-tile-";
+                let pack = document.getElementById(prefix + id);
+                pack.insertAdjacentHTML(
+                    "afterbegin",
+                    `<img src="${ item.arr[item.arr.length - 1] }" alt="" id="dlc-${ id }-img" class="dlc-img tile-img">`
+                );
+                if (item.arr.length > 1) {
+                    item.arr.map(img => {
+                        delConArr.push(img);
+                    });
+                    delConImg.push(document.getElementById("dlc-" + id + "-img"));
+                }
+            });
+            let upgArr = [];
+            let upg2Arr = [];
+            let packIds = [];
+            let upgImg = [];
+            dlcDelUpgImgs.forEach(item => {
+                item.map(item => {
+                    let id = item.name.replace(/ /g, "-").toLowerCase();
+                    let prefix = "delupg-tile-";
+                    let pack = prefix + id;
+                    if (item.name === "Deluxe Upgrade") {
+                        item.arr.forEach(img => upgArr.push(img));
+                        if (!packIds.includes(pack)) {
+                            packIds.push(pack);
+                        }
+                    } else {
+                        item.arr.forEach(img => upg2Arr.push(img));
+                        if (!packIds.includes(pack)) {
+                            packIds.push(pack);
+                        }
+                    }
+                });
+            });
+            packIds.forEach(id => {
+                let pack = document.getElementById(id);
+                if (pack.firstChild !== tileImg) {
+                    if (pack.id === packIds[0]) {
+                        pack.insertAdjacentHTML(
+                            "beforeend",
+                            `<img src="${ upgArr[upgArr.length - 1] }" alt="" id="dlc-delupg-img" class="dlc-img tile-img img-swap no-before">`
+                        );
+                    } else {
+                        pack.insertAdjacentHTML(
+                            "beforeend",
+                            `<img src="${ upg2Arr[upg2Arr.length - 1] }" alt="" id="dlc-delupg2-img" class="dlc-img tile-img img-swap no-before">`
+                        );
+                    }
+                }
+            });
+            upgImg.push(document.getElementById("dlc-delupg-img"));
+            upgImg.push(document.getElementById("dlc-delupg2-img"));
+            changeImg(delConArr, delConImg[0]);
+            changeImg(upgArr, upgImg[0]);
+            changeImg(upg2Arr, upgImg[1]);
         }
-    })
-}));
-
-tileCloseBtn.forEach(btn => btn.addEventListener("click", function(e) {
-    e.stopPropagation();
-    closeModal();
-    btn.parentElement.parentElement.scrollIntoView({block: "center"});
-}));
-
-detailsBtn.forEach(btn => btn.addEventListener("click", (e) => {
-    e.stopPropagation();
-}));
-
-// let dataFilter = { 
-//     type: [],
-//     manufacturer: [],
-//     discipline: [],
-//     specs: {
-//         power: [100, 600],
-//         transmission: [],
-//         weight: [312, 1550],
-//         drivetrain: [],
-//         engine: [750, 6200],
-//         cylinders: [],
-//         aspiration: []
-//     }
-// }
-
-// dropdownItems.forEach((item) => item.addEventListener("input", (e) => {
-//     let keyName = e.target.name;
-//     let keyValue = e.target.value;
-//     let checked = e.target.checked;
-//     let type = e.target.type;
-//     if (e.target.type === "range" || e.target.type === "number") {
-//         if (e.target.className === "min") {
-//             if (dataFilter.specs[`${ keyName }`]) {
-//                 let max = document.querySelectorAll(".max");
-//                 dataFilter.specs[`${ keyName }`][0] = parseInt(keyValue);
-//                 if (max.name === keyName) {
-//                     dataFilter.specs[`${ keyName }`][1] = parseInt(max.value);
-//                 }
-//             }
-//         } else {
-//             if (dataFilter.specs[`${ keyName }`]) {
-//                 let min = document.querySelectorAll(".min");
-//                 dataFilter.specs[`${ keyName }`][1] = parseInt(keyValue);
-//                 if (min.name === keyName) {
-//                     dataFilter.specs[`${ keyName }`][0] = parseInt(min.value);
-//                 }
-//             }
-//         }
-//         // console.log(dataFilter.specs[`${ keyName }`]);
-//         // if (dataFilter.specs[`${ keyName }`])
-//         // activeFilters(keyName, keyValue, checked, type, dataFilter);
-//         // return
-//     } else {
-//         if (keyName in dataFilter.specs) {
-//             if (!dataFilter["specs"][`${ keyName }`].includes(keyValue) && checked) {
-//                 dataFilter["specs"][`${ keyName }`].push(keyValue);
-//             } else {
-//                 dataFilter["specs"][`${ keyName }`].splice(dataFilter["specs"][`${ keyName }`].includes(keyValue), 1);
-//             }
-//         } else {
-//             if (!dataFilter[`${ keyName }`].includes(keyValue) && checked) {
-//                 dataFilter[`${ keyName }`].push(keyValue);
-//             } else {
-//                 dataFilter[`${ keyName }`].splice(dataFilter[`${ keyName }`].includes(keyValue), 1);
-//             }
-//         }
-//     }
-//     // console.log(dataFilter);
-//     // }
-//     activeFilters(keyName, keyValue, checked, type, dataFilter);
-// }));
+    });
+}

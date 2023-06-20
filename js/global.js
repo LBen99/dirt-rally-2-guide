@@ -46,6 +46,19 @@ const nextBtn = document.querySelectorAll(".next-btn");
 const blurDivs = document.querySelectorAll(".background-blur");
 const textList = document.querySelectorAll(".dlc-text-list");
 
+//* VISUAL SPECS *//
+const svgs = document.querySelectorAll("svg");
+const svgBox = document.querySelectorAll(".box");
+const percentageBox = document.querySelectorAll(".percentage");
+const numberDiv = document.querySelectorAll(".number");
+const percentageText = document.querySelectorAll(".text");
+const visualSpecs = document.querySelectorAll(".visual-specs");
+const svgCircles = document.querySelectorAll("circle");
+const powerBox = document.querySelectorAll(".power-box");
+const engineBox = document.querySelectorAll(".engine-box");
+const weightBox = document.querySelectorAll(".weight-box");
+const valueRemaining = [0];
+
 class Carousel {
     constructor(id, items) {
         this.id = id;
@@ -266,17 +279,205 @@ function closeModal() {
     modals.forEach((modal) => {
         if (!modal.classList.value.includes("hide")) {
             modal.classList.add("hide");
+            if (window.location.pathname.includes("vehicles.html")) {
+                originalScale();
+            }
         }
     })
 }
 
 function openModal(e) {
-    let location = e.target.id.replace("-details-btn", "");
+    let id = e.target.id.replace("-details-btn", "");
     modals.forEach(modal => {
-        if (modal.id.includes(location)) {
+        if (modal.id.includes(id)) {
             modal.classList.remove("hide")
+            if (window.location.pathname.includes("vehicles.html")) {
+                scaleViewBox();
+                scaleText();
+                adjustDash(id);
+            }
         }
     });
+}
+
+function originalScale() {
+    svgBox.forEach(box => {
+        box.removeAttribute("style");
+    });
+    svgs.forEach(svg => {
+        svg.setAttribute("viewBox", "0 0 150 150");
+    });
+    svgCircles.forEach(circle => {
+        circle.removeAttribute("style");
+    });
+    numberDiv.forEach(div => {
+        div.removeAttribute("style");
+    });
+    percentageText.forEach(item => {
+        item.removeAttribute("style");
+    });
+}
+
+function scaleViewBox() {
+    let side;
+    svgBox.forEach(box => {
+        let width = parseFloat(box.offsetWidth);
+        if (width > 0) {
+            side = width;
+            box.style.height = `${ side }px`
+            box.style.width = `${ side }px`
+        }
+    });
+    
+    let viewBox = `0 0 ${ side } ${ side }`;
+    svgs.forEach(svg => {
+        svg.setAttribute("viewBox", viewBox);
+    });
+}
+
+function scaleText() {
+    let width;
+    let scale;
+    percentageBox.forEach(box => {
+        width = box.offsetWidth;
+        if (width > 0) {
+            scale = (width / 150) * 100;
+        }
+    });
+
+    numberDiv.forEach(div => {
+        div.style.transform = `scale(${ scale }%)`;
+    });
+
+    let scalePercent = parseFloat("." + scale)
+    percentageText.forEach(item => {
+        if (scalePercent * 100 !== 10) {
+            item.style.transform.scale = scalePercent;
+            item.style.fontSize = scalePercent * 100 + "%";
+        }
+    });    
+}
+
+function adjustDash(id) {
+    let thisModal = document.getElementById(id + "-modal");
+    let modalSvgs = thisModal.getElementsByTagName("svg");
+    let circleLength;
+    let green = "#20fb62";
+    let orange = "#ffbb00";
+    let red = "var(--red-400)";
+    let thisPower = parseInt(thisModal.getElementsByTagName("h2").item(1).innerText.replace("bhp", ""));
+    let thisEngine = parseInt(thisModal.getElementsByTagName("h2").item(5).innerText.replace("cc", ""));
+    let thisWeight = parseInt(thisModal.getElementsByTagName("h2").item(3).innerText.replace("kg", ""));
+    let power = []
+    let engine = [];
+    let weight = [];
+
+    modals.forEach(modal => {
+        power.push(parseInt(modal.getElementsByTagName("h2").item(1).innerText.replace("bhp", "")));
+        engine.push(parseInt(modal.getElementsByTagName("h2").item(5).innerText.replace("cc", "")));
+        weight.push(parseInt(modal.getElementsByTagName("h2").item(3).innerText.replace("kg", "")));
+    });
+
+    let powerBarColour;
+    let powerRange = thisPower / Math.max(...power) * 100;
+    let lowPower = Math.max(...power) / 3;
+    let medPower = Math.max(...power) / 1.5;
+    if (thisPower < lowPower) {
+        powerBarColour = red;
+    }
+    if (thisPower >= lowPower && thisPower < medPower) {
+        powerBarColour = orange;
+    }
+    if (thisPower >= medPower) {
+        powerBarColour = green;
+    }
+
+    let engineBarColour;
+    let engineRange = thisEngine / Math.max(...engine) * 100;
+    let lowEngine = Math.max(...engine) / 3;
+    let medEngine = Math.max(...engine) / 1.5;
+    if (thisEngine < lowEngine) {
+        engineBarColour = red;
+    }
+    if (thisEngine >= lowEngine && thisEngine < medEngine) {
+        engineBarColour = orange;
+    }
+    if (thisEngine >= medEngine) {
+        engineBarColour = green;
+    }
+
+    let weightBarColour;
+    let weightRange = thisWeight / Math.max(...weight) * 100;
+    let lowWeight = Math.max(...weight) / 3;
+    let medWeight = Math.max(...weight) / 1.5;
+    if (thisWeight < lowWeight) {
+        weightBarColour = green;
+    }
+    if (thisWeight >= lowWeight && thisWeight < medWeight) {
+        weightBarColour = orange;
+    }
+    if (thisWeight >= medWeight) {
+        weightBarColour = red;
+    }    
+
+    for (let i = 0; i < modalSvgs.length; i++) {
+        let values = modalSvgs[i].getAttribute("viewBox").split(" ");
+        let side = parseInt(values[values.length - 1]);
+        let r = side *  .45;
+        circleLength = 2 * Math.PI * r;
+        modalSvgs[i].firstElementChild.style.setProperty("stroke-dasharray", circleLength);
+        modalSvgs[i].lastElementChild.style.setProperty("stroke-dasharray", circleLength);
+        modalSvgs[i].firstElementChild.style.setProperty("stroke-dashoffset", 0);
+        modalSvgs[i].lastElementChild.style.setProperty("stroke-dashoffset", circleLength);
+    }
+
+    for (let i = 0; i < 82; i++) {
+        if (thisModal.contains(powerBox[i])) {
+            let circle = powerBox[i].getElementsByTagName("circle")[1];
+            const strokeIncrement = powerRange / thisPower;
+            circle.style.setProperty("stroke-dashoffset", circleLength - (circleLength * powerRange) / 100);
+            circle.style.setProperty("stroke", powerBarColour);
+            animateCircle(valueRemaining, powerRange, circle.style, circleLength, strokeIncrement);
+            const interval = setInterval(() => animateCircle(valueRemaining, powerRange, circle.style, circleLength, strokeIncrement, thisPower, interval), 1);
+            valueRemaining[0] = 0;
+        }
+        if (thisModal.contains(engineBox[i])) {
+            let circle = engineBox[i].getElementsByTagName("circle")[1];
+            const strokeIncrement = engineRange / thisEngine;
+            circle.style.setProperty("stroke-dashoffset", circleLength - (circleLength * engineRange) / 100);
+            circle.style.setProperty("stroke", engineBarColour);
+            animateCircle(valueRemaining, engineRange, circle.style, circleLength, strokeIncrement);
+            const interval = setInterval(() => animateCircle(valueRemaining, engineRange, circle.style, circleLength, strokeIncrement, thisEngine, interval), 1);
+            valueRemaining[0] = 0;
+        }
+        if (thisModal.contains(weightBox[i])) {
+            let circle = weightBox[i].getElementsByTagName("circle")[1];
+            const strokeIncrement = weightRange / thisWeight;
+            circle.style.setProperty("stroke-dashoffset", circleLength - (circleLength * weightRange) / 100);
+            circle.style.setProperty("stroke", weightBarColour);
+            animateCircle(valueRemaining, weightRange, circle.style, circleLength, strokeIncrement);
+            const interval = setInterval(() => animateCircle(valueRemaining, weightRange, circle.style, circleLength, strokeIncrement, thisWeight, interval), 1);
+            valueRemaining[0] = 0;
+        }
+    }  
+}
+
+const textValue = [0];
+function animateCircle(valueRemaining, range, circle, circleLength, strokeIncrement, text, interval) {
+    circle.setProperty("--stroke-increment", strokeIncrement);
+    if (valueRemaining[0] < range) {
+        circle.setProperty("stroke-dashoffset", circleLength - (circleLength * valueRemaining[0]) / 100);
+        let newValue = valueRemaining.pop();
+        newValue += strokeIncrement
+        valueRemaining[0] = newValue;
+        let newText = textValue.pop();
+        newText += 1;
+        textValue[0] = newText;
+        return;
+    } 
+    circle.setProperty("stroke-dashoffset", circleLength - (circleLength * range) / 100);
+    clearInterval(interval);
+    return;
 }
 
 window.onresize = centerImg;
@@ -471,6 +672,14 @@ if (window.location.pathname.includes("vehicles.html")) {
     //* FILTER ENGINE *//
     engineRange.forEach((input) => input.addEventListener("input", (e) => filterEngineRange(e, engineRangeMin, selectedEngine, engineRange, engineInput)));
     engineInput.forEach((input) => input.addEventListener("input", (e) => filterEngineInput(e, engineRangeMin, selectedEngine, engineRange, engineInput)));
+
+    // detailsBtn.forEach(btn => btn.addEventListener("click", () => {
+    //     openModal().then(scaleText());
+    // }))
+    // scaleText();
+    // numberDiv.forEach(div => {
+    //     console.log(div.offsetWidth, div.naturalWidth);
+    // })
 }
 
 if (window.location.pathname.includes("dlc.html")) {

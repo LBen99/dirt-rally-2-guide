@@ -1386,48 +1386,48 @@ function convertVehicle() {
         let img = vehicle.manufacturer + "-" + vehicle.model
         img = img.replace(/ /g, "-").replace(/\//g, "").toLowerCase();
 
-        let powerBarColour;
-        let green = "#20fb62";
-        let orange = "#ffbb00";
-        let red = "var(--red-400)";
-        let powerRange = specs.power / Math.max(...power) * 100;
-        let lowPower = Math.max(...power) / 3;
-        let medPower = Math.max(...power) / 1.5;
-        if (specs.power < lowPower) {
-            powerBarColour = red;
-        }
-        if (specs.power >= lowPower && specs.power < medPower) {
-            powerBarColour = orange;
-        }
-        if (specs.power >= medPower) {
-            powerBarColour = green;
-        }
-        let weightBarColour;
-        let weightRange = specs.weight / Math.max(...weight) * 100;
-        let lowWeight = Math.max(...weight) / 3;
-        let medWeight = Math.max(...weight) / 1.5;
-        if (specs.weight < lowWeight) {
-            weightBarColour = green;
-        }
-        if (specs.weight >= lowWeight && specs.weight < medWeight) {
-            weightBarColour = orange;
-        }
-        if (specs.weight >= medWeight) {
-            weightBarColour = red;
-        }
-        let engineBarColour;
-        let engineRange = specs.engine / Math.max(...engine) * 100;
-        let lowEngine = Math.max(...engine) / 3;
-        let medEngine = Math.max(...engine) / 1.5;
-        if (specs.engine < lowEngine) {
-            engineBarColour = red;
-        }
-        if (specs.engine >= lowEngine && specs.engine < medEngine) {
-            engineBarColour = orange;
-        }
-        if (specs.engine >= medEngine) {
-            engineBarColour = green;
-        }
+        // let powerBarColour;
+        // let green = "#20fb62";
+        // let orange = "#ffbb00";
+        // let red = "var(--red-400)";
+        // // let powerRange = specs.power / Math.max(...power) * 100;
+        // let lowPower = Math.max(...power) / 3;
+        // let medPower = Math.max(...power) / 1.5;
+        // if (specs.power < lowPower) {
+        //     powerBarColour = red;
+        // }
+        // if (specs.power >= lowPower && specs.power < medPower) {
+        //     powerBarColour = orange;
+        // }
+        // if (specs.power >= medPower) {
+        //     powerBarColour = green;
+        // }
+        // let weightBarColour;
+        // // let weightRange = specs.weight / Math.max(...weight) * 100;
+        // let lowWeight = Math.max(...weight) / 3;
+        // let medWeight = Math.max(...weight) / 1.5;
+        // if (specs.weight < lowWeight) {
+        //     weightBarColour = green;
+        // }
+        // if (specs.weight >= lowWeight && specs.weight < medWeight) {
+        //     weightBarColour = orange;
+        // }
+        // if (specs.weight >= medWeight) {
+        //     weightBarColour = red;
+        // }
+        // let engineBarColour;
+        // // let engineRange = specs.engine / Math.max(...engine) * 100;
+        // let lowEngine = Math.max(...engine) / 3;
+        // let medEngine = Math.max(...engine) / 1.5;
+        // if (specs.engine < lowEngine) {
+        //     engineBarColour = red;
+        // }
+        // if (specs.engine >= lowEngine && specs.engine < medEngine) {
+        //     engineBarColour = orange;
+        // }
+        // if (specs.engine >= medEngine) {
+        //     engineBarColour = green;
+        // }
         
         vehicleContainer.insertAdjacentHTML(
             "beforeend",
@@ -1451,11 +1451,11 @@ function convertVehicle() {
                 <ul class="specs-list">
                     <li>
                         <ul class="visual-specs">
-                            <li class="box">
+                            <li class="box power-box">
                                 <div class="percentage">
-                                    <svg>
-                                        <circle cx="70" cy="70" r="70"></circle>
-                                        <circle cx="70" cy="70" r="70" style="stroke-dashoffset: calc(440 - (440 * ${ powerRange }) / 100); stroke: ${ powerBarColour }"></circle>
+                                    <svg viewBox="0 0 150 150">
+                                        <circle cx="50%" cy="50%" r="45%"></circle>
+                                        <circle cx="50%" cy="50%" r="45%"></circle>
                                     </svg>
                                     <div class="number">
                                         <h2>${ specs.power }<span class="unit">bhp</span></h2>
@@ -1463,11 +1463,11 @@ function convertVehicle() {
                                     <h2 class="text">Max Power</h2>
                                 </div>
                             </li>
-                            <li class="box">
+                            <li class="box engine-box">
                                 <div class="percentage">
-                                    <svg>
-                                        <circle cx="70" cy="70" r="70"></circle>
-                                        <circle cx="70" cy="70" r="70" style="stroke-dashoffset: calc(440 - (440 * ${ engineRange }) / 100); stroke: ${ engineBarColour }"></circle>
+                                    <svg viewBox="0 0 150 150">
+                                        <circle cx="50%" cy="50%" r="45%"></circle>
+                                        <circle cx="50%" cy="50%" r="45%"></circle>
                                     </svg>
                                     <div class="number">
                                         <h2>${ specs.engine }<span class="unit">cc</span></h2>
@@ -1475,11 +1475,11 @@ function convertVehicle() {
                                     <h2 class="text">Engine</h2>
                                 </div>
                             </li>
-                            <li class="box">
+                            <li class="box weight-box">
                                 <div class="percentage">
-                                    <svg>
-                                        <circle cx="70" cy="70" r="70"></circle>
-                                        <circle cx="70" cy="70" r="70" style="stroke-dashoffset: calc(440 - (440 * ${ weightRange }) / 100); stroke: ${ weightBarColour }"></circle>
+                                    <svg viewBox="0 0 150 150">
+                                        <circle cx="50%" cy="50%" r="45%"></circle>
+                                        <circle cx="50%" cy="50%" r="45%"></circle>
                                     </svg>
                                     <div class="number">
                                         <h2>${ specs.weight }<span class="unit">kg</span></h2>
@@ -1491,10 +1491,10 @@ function convertVehicle() {
                     </li>
                     <li>
                         <ul class="text-specs">
-                            <li class="spec-item transmission"><span class="spec-category">Transmission |</span><span class="spec-value">${ specs.transmission }</span></li>
-                            <li class="spec-item drivetrain"><span class="spec-category">Drivetrain |</span><span class="spec-value">${ specs.drivetrain }</span></li>
-                            <li class="spec-item cylinders"><span class="spec-category">Cylinders |</span><span class="spec-value">${ specs.cylinders }</span></li>
-                            <li class="spec-item aspiration"><span class="spec-category">Aspiration |</span><span class="spec-value">${ specs.aspiration }</span></li>
+                            <li class="spec-item transmission"><span class="spec-category">Transmission</span><span class="spec-value">${ specs.transmission }</span></li>
+                            <li class="spec-item drivetrain"><span class="spec-category">Drivetrain</span><span class="spec-value">${ specs.drivetrain }</span></li>
+                            <li class="spec-item cylinders"><span class="spec-category">Cylinders</span><span class="spec-value">${ specs.cylinders }</span></li>
+                            <li class="spec-item aspiration"><span class="spec-category">Aspiration</span><span class="spec-value">${ specs.aspiration }</span></li>
                         </ul>
                     </li>
                     

@@ -50,7 +50,7 @@ body {
 }
 
 main {
-    margin: 8rem auto 0;
+    margin: 0 auto;
     padding: 0 1rem;
     grid-area: main;
     min-height: 86vh;;
@@ -73,7 +73,6 @@ main {
 #page-links {
     margin-top: 2.5rem;
     max-width: 80rem;
-    /* text-align: center; */
 }
 
 #page-links li {
@@ -274,23 +273,25 @@ h2.tile-name {
 }
 
 .modal {
-    max-width: fit-content;
-    max-height: fit-content;
+    width: 90%;
+    max-height: 100%;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 2.5rem;
+    padding: 2.5rem 0;
     text-align: center;
     background: var(--dark-600);
     border: solid .2rem var(--dark-200);
     border-radius: 2rem;
     z-index: 10;
+    overflow-y: scroll;
 }
 
 .modal-img {
     display: block;
     margin: 0 auto;
+    padding: 0 2.5rem;
 }
 
 .vehicle-modal-name,
@@ -311,69 +312,111 @@ h3.location-modal-name {
     font-size: 1.6rem;
 }
 
+.specs-list {
+    margin: 2.5rem 2.5rem 0;
+}
+
 .visual-specs {
-    display: flex;
-    margin-bottom: 3rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-height: fit-content;
+    margin-bottom: 5.5rem;
+    gap: 1rem;
 }
 
 .spec-item {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-direction: column;
     margin: 1rem 0;
 }
 
 .spec-category {
-    text-align: right;
+    text-align: left;
 }
 
 .spec-value {
     margin-left: 1rem;
-    text-align: left;
-    grid-column: 2 / 4;
+    text-align: right;
 }
 
 .box {
     position: relative;
-    width: 17rem;
-    height: 20rem;
+    width: 100%;
+    max-width: 15rem;
+    height: 100%;
+    max-height: 20rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     flex-direction: column;
 }
 
 .box .percentage {
     position: relative;
-    width: 17rem;
-    height: 15rem;
+    width: 100%;
+    height: 100%;
 }
 
 .box .percentage svg {
     position: relative;
-    width: 15rem;
-    height: 15rem;
+    width: 100%;
+    height: 100%;
 }
 
 .box .percentage svg circle {
-    width: 15rem;
-    height: 15rem;
+    --stroke-dasharray: 0;
+    /* --stroke-dashoffset: 0; */
+    position: relative;
+    width: 100%;
+    height: 100%;
     fill: none;
-    stroke-width: 10;
-    transform: translate(.5rem, .5rem);
-    stroke-dasharray: 440;
-    stroke-dashoffset: 440;
+    stroke-dasharray: var(--stroke-dasharray);
+    /* stroke-dashoffset: var(--stroke-dashoffset); */
+    stroke-width: 8%;
     stroke-linecap: round;
 }
 
 .box .percentage svg circle:nth-child(1) {
-    stroke-dashoffset: 0;
+    /* stroke-dashoffset: 0; */
+    --stroke-dashoffset: 0;
+    stroke-dashoffset: var(--stroke-dashoffset);
+
     stroke: var(--dark-700);
-    box-shadow: inset 0 3rem 6rem rgba(255, 255, 255, 1);
+    /* box-shadow: inset 0 3rem 6rem rgba(255, 255, 255, 1); */
 }
 
-.box .percentage svg circle:nth-child(2) {
-    box-shadow: inset 0 3rem 6rem rgba(255, 255, 255, 1);
+.power-box .percentage svg circle:nth-child(2) {
+    /* --stroke-dashoffset: 0; */
+    --stroke-colour: none;
+    /* --stroke-calc: 0; */
+    /* --stroke-increment: 0 */
+    /* stroke-dashoffset: var(--stroke-calc); */
+    /* stroke: var(--stroke-colour); */
+    /* transition: stroke-dashoffset 1s ease; */
 }
+
+.engine-box .percentage svg circle:nth-child(2) {
+    /* --stroke-dashoffset: 0; */
+    --stroke-colour: none;
+    /* --stroke-calc: 0; */
+    /* --stroke-increment: 0 */
+    /* stroke-dashoffset: var(--stroke-calc); */
+    /* stroke: var(--stroke-colour); */
+}
+
+.weight-box .percentage svg circle:nth-child(2) {
+    /* --stroke-dashoffset: 0; */
+    --stroke-colour: none;
+    /* --stroke-calc: 0; */
+    /* --stroke-increment: 0 */
+    /* stroke-dashoffset: var(--stroke-calc); */
+    /* stroke: var(--stroke-colour); */
+}
+
+/* .box .percentage svg circle:nth-child(2) {
+    box-shadow: inset 0 3rem 6rem rgba(255, 255, 255, 1);
+} */
 
 .box .percentage .number {
     position: absolute;
@@ -397,10 +440,12 @@ h3.location-modal-name {
 }
 
 .box .text {
+    font-size: 2.4rem;
     padding: .5rem 0 0;
     color: var(--dark-100);
     font-weight: 500;
     letter-spacing: .1rem;
+    white-space: nowrap;
 }
 
 .spec-item {
@@ -931,6 +976,11 @@ input[type=search]::-ms-reveal {
 
     .tile:not(.dlc-collection) {
         width: 90%;
+    }
+
+    .modal {
+        max-width: fit-content;
+        overflow: unset;
     }
 }
 

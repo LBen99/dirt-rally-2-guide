@@ -365,60 +365,64 @@ function adjustDash(id) {
     let green = "#20fb62";
     let orange = "#ffbb00";
     let red = "var(--red-400)";
-    let thisPower = parseInt(thisModal.getElementsByTagName("h2").item(1).innerText.replace("bhp", ""));
-    let thisEngine = parseInt(thisModal.getElementsByTagName("h2").item(5).innerText.replace("cc", ""));
-    let thisWeight = parseInt(thisModal.getElementsByTagName("h2").item(3).innerText.replace("kg", ""));
+    let thisPower = thisModal.getElementsByClassName("power-text-value").item(0);
+    let thisEngine = thisModal.getElementsByClassName("engine-text-value").item(0);
+    let thisWeight = thisModal.getElementsByClassName("weight-text-value").item(0);
+    let thisPowerInt = parseInt(thisPower.innerHTML);
+    let thisEngineInt = parseInt(thisEngine.innerHTML);
+    let thisWeightInt = parseInt(thisWeight.innerHTML);
+
     let power = []
     let engine = [];
     let weight = [];
 
     modals.forEach(modal => {
-        power.push(parseInt(modal.getElementsByTagName("h2").item(1).innerText.replace("bhp", "")));
-        engine.push(parseInt(modal.getElementsByTagName("h2").item(5).innerText.replace("cc", "")));
-        weight.push(parseInt(modal.getElementsByTagName("h2").item(3).innerText.replace("kg", "")));
+        power.push(parseInt(modal.querySelectorAll(".power-text-value").item(0).innerText));
+        engine.push(parseInt(modal.querySelectorAll(".engine-text-value").item(0).innerText));
+        weight.push(parseInt(modal.querySelectorAll(".weight-text-value").item(0).innerText));
     });
 
     let powerBarColour;
-    let powerRange = thisPower / Math.max(...power) * 100;
+    let powerRange = thisPowerInt / Math.max(...power) * 100;
     let lowPower = Math.max(...power) / 3;
     let medPower = Math.max(...power) / 1.5;
-    if (thisPower < lowPower) {
+    if (thisPowerInt < lowPower) {
         powerBarColour = red;
     }
-    if (thisPower >= lowPower && thisPower < medPower) {
+    if (thisPowerInt >= lowPower && thisPowerInt < medPower) {
         powerBarColour = orange;
     }
-    if (thisPower >= medPower) {
+    if (thisPowerInt >= medPower) {
         powerBarColour = green;
     }
 
     let engineBarColour;
-    let engineRange = thisEngine / Math.max(...engine) * 100;
+    let engineRange = thisEngineInt / Math.max(...engine) * 100;
     let lowEngine = Math.max(...engine) / 3;
     let medEngine = Math.max(...engine) / 1.5;
-    if (thisEngine < lowEngine) {
+    if (thisEngineInt < lowEngine) {
         engineBarColour = red;
     }
-    if (thisEngine >= lowEngine && thisEngine < medEngine) {
+    if (thisEngineInt >= lowEngine && thisEngineInt < medEngine) {
         engineBarColour = orange;
     }
-    if (thisEngine >= medEngine) {
+    if (thisEngineInt >= medEngine) {
         engineBarColour = green;
     }
 
     let weightBarColour;
-    let weightRange = thisWeight / Math.max(...weight) * 100;
+    let weightRange = thisWeightInt / Math.max(...weight) * 100;
     let lowWeight = Math.max(...weight) / 3;
     let medWeight = Math.max(...weight) / 1.5;
-    if (thisWeight < lowWeight) {
+    if (thisWeightInt < lowWeight) {
         weightBarColour = green;
     }
-    if (thisWeight >= lowWeight && thisWeight < medWeight) {
+    if (thisWeightInt >= lowWeight && thisWeightInt < medWeight) {
         weightBarColour = orange;
     }
-    if (thisWeight >= medWeight) {
+    if (thisWeightInt >= medWeight) {
         weightBarColour = red;
-    }    
+    }
 
     for (let i = 0; i < modalSvgs.length; i++) {
         let values = modalSvgs[i].getAttribute("viewBox").split(" ");
@@ -434,48 +438,95 @@ function adjustDash(id) {
     for (let i = 0; i < 82; i++) {
         if (thisModal.contains(powerBox[i])) {
             let circle = powerBox[i].getElementsByTagName("circle")[1];
-            const strokeIncrement = powerRange / thisPower;
+            const strokeIncrement = powerRange / thisPowerInt;
+            const textValue = [0];
             circle.style.setProperty("stroke-dashoffset", circleLength - (circleLength * powerRange) / 100);
             circle.style.setProperty("stroke", powerBarColour);
+
             animateCircle(valueRemaining, powerRange, circle.style, circleLength, strokeIncrement);
-            const interval = setInterval(() => animateCircle(valueRemaining, powerRange, circle.style, circleLength, strokeIncrement, thisPower, interval), 1);
+            animateText(textValue, thisPowerInt, Math.max(...power), Math.min(...power), thisPower, circleLength);
+
+            const interval = setInterval(() => {
+                animateCircle(valueRemaining, powerRange, circle.style, circleLength, strokeIncrement, interval);
+            }, 1);
+
+            const textInterval = setInterval(() => {
+                animateText(textValue, thisPowerInt, Math.max(...power), Math.min(...power), thisPower, circleLength, textInterval);
+            }, 1);
+
             valueRemaining[0] = 0;
+            textValue[0] = 0;
         }
         if (thisModal.contains(engineBox[i])) {
             let circle = engineBox[i].getElementsByTagName("circle")[1];
-            const strokeIncrement = engineRange / thisEngine;
+            const strokeIncrement = engineRange / thisEngineInt;
+            const textValue = [0];
             circle.style.setProperty("stroke-dashoffset", circleLength - (circleLength * engineRange) / 100);
             circle.style.setProperty("stroke", engineBarColour);
+
             animateCircle(valueRemaining, engineRange, circle.style, circleLength, strokeIncrement);
-            const interval = setInterval(() => animateCircle(valueRemaining, engineRange, circle.style, circleLength, strokeIncrement, thisEngine, interval), 1);
+            animateText(textValue, thisEngineInt, Math.max(...engine), Math.min(...engine), thisEngine, circleLength);
+
+            const interval = setInterval(() => {
+                animateCircle(valueRemaining, engineRange, circle.style, circleLength, strokeIncrement, interval);
+            }, 1);
+
+            const textInterval = setInterval(() => {
+                animateText(textValue, thisEngineInt, Math.max(...engine), Math.min(...engine), thisEngine, circleLength, textInterval);
+            }, 1);
+
             valueRemaining[0] = 0;
+            textValue[0] = 0;
         }
         if (thisModal.contains(weightBox[i])) {
             let circle = weightBox[i].getElementsByTagName("circle")[1];
-            const strokeIncrement = weightRange / thisWeight;
+            const strokeIncrement = weightRange / thisWeightInt;
+            const textValue = [0];
             circle.style.setProperty("stroke-dashoffset", circleLength - (circleLength * weightRange) / 100);
             circle.style.setProperty("stroke", weightBarColour);
+
             animateCircle(valueRemaining, weightRange, circle.style, circleLength, strokeIncrement);
-            const interval = setInterval(() => animateCircle(valueRemaining, weightRange, circle.style, circleLength, strokeIncrement, thisWeight, interval), 1);
+            animateText(textValue, thisWeightInt, Math.max(...weight), Math.min(...weight), thisWeight, circleLength);
+
+            const interval = setInterval(() => {
+                animateCircle(valueRemaining, weightRange, circle.style, circleLength, strokeIncrement, interval);
+            }, 1);
+
+            const textInterval = setInterval(() => {
+                animateText(textValue, thisWeightInt, Math.max(...weight), Math.min(...weight), thisWeight, circleLength, textInterval);
+            }, 1);
+
             valueRemaining[0] = 0;
+            textValue[0] = 0;
         }
     }  
 }
 
-const textValue = [0];
-function animateCircle(valueRemaining, range, circle, circleLength, strokeIncrement, text, interval) {
+function animateCircle(valueRemaining, range, circle, circleLength, strokeIncrement, interval) {
     circle.setProperty("--stroke-increment", strokeIncrement);
     if (valueRemaining[0] < range) {
         circle.setProperty("stroke-dashoffset", circleLength - (circleLength * valueRemaining[0]) / 100);
         let newValue = valueRemaining.pop();
         newValue += strokeIncrement
         valueRemaining[0] = newValue;
-        let newText = textValue.pop();
-        newText += 1;
-        textValue[0] = newText;
         return;
-    } 
+    }
     circle.setProperty("stroke-dashoffset", circleLength - (circleLength * range) / 100);
+    clearInterval(interval);
+    return;
+}
+
+function animateText(textValue, thisValue, maxValue, minValue, text, circleLength, interval) {
+    // let count = thisValue / (((thisValue / (((maxValue + circleLength) - (thisValue + minValue)) / 100)) * circleLength) / 100);
+    let count = thisValue / (((thisValue / ((maxValue - (thisValue + minValue - circleLength)) / 100)) * circleLength) / 100);
+    if (textValue[0] + count < thisValue) {
+        let newText = textValue.pop();
+        newText += count;
+        textValue[0] = newText;
+        text.innerHTML = parseInt(textValue[0].toString().split(".")[0]);
+        return;
+    }
+    text.innerHTML = thisValue;
     clearInterval(interval);
     return;
 }

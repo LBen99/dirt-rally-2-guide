@@ -1458,7 +1458,7 @@ function convertVehicle() {
                                         <circle cx="50%" cy="50%" r="45%"></circle>
                                     </svg>
                                     <div class="number">
-                                        <h2>${ specs.power }<span class="unit">bhp</span></h2>
+                                        <h2><span class="power-text-value">${ specs.power }</span><span class="unit">bhp</span></h2>
                                     </div>
                                     <h2 class="text">Max Power</h2>
                                 </div>
@@ -1470,7 +1470,7 @@ function convertVehicle() {
                                         <circle cx="50%" cy="50%" r="45%"></circle>
                                     </svg>
                                     <div class="number">
-                                        <h2>${ specs.engine }<span class="unit">cc</span></h2>
+                                        <h2><span class="engine-text-value">${ specs.engine }</span><span class="unit">cc</span></h2>
                                     </div>
                                     <h2 class="text">Engine</h2>
                                 </div>
@@ -1482,7 +1482,7 @@ function convertVehicle() {
                                         <circle cx="50%" cy="50%" r="45%"></circle>
                                     </svg>
                                     <div class="number">
-                                        <h2>${ specs.weight }<span class="unit">kg</span></h2>
+                                        <h2><span class="weight-text-value">${ specs.weight }</span><span class="unit">kg</span></h2>
                                     </div>
                                     <h2 class="text">Max Weight</h2>
                                 </div>

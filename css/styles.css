@@ -430,11 +430,13 @@ h3.location-modal-name {
     color: var(--dark-100);
 }
 
-.box .percentage .number h2 {
+.power-text-value,
+.engine-text-value,
+.weight-text-value {
     font-size: 4rem;
 }
 
-.box .percentage .number h2 span {
+.box .percentage .number h2 .unit {
     font-size: 2rem;
     color: var(--dark-200);
 }

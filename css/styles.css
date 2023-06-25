@@ -699,9 +699,10 @@ h3.location-modal-name {
     margin-top: 3rem;
     display: grid;
     grid-template-areas:
-        "game game"
-        "vehicles vehicles"
-        "locations dlc"
+        "game"
+        "vehicles"
+        "locations"
+        "dlc"
     ;
     max-width: 120rem;
     color: var(--dark-200);
@@ -718,14 +719,10 @@ h3.location-modal-name {
 
 #about-locations {
     grid-area: locations;
-    justify-self: right;
-    margin-right: 1.25rem;
 }
 
 #about-dlc {
     grid-area: dlc;
-    justify-self: left;
-    margin-left: 1.25rem;
 }
 
 .about-tile {
@@ -1181,6 +1178,24 @@ input[type=search]::-ms-reveal {
     #vehicleContainer,
     #locationContainer {
         grid-template-columns: repeat(3, 1fr);
+    }
+
+    #about-container {
+        grid-template-areas:
+            "game game"
+            "vehicles vehicles"
+            "locations dlc"
+        ;
+    }
+
+    #about-locations {
+        justify-self: right;
+        margin-right: 1.25rem;
+    }
+    
+    #about-dlc {
+        justify-self: left;
+        margin-left: 1.25rem;
     }
 
     .tile:not(.dlc-collection) {

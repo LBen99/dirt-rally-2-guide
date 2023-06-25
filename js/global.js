@@ -39,12 +39,6 @@ const tileImg = document.querySelectorAll(".tile-img");
 const tileSummary = document.querySelectorAll(".tile li");
 const tileCloseBtn = document.querySelectorAll(".btn-red-xmark");
 const modals = document.querySelectorAll(".modal");
-const tileCarousel = document.querySelectorAll(".dlc-tile-items");
-const dlcTiles = document.querySelectorAll(".dlc-slider-tile");
-const prevBtn = document.querySelectorAll(".prev-btn");
-const nextBtn = document.querySelectorAll(".next-btn");
-const blurDivs = document.querySelectorAll(".background-blur");
-const textList = document.querySelectorAll(".dlc-text-list");
 
 //* VISUAL SPECS *//
 const svgs = document.querySelectorAll("svg");
@@ -58,6 +52,16 @@ const powerBox = document.querySelectorAll(".power-box");
 const engineBox = document.querySelectorAll(".engine-box");
 const weightBox = document.querySelectorAll(".weight-box");
 const valueRemaining = [0];
+
+//* CAROUSEL *//
+const tileCarousel = document.querySelectorAll(".dlc-tile-items");
+const dlcTiles = document.querySelectorAll(".dlc-slider-tile");
+const prevBtn = document.querySelectorAll(".prev-btn");
+const nextBtn = document.querySelectorAll(".next-btn");
+const blurDivs = document.querySelectorAll(".background-blur");
+const textList = document.querySelectorAll(".dlc-text-list");
+let xDown = null;
+
 
 class Carousel {
     constructor(id, items) {
@@ -733,36 +737,90 @@ if (window.location.pathname.includes("vehicles.html")) {
     // })
 }
 
+function prevTile(e, carousel, nodes) {
+    if (e.target.parentElement === carousel.parentElement) {
+        nodes.unshift(nodes.pop());
+        content = new Carousel(carousel.id, nodes);
+        content.updateArr;
+    }
+}
+
+function nextTile(e, carousel, nodes) {
+    if (e.target.parentElement === carousel.parentElement) {
+        nodes.push(nodes.shift());
+        content = new Carousel(carousel.id, nodes)
+        content.updateArr;
+    }
+}
+
+
+
+function swipeLeft(i, nodes, carousel) {
+    if (i <= 0) {
+        nodes.push(nodes.shift());
+        content = new Carousel(carousel.id, nodes);
+        content.updateArr;
+        i++;
+    }
+}
+
+function swipeRight(i, nodes, carousel) {
+    if (i >= 0) {
+        nodes.unshift(nodes.pop());
+        content = new Carousel(carousel.id, nodes)
+        content.updateArr;
+        i--;
+    }
+}
+
+function handleSlideStart(e) {
+    xDown = e.touches[0].clientX;
+}
+
+function handleSlideMove(e, nodes, carousel, i) {
+    if (!xDown) {
+        return;
+    }
+
+    let xUp = e.touches[0].clientX;
+
+    let xDiff = xDown - xUp;
+
+    if (xDiff > 0) {
+        swipeLeft(i, nodes, carousel);
+    } else {
+        swipeRight(i, nodes, carousel);
+    }
+
+    xDown = null;
+    i = 0;
+}
+
 if (window.location.pathname.includes("dlc.html")) {
     dlcTiles.forEach(tile => {
         tile.addEventListener("mouseenter", (e) => showDlcText(e));
         tile.addEventListener("mouseleave", hideDlcText);
+        tile.addEventListener("touchstart", (e) => {
+            showDlcText(e);
+            setTimeout(hideDlcText, 5000);
+        });
     });
     
     tileCarousel.forEach(carousel => {
         let content = new Carousel(carousel.id, carousel.childNodes);
         content.updateArr;
         const nodes = [];
+        let i = 0;
+        
         carousel.childNodes.forEach(child => {
             nodes.push(child);
         });
     
-        prevBtn.forEach(btn => btn.addEventListener("click", (e) => {
-            if (e.target.parentElement === carousel.parentElement) {
-                nodes.unshift(nodes.pop());
-                content = new Carousel(carousel.id, nodes);
-                content.updateArr;
-            }
-        }));
+        prevBtn.forEach(btn => btn.addEventListener("click", (e) => prevTile(e, carousel, nodes)));
+        nextBtn.forEach(btn => btn.addEventListener("click", (e) => nextTile(e, carousel, nodes)));
+        carousel.addEventListener("touchstart", (e) => handleSlideStart(e));
+        carousel.addEventListener("touchmove", (e) => handleSlideMove(e, nodes, carousel, i));
         
-        nextBtn.forEach(btn => btn.addEventListener("click", (e) => {
-            if (e.target.parentElement === carousel.parentElement) {
-                nodes.push(nodes.shift());
-                content = new Carousel(carousel.id, nodes)
-                content.updateArr;
-            }
-        }));
-    
         if (carousel.id === "dlc-items-deluxe-content-packs") {
             let tileImg = document.querySelectorAll(".tile-img");
             let delConArr = [];

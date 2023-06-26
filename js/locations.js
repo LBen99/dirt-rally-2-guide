@@ -917,9 +917,9 @@ function findLocationKeyData() {
 
 function convertLocation() {
     locations.forEach((location) => {
-        let id = location.name
+        let id = location.name + "-" + location.country;
         id = id.replace(/ /g, "-").toLowerCase();
-        let img = location.name + "-" + location.country
+        let img = location.name + "-" + location.country;
         img = img.replace(/ /g, "-").toLowerCase();
         let surfaceList = [];
         let stageForward = [];

@@ -295,7 +295,7 @@ main {
     grid-template-columns: 1fr;
     width: 100%;
     max-width: 120rem;
-    min-height: 60rem;
+    /* min-height: 60rem; */
     margin: 0 auto;
     padding: 2.5rem;
     gap: 2.5rem;

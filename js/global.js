@@ -212,6 +212,18 @@ function searchClosed() {
     searchBtn.classList.remove("search-open");
 }
 
+function searchItems(e) {
+    tiles.forEach(tile => {
+        let input = e.target.value.toLowerCase();
+        let id = tile.id;
+        if (id.includes(input)) {
+            tile.classList.remove("hide");
+            return;
+        }
+        tile.classList.add("hide");
+    });
+}
+
 function filterOpen() {
     filterBtn.classList.add("filter-open");
     filterList.classList.add("open");
@@ -520,6 +532,8 @@ if (window.location.pathname.includes("locations.html") || window.location.pathn
     searchInput.addEventListener("click", function(e) {
         e.stopPropagation();
     });
+
+    searchInput.addEventListener("input", (e) => searchItems(e));
     
     //* FILTERS *//
     filterBtn.addEventListener("click", function(e) {

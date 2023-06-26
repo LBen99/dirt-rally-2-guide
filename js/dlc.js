@@ -5,27 +5,33 @@ const dlcData = {
             "vehicles": [
                 {
                     "manufacturer": "Skoda",
-                    "model": "Fabia Rally"
+                    "model": "Fabia Rally",
+                    "discipline": "4WD Up to 2000cc"
                 },
                 {
                     "manufacturer": "Citroen",
-                    "model": "C4 Rally"
+                    "model": "C4 Rally",
+                    "discipline": "4WD Up to 2000cc"
                 },
                 {
                     "manufacturer": "BMW",
-                    "model": "M1 Procar Rally"
+                    "model": "M1 Procar Rally",
+                    "discipline": "Group B(RWD)"
                 },
                 {
                     "manufacturer": "Opel",
-                    "model": "Manta 400"
+                    "model": "Manta 400",
+                    "discipline": "Group B(RWD)"
                 },
                 {
                     "manufacturer": "Ford",
-                    "model": "Focus RS Rally 2007"
+                    "model": "Focus RS Rally 2007",
+                    "discipline": "4WD Up to 2000cc"
                 },
                 {
                     "manufacturer": "Subaru",
-                    "model": "Impreza"
+                    "model": "Impreza",
+                    "discipline": "4WD Up to 2000cc"
                 }
             ],
             "locations": [
@@ -48,27 +54,33 @@ const dlcData = {
             "vehicles": [
                 {
                     "manufacturer": "Peugot",
-                    "model": "205 T16 Rallycross"
+                    "model": "205 T16 Rallycross",
+                    "discipline": "RX Group B"
                 },
                 {
                     "manufacturer": "Ford",
-                    "model": "RS200 Evolution"
+                    "model": "RS200 Evolution",
+                    "discipline": "RX Group B"
                 },
                 {
                     "manufacturer": "Porsche",
-                    "model": "911 SC RS"
+                    "model": "911 SC RS",
+                    "discipline": "Group B(RWD)"
                 },
                 {
                     "manufacturer": "Lancia",
-                    "model": "037 Evo 2"
+                    "model": "037 Evo 2",
+                    "discipline": "Group B(RWD)"
                 },
                 {
                     "manufacturer": "Lancia",
-                    "model": "Delta S4 Rallycross"
+                    "model": "Delta S4 Rallycross",
+                    "discipline": "RX Group B"
                 },
                 {
                     "manufacturer": "MG",
-                    "model": "Metro 6R4 Rallycross"
+                    "model": "Metro 6R4 Rallycross",
+                    "discipline": "RX Group B"
                 }
             ],
             "locations": [
@@ -91,27 +103,33 @@ const dlcData = {
             "vehicles": [
                 {
                     "manufacturer": "Subaru",
-                    "model": "Impreza (2001)"
+                    "model": "Impreza (2001)",
+                    "discipline": "4WD Up to 2000cc"
                 },
                 {
                     "manufacturer": "Ford",
-                    "model": "Focus RS Rally 2001"
+                    "model": "Focus RS Rally 2001",
+                    "discipline": "4WD Up to 2000cc"
                 },
                 {
                     "manufacturer": "Peugot",
-                    "model": "306 Maxi"
+                    "model": "306 Maxi",
+                    "discipline": "F2 Kit Car"
                 },
                 {
                     "manufacturer": "Seat",
-                    "model": "Ibiza Kitcar"
+                    "model": "Ibiza Kitcar",
+                    "discipline": "F2 Kit Car"
                 },
                 {
                     "manufacturer": "Peugot",
-                    "model": "206 Rally"
+                    "model": "206 Rally",
+                    "discipline": "4WD Up to 2000cc"
                 },
                 {
                     "manufacturer": "Volkswagen",
-                    "model": "Golf Kitcar"
+                    "model": "Golf Kitcar",
+                    "discipline": "F2 Kit Car"
                 }
             ],
             "locations": [
@@ -134,35 +152,43 @@ const dlcData = {
             "vehicles": [
                 {
                     "manufacturer": "Renault Sport",
-                    "model": "Clio R.S. RX"
+                    "model": "Clio R.S. RX",
+                    "discipline": "RX Supercars 2019"
                 },
                 {
                     "manufacturer": "Renault Sport",
-                    "model": "Megane R.S. RX"
+                    "model": "Megane R.S. RX",
+                    "discipline": "RX Supercars 2019"
                 },
                 {
                     "manufacturer": "Ford",
-                    "model": "Fiesta Rallycross (MK8)"
+                    "model": "Fiesta Rallycross (MK8)",
+                    "discipline": "RX Supercars"
                 },
                 {
                     "manufacturer": "Peugot",
-                    "model": "208 WRX"
+                    "model": "208 WRX",
+                    "discipline": "RX Supercars"
                 },
                 {
                     "manufacturer": "Ford",
-                    "model": "Fiesta Rallycross (STARD)"
+                    "model": "Fiesta Rallycross (STARD)",
+                    "discipline": "RX Supercars 2019"
                 },
                 {
                     "manufacturer": "Ford",
-                    "model": "Fiesta RXS Evo 5"
+                    "model": "Fiesta RXS Evo 5",
+                    "discipline": "RX Supercars 2019"
                 },
                 {
                     "manufacturer": "Audi",
-                    "model": "S1 EKS RX Quattro"
+                    "model": "S1 EKS RX Quattro",
+                    "discipline": "RX Supercars 2019"
                 },
                 {
                     "manufacturer": "Seat",
-                    "model": "Ibiza RX"
+                    "model": "Ibiza RX",
+                    "discipline": "RX Supercars 2019"
                 }
             ],
             "locations": [
@@ -181,27 +207,33 @@ const dlcData = {
             "vehicles": [
                 {
                     "manufacturer": "Subaru",
-                    "model": "Legacy RS"
+                    "model": "Legacy RS",
+                    "discipline": "Group A"
                 },
                 {
                     "manufacturer": "Audi",
-                    "model": "S1 EKS RX Quattro"
+                    "model": "S1 EKS RX Quattro",
+                    "discipline": "RX Supercars"
                 },
                 {
                     "manufacturer": "Ford",
-                    "model": "Escort MK II"
+                    "model": "Escort MK II",
+                    "discipline": "H2(RWD)"
                 },
                 {
                     "manufacturer": "Lancia",
-                    "model": "Delta HF Integrale"
+                    "model": "Delta HF Integrale",
+                    "discipline": "Group A"
                 },
                 {
                     "manufacturer": "Subaru",
-                    "model": "Impreza 1995"
+                    "model": "Impreza 1995",
+                    "discipline": "Group A"
                 },
                 {
                     "manufacturer": "Ford",
-                    "model": "Sierra Cosworth RS500"
+                    "model": "Sierra Cosworth RS500",
+                    "discipline": "H3(RWD)"
                 }
             ]
         },
@@ -213,11 +245,13 @@ const dlcData = {
                     "vehicles": [
                         {
                             "manufacturer": "Lancia",
-                            "model": "037 Evo 2"
+                            "model": "037 Evo 2",
+                            "discipline": "Group B(RWD)"
                         },
                         {
                             "manufacturer": "Porsche",
-                            "model": "911 RGT Rally Spec"
+                            "model": "911 RGT Rally Spec",
+                            "discipline": "Rally GT"
                         }
                     ]
                 },
@@ -226,7 +260,8 @@ const dlcData = {
                     "vehicles": [
                         {
                             "manufacturer": "Opel",
-                            "model": "Manta 400"
+                            "model": "Manta 400",
+                            "discipline": "Group B(RWD)"
                         }
                     ]
                 },
@@ -244,7 +279,8 @@ const dlcData = {
                     "vehicles": [
                         {
                             "manufacturer": "BMW", 
-                            "model": "M1 Procar Rally"
+                            "model": "M1 Procar Rally",
+                            "discipline": "Group B(RWD)"
                         }
                     ]
                 },
@@ -256,27 +292,33 @@ const dlcData = {
                             "vehicles": [
                                 {
                                     "manufacturer": "Skoda",
-                                    "model": "Fabia Rally"
+                                    "model": "Fabia Rally",
+                                    "discipline": "4WD Up to 2000cc"
                                 },
                                 {
                                     "manufacturer": "Citroen",
-                                    "model": "C4 Rally"
+                                    "model": "C4 Rally",
+                                    "discipline": "4WD Up to 2000cc"
                                 },
                                 {
                                     "manufacturer": "BMW",
-                                    "model": "M1 Procar Rally"
+                                    "model": "M1 Procar Rally",
+                                    "discipline": "Group B(RWD)"
                                 },
                                 {
                                     "manufacturer": "Opel",
-                                    "model": "Manta 400"
+                                    "model": "Manta 400",
+                                    "discipline": "Group B(RWD)"
                                 },
                                 {
                                     "manufacturer": "Ford",
-                                    "model": "Focus RS Rally 2007"
+                                    "model": "Focus RS Rally 2007",
+                                    "discipline": "4WD Up to 2000cc"
                                 },
                                 {
                                     "manufacturer": "Subaru",
-                                    "model": "Impreza"
+                                    "model": "Impreza",
+                                    "discipline": "4WD Up to 2000cc"
                                 }
                             ],
                             "locations": [
@@ -299,27 +341,33 @@ const dlcData = {
                             "vehicles": [
                                 {
                                     "manufacturer": "Peugot",
-                                    "model": "205 T16 Rallycross"
+                                    "model": "205 T16 Rallycross",
+                                    "discipline": "RX Group B"
                                 },
                                 {
                                     "manufacturer": "Ford",
-                                    "model": "RS200 Evolution"
+                                    "model": "RS200 Evolution",
+                                    "discipline": "RX Group B"
                                 },
                                 {
                                     "manufacturer": "Porsche",
-                                    "model": "911 SC RS"
-                                    },
-                                {
-                                    "manufacturer": "Lancia",
-                                    "model": "037 Evo 2"
+                                    "model": "911 SC RS",
+                                    "discipline": "Group B(RWD)"
                                 },
                                 {
                                     "manufacturer": "Lancia",
-                                    "model": "Delta S4 Rallycross"
+                                    "model": "037 Evo 2",
+                                    "discipline": "Group B(RWD)"
+                                },
+                                {
+                                    "manufacturer": "Lancia",
+                                    "model": "Delta S4 Rallycross",
+                                    "discipline": "RX Group B"
                                 },
                                 {
                                     "manufacturer": "MG",
-                                    "model": "Metro 6R4 Rallycross"
+                                    "model": "Metro 6R4 Rallycross",
+                                    "discipline": "RX Group B"
                                 }
                             ],
                             "locations": [
@@ -344,7 +392,8 @@ const dlcData = {
                     "vehicles": [
                         {
                             "manufacturer": "Ford",
-                            "model": "Focus RS Rally 2007"
+                            "model": "Focus RS Rally 2007",
+                            "discipline": "4WD Up to 2000cc"
                         }
                     ]
                 },
@@ -353,7 +402,8 @@ const dlcData = {
                     "vehicles": [
                         {
                             "manufacturer": "Subaru",
-                            "model": "Impreza"
+                            "model": "Impreza",
+                            "discipline": "4WD Up to 2000cc"
                         }
                     ]
                 },
@@ -365,27 +415,33 @@ const dlcData = {
                             "vehicles": [
                                 {
                                     "manufacturer": "Subaru",
-                                    "model": "Impreza (2001)"
+                                    "model": "Impreza (2001)",
+                                    "discipline": "4WD Up to 2000cc"
                                 },
                                 {
                                     "manufacturer": "Ford",
-                                    "model": "Focus RS Rally 2001"
+                                    "model": "Focus RS Rally 2001",
+                                    "discipline": "4WD Up to 2000cc"
                                 },
                                 {
                                     "manufacturer": "Peugot",
-                                    "model": "306 Maxi"
+                                    "model": "306 Maxi",
+                                    "discipline": "F2 Kit Car"
                                 },
                                 {
                                     "manufacturer": "Seat",
-                                    "model": "Ibiza Kitcar"
+                                    "model": "Ibiza Kitcar",
+                                    "discipline": "F2 Kit Car"
                                 },
                                 {
                                     "manufacturer": "Peugot",
-                                    "model": "206 Rally"
+                                    "model": "206 Rally",
+                                    "discipline": "4WD Up to 2000cc"
                                 },
                                 {
                                     "manufacturer": "Volkswagen",
-                                    "model": "Golf Kitcar"
+                                    "model": "Golf Kitcar",
+                                    "discipline": "F2 Kit Car"
                                 }
                             ],
                             "locations": [
@@ -408,35 +464,43 @@ const dlcData = {
                             "vehicles": [
                                 {
                                     "manufacturer": "Renault Sport",
-                                    "model": "Clio R.S. RX"
+                                    "model": "Clio R.S. RX",
+                                    "discipline": "RX Supercars 2019"
                                 },
                                 {
                                     "manufacturer": "Renault Sport",
-                                    "model": "Megane R.S. RX"
+                                    "model": "Megane R.S. RX",
+                                    "discipline": "RX Supercars 2019"
                                 },
                                 {
                                     "manufacturer": "Ford",
-                                    "model": "Fiesta Rallycross (MK8)"
+                                    "model": "Fiesta Rallycross (MK8)",
+                                    "discipline": "RX Supercars"
                                 },
                                 {
                                     "manufacturer": "Peugot",
-                                    "model": "208 WRX"
+                                    "model": "208 WRX",
+                                    "discipline": "RX Supercars"
                                 },
                                 {
                                     "manufacturer": "Ford",
-                                    "model": "Fiesta Rallycross (STARD)"
+                                    "model": "Fiesta Rallycross (STARD)",
+                                    "discipline": "RX Supercars 2019"
                                 },
                                 {
                                     "manufacturer": "Ford",
-                                    "model": "Fiesta RXS Evo 5"
+                                    "model": "Fiesta RXS Evo 5",
+                                    "discipline": "RX Supercars 2019"
                                 },
                                 {
                                     "manufacturer": "Audi",
-                                    "model": "S1 EKS RX Quattro"
+                                    "model": "S1 EKS RX Quattro",
+                                    "discipline": "RX Supercars 2019"
                                 },
                                 {
                                     "manufacturer": "Seat",
-                                    "model": "Ibiza RX"
+                                    "model": "Ibiza RX",
+                                    "discipline": "RX Supercars 2019"
                                 }
                             ],
                             "locations": [
@@ -538,7 +602,7 @@ function convertDLC() {
                 let vehicleId = dlcVehicle.manufacturer + " " + dlcVehicle.model;
                 vehicleId = vehicleId.replace(/ /g, "-").toLowerCase();
                 if (value.includes(dlcVehicle)) {
-                    let img = dlcVehicle.manufacturer + "-" + dlcVehicle.model
+                    let img = dlcVehicle.manufacturer + "-" + dlcVehicle.model + "-" + dlcVehicle.discipline;
                     img = img.replace(/ /g, "-").replace(/\//g, "").toLowerCase();
                     if (!document.getElementById(vehicleId)) {
                         dlcItems.insertAdjacentHTML(
@@ -573,7 +637,7 @@ function convertDLC() {
         }
         if (item.vehicles) {
             for (let i = 0; i < item.vehicles.length; i++) {
-                let img = "images/vehicles/" + item.vehicles[i].manufacturer + "-" + item.vehicles[i].model + ".jpg";
+                let img = "images/vehicles/" + item.vehicles[i].manufacturer + "-" + item.vehicles[i].model + "-" + item.vehicles[i].discipline + ".jpg";
                 img = img.replace(/ /g, "-").toLowerCase();
                 delConImgs.push(img);
             }
@@ -615,7 +679,7 @@ function convertDLC() {
 
         if (item.vehicles) {
             for (let i = 0; i < item.vehicles.length; i++) {
-                let vehicleId = item.vehicles[i].manufacturer + " " + item.vehicles[i].model;
+                let vehicleId = item.vehicles[i].manufacturer + " " + item.vehicles[i].model + "-" + item.vehicles[i].discipline;
                 vehicleId = vehicleId.replace(/ /g, "-").toLowerCase();
                 let img = item.vehicles[i].manufacturer + "-" + item.vehicles[i].model
                 img = img.replace(/ /g, "-").replace(/\//g, "").toLowerCase();
@@ -648,7 +712,7 @@ function convertDLC() {
         }
         if (item.vehicles) {
             for (let i = 0; i < item.vehicles.length; i++) {
-                let img = "images/vehicles/" + item.vehicles[i].manufacturer + "-" + item.vehicles[i].model + ".jpg";
+                let img = "images/vehicles/" + item.vehicles[i].manufacturer + "-" + item.vehicles[i].model + "-" + item.vehicles[i].discipline + ".jpg";
                 img = img.replace(/ /g, "-").toLowerCase();
                 if (delUpgImgs[0].name === collectionName) {
                     delUpgImgs[0].arr.push(img);

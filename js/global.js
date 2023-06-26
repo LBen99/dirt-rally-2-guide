@@ -292,7 +292,7 @@ function closeModal() {
 function openModal(e) {
     let id = e.target.id.replace("-details-btn", "");
     modals.forEach(modal => {
-        if (modal.id.includes(id)) {
+        if (modal.id === id + "-modal") {
             modal.classList.remove("hide")
             if (window.location.pathname.includes("vehicles.html")) {
                 scaleViewBox();

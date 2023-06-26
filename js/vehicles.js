@@ -1235,7 +1235,7 @@ const vehicleData = {
         {
             "type": "Rallycross",
             "manufacturer": "Ford",
-            "model": "Fiesta Rallycross (MK8)",
+            "model": "Ford Fiesta Rallycross (MK8)",
             "year": 2019,
             "discipline": "RX Supercars 2019",
             "specs": {
@@ -1383,51 +1383,8 @@ function convertVehicle() {
         let id = `${ vehicle.manufacturer } ${ vehicle.model } ${ vehicle.discipline }`
         id = id.replace(/ /g, "-").toLowerCase();
         let specs = vehicle.specs;
-        let img = vehicle.manufacturer + "-" + vehicle.model
+        let img = vehicle.manufacturer + "-" + vehicle.model + "-" + vehicle.discipline;
         img = img.replace(/ /g, "-").replace(/\//g, "").toLowerCase();
-
-        // let powerBarColour;
-        // let green = "#20fb62";
-        // let orange = "#ffbb00";
-        // let red = "var(--red-400)";
-        // // let powerRange = specs.power / Math.max(...power) * 100;
-        // let lowPower = Math.max(...power) / 3;
-        // let medPower = Math.max(...power) / 1.5;
-        // if (specs.power < lowPower) {
-        //     powerBarColour = red;
-        // }
-        // if (specs.power >= lowPower && specs.power < medPower) {
-        //     powerBarColour = orange;
-        // }
-        // if (specs.power >= medPower) {
-        //     powerBarColour = green;
-        // }
-        // let weightBarColour;
-        // // let weightRange = specs.weight / Math.max(...weight) * 100;
-        // let lowWeight = Math.max(...weight) / 3;
-        // let medWeight = Math.max(...weight) / 1.5;
-        // if (specs.weight < lowWeight) {
-        //     weightBarColour = green;
-        // }
-        // if (specs.weight >= lowWeight && specs.weight < medWeight) {
-        //     weightBarColour = orange;
-        // }
-        // if (specs.weight >= medWeight) {
-        //     weightBarColour = red;
-        // }
-        // let engineBarColour;
-        // // let engineRange = specs.engine / Math.max(...engine) * 100;
-        // let lowEngine = Math.max(...engine) / 3;
-        // let medEngine = Math.max(...engine) / 1.5;
-        // if (specs.engine < lowEngine) {
-        //     engineBarColour = red;
-        // }
-        // if (specs.engine >= lowEngine && specs.engine < medEngine) {
-        //     engineBarColour = orange;
-        // }
-        // if (specs.engine >= medEngine) {
-        //     engineBarColour = green;
-        // }
         
         vehicleContainer.insertAdjacentHTML(
             "beforeend",

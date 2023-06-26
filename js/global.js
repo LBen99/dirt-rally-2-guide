@@ -51,7 +51,6 @@ const svgCircles = document.querySelectorAll("circle");
 const powerBox = document.querySelectorAll(".power-box");
 const engineBox = document.querySelectorAll(".engine-box");
 const weightBox = document.querySelectorAll(".weight-box");
-const valueRemaining = [0];
 
 //* CAROUSEL *//
 const tileCarousel = document.querySelectorAll(".dlc-tile-items");
@@ -439,100 +438,62 @@ function adjustDash(id) {
         modalSvgs[i].lastElementChild.style.setProperty("stroke-dashoffset", circleLength);
     }
 
-    for (let i = 0; i < 82; i++) {
-        if (thisModal.contains(powerBox[i])) {
-            let circle = powerBox[i].getElementsByTagName("circle")[1];
+    powerBox.forEach(box => {
+        if (thisModal.contains(box)) {
+            let circle = box.getElementsByTagName("circle")[1];
             const strokeIncrement = powerRange / thisPowerInt;
-            const textValue = [0];
+            const progressStartValue = [0];
+            const progressEndValue = thisPowerInt;
             circle.style.setProperty("stroke-dashoffset", circleLength - (circleLength * powerRange) / 100);
             circle.style.setProperty("stroke", powerBarColour);
 
-            animateCircle(valueRemaining, powerRange, circle.style, circleLength, strokeIncrement);
-            animateText(textValue, thisPowerInt, Math.max(...power), Math.min(...power), thisPower, circleLength);
-
             const interval = setInterval(() => {
-                animateCircle(valueRemaining, powerRange, circle.style, circleLength, strokeIncrement, interval);
+                animateCircle(progressStartValue, progressEndValue, circle.style, circleLength, strokeIncrement, thisPower, interval);
             }, 1);
-
-            const textInterval = setInterval(() => {
-                animateText(textValue, thisPowerInt, Math.max(...power), Math.min(...power), thisPower, circleLength, textInterval);
-            }, 1);
-
-            valueRemaining[0] = 0;
-            textValue[0] = 0;
         }
-        if (thisModal.contains(engineBox[i])) {
-            let circle = engineBox[i].getElementsByTagName("circle")[1];
+    });
+
+    engineBox.forEach(box => {
+        if (thisModal.contains(box)) {
+            let circle = box.getElementsByTagName("circle")[1];
             const strokeIncrement = engineRange / thisEngineInt;
-            const textValue = [0];
+            const progressStartValue = [0];
+            const progressEndValue = thisEngineInt;
             circle.style.setProperty("stroke-dashoffset", circleLength - (circleLength * engineRange) / 100);
             circle.style.setProperty("stroke", engineBarColour);
 
-            animateCircle(valueRemaining, engineRange, circle.style, circleLength, strokeIncrement);
-            animateText(textValue, thisEngineInt, Math.max(...engine), Math.min(...engine), thisEngine, circleLength);
-
             const interval = setInterval(() => {
-                animateCircle(valueRemaining, engineRange, circle.style, circleLength, strokeIncrement, interval);
+                animateCircle(progressStartValue, progressEndValue, circle.style, circleLength, strokeIncrement, thisEngine, interval);
             }, 1);
-
-            const textInterval = setInterval(() => {
-                animateText(textValue, thisEngineInt, Math.max(...engine), Math.min(...engine), thisEngine, circleLength, textInterval);
-            }, 1);
-
-            valueRemaining[0] = 0;
-            textValue[0] = 0;
         }
-        if (thisModal.contains(weightBox[i])) {
-            let circle = weightBox[i].getElementsByTagName("circle")[1];
+    });
+
+    weightBox.forEach(box => {
+        if (thisModal.contains(box)) {
+            let circle = box.getElementsByTagName("circle")[1];
             const strokeIncrement = weightRange / thisWeightInt;
-            const textValue = [0];
+            const progressStartValue = [0];
+            const progressEndValue = thisWeightInt;
             circle.style.setProperty("stroke-dashoffset", circleLength - (circleLength * weightRange) / 100);
             circle.style.setProperty("stroke", weightBarColour);
 
-            animateCircle(valueRemaining, weightRange, circle.style, circleLength, strokeIncrement);
-            animateText(textValue, thisWeightInt, Math.max(...weight), Math.min(...weight), thisWeight, circleLength);
-
             const interval = setInterval(() => {
-                animateCircle(valueRemaining, weightRange, circle.style, circleLength, strokeIncrement, interval);
+                animateCircle(progressStartValue, progressEndValue, circle.style, circleLength, strokeIncrement, thisWeight, interval);
             }, 1);
-
-            const textInterval = setInterval(() => {
-                animateText(textValue, thisWeightInt, Math.max(...weight), Math.min(...weight), thisWeight, circleLength, textInterval);
-            }, 1);
-
-            valueRemaining[0] = 0;
-            textValue[0] = 0;
         }
-    }  
+    });
 }
 
-function animateCircle(valueRemaining, range, circle, circleLength, strokeIncrement, interval) {
-    circle.setProperty("--stroke-increment", strokeIncrement);
-    if (valueRemaining[0] < range) {
-        circle.setProperty("stroke-dashoffset", circleLength - (circleLength * valueRemaining[0]) / 100);
-        let newValue = valueRemaining.pop();
-        newValue += strokeIncrement
-        valueRemaining[0] = newValue;
+function animateCircle(progressStartValue, progressEndValue, circle, circleLength, increment, text, interval) {
+    if (progressStartValue[0] < progressEndValue) {
+        let count = progressEndValue / 100
+        progressStartValue[0] += count;
+        let textValue = parseInt(progressStartValue[0])
+        text.textContent = `${ textValue }`
+        circle.setProperty("stroke-dashoffset", circleLength - (circleLength * (progressStartValue[0] * increment)) / 100);
         return;
     }
-    circle.setProperty("stroke-dashoffset", circleLength - (circleLength * range) / 100);
     clearInterval(interval);
-    return;
-}
-
-function animateText(textValue, thisValue, maxValue, minValue, text, circleLength, interval) {
-    // let count = thisValue / (((thisValue / (((maxValue + circleLength) - (thisValue + minValue)) / 100)) * circleLength) / 100);
-    let count = thisValue / (((thisValue / ((maxValue - (thisValue + minValue - circleLength)) / 100)) * circleLength) / 100);
-    if (textValue[0] + count < thisValue) {
-        let newText = textValue.pop();
-        newText += count;
-        textValue[0] = newText;
-        text.innerHTML = parseInt(textValue[0].toString().split(".")[0]);
-        return;
-    }
-    text.innerHTML = thisValue;
-    clearInterval(interval);
-    return;
 }
 
 window.onresize = centerImg;

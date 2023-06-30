@@ -11,6 +11,7 @@ const filterIcon = document.getElementById("filter-icon");
 const filters = document.querySelectorAll(".filter");
 const filterList = document.getElementById("filter-list");
 const dropdowns = document.querySelectorAll(".dropdown");
+const dropdownItems = document.querySelectorAll(".dropdown-item");
 
 //* POWER FILTER *//
 let powerRangeMin = 0;
@@ -33,6 +34,7 @@ const engineInput = document.querySelectorAll(".engine-input input");
 //* TILE *//
 const containers = document.querySelectorAll(".container")
 const tiles = document.querySelectorAll(".tile");
+const vehicleTiles = document.querySelectorAll(".vehicle-tile");
 const tileOpen = document.querySelectorAll(".tile[open]");
 const detailsBtn = document.querySelectorAll(".btn-details");
 const tileImg = document.querySelectorAll(".tile-img");
@@ -541,9 +543,9 @@ if (window.location.pathname.includes("locations.html") || window.location.pathn
         if (searchBtn.classList.value.includes("search-open")) {
             searchClosed();
         }
-        if (tileOpen) {
-            showTiles();
-        }
+        // if (tileOpen) {
+        //     showTiles();
+        // }
         filterOpen();
     });
     
@@ -592,6 +594,10 @@ if (window.location.pathname.includes("locations.html") || window.location.pathn
 }
 
 if (window.location.pathname.includes("vehicles.html")) {
+    let newVArr = [];
+    const activeFilters = [];
+    const filteredVehicles = [];
+
     function filterPowerRange(e, powerRangeMin, selectedPower, powerRange, powerInput) {
         let minRange = parseInt(powerRange[0].value) - 100;
         let maxRange = parseInt(powerRange[1].value) - 100;
@@ -691,6 +697,136 @@ if (window.location.pathname.includes("vehicles.html")) {
         }
     }
 
+    function selectFilters(e) {
+        let checked = e.target.checked;
+        let value = e.target.value;
+        let name = e.target.name;
+        name = name.replace(/[A-Z]/, " ").split(" ")[0];
+
+        if (name === "power" || name === "engine" || name === "weight") {
+            const found = activeFilters.find(filter => filter.name === name);
+            if (found) {
+                const index = activeFilters.findIndex((filter => filter.name === name));
+                if (e.target.classList.value === "min") {
+                    activeFilters[index].value[0] = parseInt(value);
+                } else {
+                    activeFilters[index].value[1] = parseInt(value);
+                }
+            } else {
+                if (e.target.classList.value === "min") {
+                    activeFilters.push({name, "value": [parseInt(value), parseInt(e.target.max)]});
+                } else {
+                    activeFilters.push({name, "value": [parseInt(e.target.min), parseInt(value)]});
+                }
+            }
+        } else {
+            if (checked) {
+                activeFilters.push({name, value});
+            } else {
+                const index = activeFilters.findIndex((filter => filter.value === value));
+                activeFilters.splice(index, 1);
+            }
+        }
+    }
+
+    function filterVehicles(e) {
+        let checked = e.target.checked;
+        let name = e.target.name;
+        name = name.replace(/[A-Z]/, " ").split(" ")[0];
+
+        const filterBy = [];
+
+        activeFilters.forEach(filter => {
+            const found = filterBy.find(item => item.name === filter.name);
+            if (found) {
+                const index = filterBy.findIndex((item => item.name === filter.name));
+                if (!filterBy[index].value.includes(filter.value)) {
+                    filterBy[index].value.push(filter.value)
+                }
+            } else {
+                filterBy.push({"name": filter.name, "value": [filter.value]});
+            }
+
+            vehicles.map((vehicle) => {
+                if (vehicle[filter.name] === filter.value || vehicle.specs[filter.name] === filter.value) {
+                    if (filterBy.length === 1) {
+                        if (!filteredVehicles.includes(vehicle)) {
+                            filteredVehicles.push(vehicle);
+                        }
+                    }
+                }
+            });
+        });
+        
+        if (filteredVehicles.length > 1) {
+            newVArr = [];
+            if (filterBy.length > 1) {
+                filterBy.shift();
+                filteredVehicles.map((vehicle) => {
+                    return {...vehicle, vehicle: filterBy.map((filter) => {
+                        if (filter.value.includes(vehicle[filter.name]) || filter.value.includes(vehicle.specs[filter.name])) {
+                            newVArr.push(vehicle);
+                        }
+                    })}
+                })
+            }
+        }  
+
+        if (filteredVehicles.length > 0 && activeFilters.length === 1 || filterBy.length === 0) {
+            const remove = [];
+            filteredVehicles.some((vehicle) => {
+                if (!checked) {
+                    if (activeFilters.length === 0) {
+                        remove.push(vehicle);
+                    } 
+                    else if (!activeFilters[0].value.includes(vehicle[name]) || !activeFilters[0].value.includes(vehicle.specs[name])) {
+                        remove.push(vehicle);
+                    }
+                }
+            });
+            remove.forEach(item => {
+                filteredVehicles.splice(filteredVehicles.indexOf(item), 1);
+            });
+        }
+    }
+
+    function hideFiltered(newVArr) {
+        const ids = [];
+
+        if (newVArr.length > 0) {
+            vehicleArr = newVArr;
+        } else {
+            vehicleArr = filteredVehicles;
+        }
+
+        vehicleArr.forEach(vehicle => {
+            let id = `${ vehicle.manufacturer } ${ vehicle.model } ${ vehicle.discipline }`
+            id = id.replace(/ /g, "-").toLowerCase();
+
+            ids.push(id);
+        });
+
+        tiles.forEach(tile => {
+            if (ids.includes(tile.id)) {
+                tile.classList.remove("hide");
+            } else {
+                tile.classList.add("hide");
+            }
+        });
+
+        if (filteredVehicles.length === 0) {
+            tiles.forEach(tile => {
+                tile.classList.remove("hide");
+            });
+        }
+    }
+
+    dropdownItems.forEach(item => item.addEventListener("input", (e) => {
+        selectFilters(e);
+        filterVehicles(e);
+        hideFiltered(newVArr);
+    }));    
+
     //* FILTER POWER *//
     powerRange.forEach((input) => input.addEventListener("input", (e) => filterPowerRange(e, powerRangeMin, selectedPower, powerRange, powerInput)));
     powerInput.forEach((input) => input.addEventListener("input", (e) => filterPowerInput(e, powerRangeMin, selectedPower, powerRange, powerInput)));
@@ -702,14 +838,6 @@ if (window.location.pathname.includes("vehicles.html")) {
     //* FILTER ENGINE *//
     engineRange.forEach((input) => input.addEventListener("input", (e) => filterEngineRange(e, engineRangeMin, selectedEngine, engineRange, engineInput)));
     engineInput.forEach((input) => input.addEventListener("input", (e) => filterEngineInput(e, engineRangeMin, selectedEngine, engineRange, engineInput)));
-
-    // detailsBtn.forEach(btn => btn.addEventListener("click", () => {
-    //     openModal().then(scaleText());
-    // }))
-    // scaleText();
-    // numberDiv.forEach(div => {
-    //     console.log(div.offsetWidth, div.naturalWidth);
-    // })
 }
 
 function prevTile(e, carousel, nodes) {

@@ -1495,14 +1495,14 @@ function vehicleFilters() {
                 <span id="power-range-selected" class="range-selected"></span>
             </li>
             <li class="power-slider slider-range">
-                <input type="range" name="power" class="min" min="${ minPower }" max="${ maxPower }" value="${ minPower }" step="1">
-                <input type="range" name="power" class="max" min="${ minPower }" max="${ maxPower }" value="${ maxPower }" step="1">
+                <input type="range" name="powerSliderMin" class="min" min="${ minPower }" max="${ maxPower }" value="${ minPower }" step="1">
+                <input type="range" name="powerSliderMax" class="max" min="${ minPower }" max="${ maxPower }" value="${ maxPower }" step="1">
             </li>
             <li class="power-input slider-input">
-                <input type="number" name="min" class="min" value="${ minPower }">
-                <label for="min">bhp</label>
-                <input type="number" name="min" class="max" value="${ maxPower }">
-                <label for="max">bhp</label>
+                <input type="number" name="powerInputMin" class="min" min="${ minPower }" max="${ maxPower }" value="${ minPower }">
+                <label for="powerInputMin">bhp</label>
+                <input type="number" name="powerInputMax" class="max" min="${ minPower }" max="${ maxPower }" value="${ maxPower }">
+                <label for="powerInputMax">bhp</label>
             </li>
         </ul>`
     );
@@ -1523,14 +1523,14 @@ function vehicleFilters() {
                 <span id="weight-range-selected" class="range-selected"></span>
             </li>
             <li class="weight-slider slider-range">
-                <input type="range" name="weight" class="min" min="${ minWeight }" max="${ maxWeight }" value="${ minWeight }" step="1">
-                <input type="range" name="weight" class="max" min="${ minWeight }" max="${ maxWeight }" value="${ maxWeight }" step="1">
+                <input type="range" name="weightSliderMin" class="min" min="${ minWeight }" max="${ maxWeight }" value="${ minWeight }" step="1">
+                <input type="range" name="weightSliderMax" class="max" min="${ minWeight }" max="${ maxWeight }" value="${ maxWeight }" step="1">
             </li>
             <li class="weight-input slider-input">
-                <input type="number" name="min" class="min" value="${ minWeight }">
-                <label for="min">kg</label>
-                <input type="number" name="min" class="max" value="${ maxWeight }">
-                <label for="max">kg</label>
+                <input type="number" name="weightInputMin" class="min" value="${ minWeight }">
+                <label for="weightInputMin">kg</label>
+                <input type="number" name="weightInputMax" class="max" value="${ maxWeight }">
+                <label for="weightInputMax">kg</label>
             </li>
         </ul>`
     );
@@ -1551,14 +1551,14 @@ function vehicleFilters() {
                 <span id="engine-range-selected" class="range-selected"></span>
             </li>
             <li class="engine-slider slider-range">
-                <input type="range" name="engine" class="min" min="${ minEngine }" max="${ maxEngine }" value="${ minEngine }" step="1">
-                <input type="range" name="engine" class="max" min="${ minEngine }" max="${ maxEngine }" value="${ maxEngine }" step="1">
+                <input type="range" name="engineSliderMin" class="min" min="${ minEngine }" max="${ maxEngine }" value="${ minEngine }" step="1">
+                <input type="range" name="engineSliderMax" class="max" min="${ minEngine }" max="${ maxEngine }" value="${ maxEngine }" step="1">
             </li>
             <li class="engine-input slider-input">
-                <input type="number" name="engine" class="min" value="${ minEngine }">
-                <label for="min">cc</label>
-                <input type="number" name="engine" class="max" value="${ maxEngine }">
-                <label for="max">cc</label>
+                <input type="number" name="engineInputMin" class="min" value="${ minEngine }">
+                <label for="engineInputMin">cc</label>
+                <input type="number" name="engineInputMax" class="max" value="${ maxEngine }">
+                <label for="engineInputMax">cc</label>
             </li>
         </ul>`
     );

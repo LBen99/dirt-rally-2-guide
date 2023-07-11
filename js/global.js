@@ -594,9 +594,10 @@ if (window.location.pathname.includes("locations.html") || window.location.pathn
 }
 
 if (window.location.pathname.includes("vehicles.html")) {
-    let newVArr = [];
     const activeFilters = [];
-    const filteredVehicles = [];
+    let filteredVehicles = [];
+    let baseFiltered = [];
+    let selectedFilters = [];
 
     function filterPowerRange(e, powerRangeMin, selectedPower, powerRange, powerInput) {
         let minRange = parseInt(powerRange[0].value) - 100;
@@ -720,6 +721,10 @@ if (window.location.pathname.includes("vehicles.html")) {
                 }
             }
         } else {
+            if (name === "cylinders") {
+                value = parseInt(value);
+            }
+
             if (checked) {
                 activeFilters.push({name, value});
             } else {
@@ -729,12 +734,132 @@ if (window.location.pathname.includes("vehicles.html")) {
         }
     }
 
+    function fVehicles(filterArr, filterBy, filterName) {
+        const filterVehicles = filterArr.reduce((filtered, vehicle) => {
+            filterBy.forEach(filter => {
+                if (filter.name === filterName && filterArr.includes(vehicle)) {
+                    if (filter.name === "power" || filter.name === "engine" || filter.name === "weight") {
+                        const min = filter.value[0][0];
+                        const max = filter.value[0][1];
+                        const value = vehicle.specs[filter.name];
+    
+                        if (value < min || value > max) {
+                            if (filtered.vehicles.includes(vehicle)) {
+                                filtered.vehicles.splice(filtered.vehicles.indexOf(vehicle), 1);
+                            }
+                        } else {
+                            if (!filtered.vehicles.includes(vehicle)) {
+                                filtered.vehicles.push(vehicle);
+                            }
+                        }
+                    } else {
+                        const value = vehicle.specs[filter.name] || vehicle[filter.name];
+
+                        if (filter.name === "aspiration") {
+                            value.forEach(val => {
+                                if (filter.value.includes(val) && filter.name === filterName) {
+                                    if (!filtered.vehicles.includes(vehicle)) {
+                                        filtered.vehicles.push(vehicle);
+                                    }
+                                }
+                            });
+                        } else {
+                            if (filter.value.includes(value) && filter.name === filterName) {
+                                if (!filtered.vehicles.includes(vehicle)) {
+                                    filtered.vehicles.push(vehicle);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            return filtered;
+        }, {"name": filterName, "vehicles": []});
+        return filterVehicles;
+    }
+
+    function firstFilter(e, filterBy, name, min, max) {
+        let filterArr = vehicles;
+        const res = fVehicles(filterArr, filterBy, name);
+        if (filterBy.length < 1) {
+            filteredVehicles = [];
+            baseFiltered = [];
+            return;
+        }
+
+        if (filterBy[0].name === "power" || filterBy[0].name === "engine" || filterBy[0].name === "weight") {
+            baseFiltered = res.vehicles;
+    
+            if (filterBy[0].value[0][0] === min && filterBy[0].value[0][1] === max) {
+                activeFilters.splice(0, 1);
+                baseFiltered = [];
+                filteredVehicles = baseFiltered;
+            } else {
+                filteredVehicles = baseFiltered;
+            }
+        } else {
+            res.vehicles.forEach(vehicle => {
+                if (!baseFiltered.includes(vehicle)) {
+                    baseFiltered.push(vehicle);
+                }
+
+                if (selectedFilters.length < 1) {
+                    if (!filteredVehicles.includes(vehicle)) {
+                        filteredVehicles.push(vehicle);
+                    }
+                }
+            });
+    
+            if (!e.target.checked) {
+                if (selectedFilters.length > 0) {
+                    selectedFilters = [];
+                    filteredVehicles = baseFiltered;
+                } else {
+                    let filterArr = baseFiltered;
+                    const res = fVehicles(filterArr, filterBy, name);
+    
+                    baseFiltered = res.vehicles;
+                    filteredVehicles = baseFiltered;
+                }
+            }
+        }           
+    }
+
+    function updateFilter(e, filterBy) {
+        selectedFilters = [];
+
+        filterBy.forEach(filter => {
+            let filterArr;
+    
+            if (!e.target.checked && filterBy[0].name === filter.name) {
+                filterArr = vehicles;
+            } else {
+                if (selectedFilters.length < 1) {
+                    filterArr = baseFiltered;
+                } else {
+                    filterArr = selectedFilters[selectedFilters.length - 1].vehicles;
+                }
+            }
+
+            const res = fVehicles(filterArr, filterBy, filter.name);
+            
+            if (filterBy[0].name !== filter.name) {
+                selectedFilters.push(res);
+            } else {
+                baseFiltered = res.vehicles;
+            }
+
+            return filteredVehicles = res.vehicles;
+        });
+    }
+
     function filterVehicles(e) {
-        let checked = e.target.checked;
         let name = e.target.name;
         name = name.replace(/[A-Z]/, " ").split(" ")[0];
-
         const filterBy = [];
+        const min = parseInt(e.target.min);
+        const max = parseInt(e.target.max);
+        let filterArr;
 
         activeFilters.forEach(filter => {
             const found = filterBy.find(item => item.name === filter.name);
@@ -747,59 +872,98 @@ if (window.location.pathname.includes("vehicles.html")) {
                 filterBy.push({"name": filter.name, "value": [filter.value]});
             }
 
-            vehicles.map((vehicle) => {
-                if (vehicle[filter.name] === filter.value || vehicle.specs[filter.name] === filter.value) {
-                    if (filterBy.length === 1) {
-                        if (!filteredVehicles.includes(vehicle)) {
-                            filteredVehicles.push(vehicle);
-                        }
-                    }
-                }
-            });
+            return filter.name;
         });
-        
-        if (filteredVehicles.length > 1) {
-            newVArr = [];
-            if (filterBy.length > 1) {
-                filterBy.shift();
-                filteredVehicles.map((vehicle) => {
-                    return {...vehicle, vehicle: filterBy.map((filter) => {
-                        if (filter.value.includes(vehicle[filter.name]) || filter.value.includes(vehicle.specs[filter.name])) {
-                            newVArr.push(vehicle);
-                        }
-                    })}
-                })
-            }
-        }  
 
-        if (filteredVehicles.length > 0 && activeFilters.length === 1 || filterBy.length === 0) {
-            const remove = [];
-            filteredVehicles.some((vehicle) => {
-                if (!checked) {
-                    if (activeFilters.length === 0) {
-                        remove.push(vehicle);
-                    } 
-                    else if (!activeFilters[0].value.includes(vehicle[name]) || !activeFilters[0].value.includes(vehicle.specs[name])) {
-                        remove.push(vehicle);
+        if (filterBy.length <= 1) {
+            firstFilter(e, filterBy, name);
+            updateFilter(e, filterBy);       
+        } else {
+            if (filterBy[0].name === name) {
+                firstFilter(e, filterBy, name, min, max);
+                updateFilter(e, filterBy);       
+            } else {
+                if (e.target.type === "checkbox" && !e.target.checked) {
+                    if (selectedFilters.length >= 1) {
+                        selectedFilters.forEach(filter => {
+                            if (filter.name === name) {    
+                                filterArr = filter.vehicles;
+                                const res = fVehicles(filterArr, filterBy, name);
+    
+                                filter.vehicles = res.vehicles;
+    
+                                if (filter.vehicles.length < 1) {
+                                    selectedFilters.splice(selectedFilters.indexOf(filter), 1);
+    
+                                    const currFilter = selectedFilters.length - 1;
+    
+                                    filteredVehicles = selectedFilters[currFilter].vehicles;
+                                } else {
+                                    filteredVehicles = res.vehicles;
+                                }
+                            }
+                        });
+                    }
+                    updateFilter(e, filterBy);
+                } else if (e.target.type === "checkbox" || e.target.type !== "checkbox") {
+                    selectedFilters.forEach(filter => {
+                        if (filter.name === name) {
+                            filterBy.forEach(filterByItem => {
+                                if (e.target.type !== "checkbox") {
+                                    if (filterByItem.value[0][0] === min && filterByItem.value[0][1] === max) {
+                                        filterBy.splice(filterBy.indexOf(filterByItem), 1);
+                                    }
+                                }
+                            });
+
+                            activeFilters.forEach(activeFilter => {
+                                if (e.target.type !== "checkbox") {
+                                    if (activeFilter.value[0] === min && activeFilter.value[1] === max) {
+                                        activeFilters.splice(activeFilters.indexOf(activeFilter), 1);
+                                    }
+                                }
+                            });
+
+                        }
+
+                        if (filter.vehicles.length < 1) {
+                            selectedFilters.splice(selectedFilters.indexOf(filter), 1);
+                        }
+                    });
+    
+                    if (selectedFilters.length < 1) {
+                        filterArr = baseFiltered;
+                        const res = fVehicles(filterArr, filterBy, name);
+                        selectedFilters.push(res);
+                        filteredVehicles = res.vehicles;
+                    } else {
+                        if (selectedFilters[0].name === name) {
+                            updateFilter(e, filterBy);
+                        } else {
+                            const found = selectedFilters.find(filter => filter.name === name);
+    
+                            if (!found) {
+                                const prevFilter = selectedFilters.length - 1;
+                                filterArr = selectedFilters[prevFilter].vehicles;
+    
+                                const res = fVehicles(filterArr, filterBy, name);
+    
+                                selectedFilters.push(res);
+                                filteredVehicles = res.vehicles;
+                            } else {
+                                updateFilter(e, filterBy);
+                            }
+                        }
                     }
                 }
-            });
-            remove.forEach(item => {
-                filteredVehicles.splice(filteredVehicles.indexOf(item), 1);
-            });
+            }
         }
     }
 
-    function hideFiltered(newVArr) {
+    function hideFiltered(filteredVehicles) {
         const ids = [];
-
-        if (newVArr.length > 0) {
-            vehicleArr = newVArr;
-        } else {
-            vehicleArr = filteredVehicles;
-        }
-
-        vehicleArr.forEach(vehicle => {
+    
+        filteredVehicles.forEach(vehicle => {
             let id = `${ vehicle.manufacturer } ${ vehicle.model } ${ vehicle.discipline }`
             id = id.replace(/ /g, "-").toLowerCase();
 
@@ -824,7 +988,7 @@ if (window.location.pathname.includes("vehicles.html")) {
     dropdownItems.forEach(item => item.addEventListener("input", (e) => {
         selectFilters(e);
         filterVehicles(e);
-        hideFiltered(newVArr);
+        hideFiltered(filteredVehicles);
     }));    
 
     //* FILTER POWER *//

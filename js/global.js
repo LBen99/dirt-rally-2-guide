@@ -599,103 +599,212 @@ if (window.location.pathname.includes("vehicles.html")) {
     let baseFiltered = [];
     let selectedFilters = [];
 
-    function filterPowerRange(e, powerRangeMin, selectedPower, powerRange, powerInput) {
-        let minRange = parseInt(powerRange[0].value) - 100;
-        let maxRange = parseInt(powerRange[1].value) - 100;
+    function sliderMin(availableFilters, input, name) {
+        availableFilters.map(filter => {
+            if (filter.name === name) {
+                if (input.classList.value.includes("min")) {
+                    const values = [];
+                    
+                    baseFiltered.forEach(vehicle => {
+                        if (!values.includes(vehicle.specs[name])) {
+                            values.push(vehicle.specs[name]);
+                        }
+                    });
+
+                    let filteredMinValue = Math.min(...values);
+                    filteredMinValue = filteredMinValue.toString();
+
+                    let filteredMaxValue = Math.max(...values);
+                    filteredMaxValue = filteredMaxValue.toString();
+
+                    let parseInput = parseInt(input.value);
+                    let parseMin = parseInt(filteredMinValue);
+                    let parseMax = parseInt(filteredMaxValue);
+
+                    if (parseInput < parseMin) {
+                        input.value = filteredMinValue;
+                        filter.value[0] = parseMin;
+                    } if (parseInput > parseMax) {
+                        input.value = filteredMaxValue;
+                        filter.value[0] = parseMax;
+                    } else if (parseInput >= parseMin && parseInput <= parseMax) {
+                        filter.value[0] = parseInput;
+                    }
+                }
+            }
+        });
+
+    }
+
+    function sliderMax(availableFilters, input, name) {
+        availableFilters.map(filter => {
+            if (filter.name === name) {
+                if (input.classList.value.includes("max")) {
+                    const values = [];
+                    
+                    baseFiltered.forEach(vehicle => {
+                        if (!values.includes(vehicle.specs[name])) {
+                            values.push(vehicle.specs[name]);
+                        }
+                    });
+
+                    let filteredMinValue = Math.min(...values);
+                    filteredMinValue = filteredMinValue.toString();
+                    
+                    let filteredMaxValue = Math.max(...values);
+                    filteredMaxValue = filteredMaxValue.toString();
+
+                    let parseInput = parseInt(input.value);
+                    let parseMin = parseInt(filteredMinValue);
+                    let parseMax = parseInt(filteredMaxValue);
+
+                    if (parseInput < parseMin) {
+                        input.value = filteredMinValue;
+                        filter.value[1] = parseMin;
+                    } if (parseInput > parseMax) {
+                        input.value = filteredMaxValue;
+                        filter.value[1] = parseMax;
+                    } else if (parseInput >= parseMin && parseInput <= parseMax) {
+                        filter.value[1] = parseInput;
+                    }
+                }
+            }
+        });
+    }
+
+    function updateSliderBar(selectedRange, availableFilters, minValue, maxValue, minRangeMax, maxRangeMax) {
+        let rangeName = selectedRange.id.replace("-", " ").split(" ")[0];
+
+        availableFilters.forEach(filter => {
+            if (rangeName === filter.name) {
+                selectedRange.style.left = (minValue / minRangeMax) * 100 + "%";
+                selectedRange.style.right = 100 - (maxValue / maxRangeMax) * 100 + "%";
+            }
+        });
+    }
+
+    function adjustSliders(e, filterBy, availableFilters, input, name, secondaryVal) {
+        let sliderActive = filterBy.find(filter => filter.name === "power" || filter.name === "weight" || filter.name === "engine");
+        let selectedRange = document.getElementById(`${name}-range-selected`);
+        let minValue;
+        let maxValue;
+        let minRangeMax;
+        let maxRangeMax;
+
+        let values = [];
+
+        baseFiltered.forEach(vehicle => {
+            if (!values.includes(vehicle.specs[name])) {
+                values.push(vehicle.specs[name]);
+            }
+        });
+
+        if (!sliderActive) {
+            availableFilters.map(filter => {
+                if (filter.name === name) {
+                    if (input.classList.value.includes("min")) {
+                        if (e.target.type === "checkbox") {
+                            let val = Math.min(...values).toString();
+                            input.value = val;
+                        } else {
+                            let val = parseInt(input.value);
+                            filter.value[0] = val;
+                        }
     
-        if (maxRange - minRange < powerRangeMin) {
+                        minValue = parseInt(input.value) - secondaryVal;
+                        minRangeMax = parseInt(input.max) - secondaryVal;
+                    } else if (input.classList.value.includes("max")) {
+                        if (e.target.type === "checkbox") {
+                            let val = Math.max(...values).toString();
+                            input.value = val;
+                        } else {
+                            let val = parseInt(input.value);
+                            filter.value[1] = val;
+                        }
+    
+                        maxValue = parseInt(input.value) - secondaryVal;
+                        maxRangeMax = parseInt(input.max) - secondaryVal;
+                    }
+                }
+            });
+        } else {
+            filterBy.forEach(filter => {
+                if (filter.name === name) {
+                    if (input.classList.value.includes("min")) {
+                        let val = parseInt(input.value);
+                        filter.value[0][0] = val;
+                    } else if (input.classList.value.includes("max")) {
+                        let val = parseInt(input.value);
+                        filter.value[0][1] = val;
+                    }
+                }
+            });
+        }
+
+        updateSliderBar(selectedRange, availableFilters, minValue, maxValue, minRangeMax, maxRangeMax);
+    }
+
+    function filterRange(e, rangeMin, bar, range, number, filterBy, availableFilters, input, name) {
+        let secondaryVal;
+        let sliderName = bar.id.replace("-", " ").split(" ")[0];
+
+        if (sliderName === "power") {
+            secondaryVal = 100;
+        } if (sliderName === "weight") {
+            secondaryVal = 312;
+        } else if (sliderName === "engine") {
+            secondaryVal = 750;
+        }
+
+        let minRange = parseInt(range[0].value) - secondaryVal;
+        let maxRange = parseInt(range[1].value) - secondaryVal;
+
+        if (maxRange - minRange < rangeMin) {
             if (e.target.className === "min") {
-                powerRange[0].value = (maxRange + 100) - powerRangeMin;
+                range[0].value = (maxRange + secondaryVal) - rangeMin;
             } else {
-                powerRange[1].value = (minRange + 100) + powerRangeMin;
+                range[1].value = (minRange + secondaryVal) + rangeMin;
             }
         } else {
-            powerInput[0].value = minRange + 100;
-            powerInput[1].value = maxRange + 100;
-            selectedPower.style.left = (minRange / (powerRange[0].max - 100)) * 100 + "%";
-            selectedPower.style.right = 100 - (maxRange / (powerRange[1].max - 100)) * 100 + "%";
+            number[0].value = minRange + secondaryVal;
+            number[1].value = maxRange + secondaryVal;
+            bar.style.left = (minRange / (range[0].max - secondaryVal)) * 100 + "%";
+            bar.style.right = 100 - (maxRange / (range[1].max - secondaryVal)) * 100 + "%";
         }
+        
+        sliderMin(availableFilters, input, name);
+        sliderMax(availableFilters, input, name);
+        adjustSliders(e, filterBy, availableFilters, input, name, secondaryVal);
     }
+
+    function filterNumber(e, rangeMin, bar, range, number, filterBy, availableFilters, input, name) {
+        let secondaryVal;
+        let sliderName = bar.id.replace("-", " ").split(" ")[0];
+
+        if (sliderName === "power") {
+            secondaryVal = 100;
+        } if (sliderName === "weight") {
+            secondaryVal = 312;
+        } else if (sliderName === "engine") {
+            secondaryVal = 750;
+        }
+
+        let minPower = parseInt(number[0].value) - secondaryVal;
+        let maxPower = parseInt(number[1].value) - secondaryVal;
     
-    function filterPowerInput(e, powerRangeMin, selectedPower, powerRange, powerInput) {
-        let minPower = parseInt(powerInput[0].value) - 100;
-        let maxPower = parseInt(powerInput[1].value) - 100;
-    
-        if (maxPower - minPower >= powerRangeMin && maxPower <= (powerRange[1].max - 100)) {
+        if (maxPower - minPower >= rangeMin && maxPower <= (range[1].max - secondaryVal)) {
             if (e.target.className === "min") {
-                powerRange[0].value = minPower + 100;
-                selectedPower.style.left = (minPower / (powerRange[0].max - 100)) * 100 + "%";
+                range[0].value = minPower + secondaryVal;
+                bar.style.left = (minPower / (range[0].max - secondaryVal)) * 100 + "%";
             } else {
-                powerRange[1].value = maxPower + 100;
-                selectedPower.style.right = 100 - (maxPower / (powerRange[1].max - 100)) * 100 + "%";
+                range[1].value = maxPower + secondaryVal;
+                bar.style.right = 100 - (maxPower / (range[1].max - secondaryVal)) * 100 + "%";
             }
         }
-    }
-    
-    function filterWeightRange(e, weightRangeMin, selectedWeight, weightRange, weightInput) {
-        let minRange = parseInt(weightRange[0].value) - 312;
-        let maxRange = parseInt(weightRange[1].value) - 312;
-    
-        if (maxRange - minRange < weightRangeMin) {
-            if (e.target.className === "min") {
-                weightRange[0].value = (maxRange + 312) - weightRangeMin;
-            } else {
-                weightRange[1].value = (minRange + 312) + weightRangeMin;
-            }
-        } else {
-            weightInput[0].value = minRange + 312;
-            weightInput[1].value = maxRange + 312;
-            selectedWeight.style.left = (minRange / (weightRange[0].max - 312)) * 100 + "%";
-            selectedWeight.style.right = 100 - (maxRange / (weightRange[1].max - 312)) * 100 + "%";
-        }
-    }
-    
-    function filterWeightInput(e, weightRangeMin, selectedWeight, weightRange, weightInput) {
-        let minWeight = parseInt(weightInput[0].value) - 312;
-        let maxWeight = parseInt(weightInput[1].value) - 312;
-    
-        if (maxWeight - minWeight >= weightRangeMin && maxWeight <= (weightRange[1].max - 312)) {
-            if (e.target.className === "min") {
-                weightRange[0].value = minWeight + 312;
-                selectedWeight.style.left = (minWeight / (weightRange[0].max - 312)) * 100 + "%";
-            } else {
-                weightRange[1].value = maxWeight + 312;
-                selectedWeight.style.right = 100 - (maxWeight / (weightRange[1].max - 312)) * 100 + "%";
-            }
-        }
-    }
-    
-    function filterEngineRange(e, engineRangeMin, selectedEngine, engineRange, engineInput) {
-        let minRange = parseInt(engineRange[0].value) - 750;
-        let maxRange = parseInt(engineRange[1].value) - 750;
-    
-        if (maxRange - minRange < engineRangeMin) {
-            if (e.target.className === "min") {
-                engineRange[0].value = (maxRange + 750) - engineRangeMin;
-            } else {
-                engineRange[1].value = (minRange + 750) + engineRangeMin;
-            }
-        } else {
-            engineInput[0].value = minRange + 750;
-            engineInput[1].value = maxRange + 750;
-            selectedEngine.style.left = (minRange / (engineRange[0].max - 750)) * 100 + "%";
-            selectedEngine.style.right = 100 - (maxRange / (engineRange[1].max - 750)) * 100 + "%";
-        }
-    }
-    
-    function filterEngineInput(e, engineRangeMin, selectedEngine, engineRange, engineInput) {
-        let minEngine = parseInt(engineInput[0].value) - 750;
-        let maxEngine = parseInt(engineInput[1].value) - 750;
-    
-        if (maxEngine - minEngine >= engineRangeMin && maxEngine <= (engineRange[1].max - 750)) {
-            if (e.target.className === "min") {
-                engineRange[0].value = minEngine + 750;
-                selectedEngine.style.left = (minEngine / (engineRange[0].max - 750)) * 100 + "%";
-            } else {
-                engineRange[1].value = maxEngine + 750;
-                selectedEngine.style.right = 100 - (maxEngine / (engineRange[1].max - 750)) * 100 + "%";
-            }
-        }
+
+        sliderMin(availableFilters, input, name);
+        sliderMax(availableFilters, input, name);
+        adjustSliders(e, filterBy, availableFilters, input, name, secondaryVal);
     }
 
     function selectFilters(e) {
@@ -753,17 +862,19 @@ if (window.location.pathname.includes("vehicles.html")) {
                             }
                         }
                     } else {
-                        const value = vehicle.specs[filter.name] || vehicle[filter.name];
-
-                        if (filter.name === "aspiration") {
-                            value.forEach(val => {
-                                if (filter.value.includes(val) && filter.name === filterName) {
+                        if (filterName === "aspiration") {
+                            let value;
+                            value = [];
+                            filter.value.forEach(val => {
+                                if (vehicle.specs.aspiration.includes(val)) {
+                                    value.push(val);
                                     if (!filtered.vehicles.includes(vehicle)) {
                                         filtered.vehicles.push(vehicle);
                                     }
                                 }
                             });
                         } else {
+                            const value = vehicle.specs[filter.name] || vehicle[filter.name];
                             if (filter.value.includes(value) && filter.name === filterName) {
                                 if (!filtered.vehicles.includes(vehicle)) {
                                     filtered.vehicles.push(vehicle);
@@ -851,113 +962,585 @@ if (window.location.pathname.includes("vehicles.html")) {
 
             return filteredVehicles = res.vehicles;
         });
+
+        enableDisableFilters(e, filterBy)
     }
 
-    function filterVehicles(e) {
-        let name = e.target.name;
-        name = name.replace(/[A-Z]/, " ").split(" ")[0];
-        const filterBy = [];
-        const min = parseInt(e.target.min);
-        const max = parseInt(e.target.max);
-        let filterArr;
+    function createEntries(vehicle) {
+        let entries = Object.entries(vehicle);
+        const entryArr = [];
 
-        activeFilters.forEach(filter => {
-            const found = filterBy.find(item => item.name === filter.name);
-            if (found) {
-                const index = filterBy.findIndex((item => item.name === filter.name));
-                if (!filterBy[index].value.includes(filter.value)) {
-                    filterBy[index].value.push(filter.value)
-                }
+        entries.forEach(entry => {
+            let name = entry[0];
+            let value = entry[1];
+    
+            if (name === "specs") {
+                let specEntries = Object.entries(value);
+                specEntries.forEach(specEntry => {
+                    let specName = specEntry[0];
+                    let specValue = specEntry[1];
+    
+                    entryArr.push({"name": specName, "value": specValue});
+                });
             } else {
-                filterBy.push({"name": filter.name, "value": [filter.value]});
+                entryArr.push({"name": name, "value": value});
             }
-
-            return filter.name;
         });
 
-        if (filterBy.length <= 1) {
-            firstFilter(e, filterBy, name);
-            updateFilter(e, filterBy);       
-        } else {
-            if (filterBy[0].name === name) {
-                firstFilter(e, filterBy, name, min, max);
-                updateFilter(e, filterBy);       
-            } else {
-                if (e.target.type === "checkbox" && !e.target.checked) {
-                    if (selectedFilters.length >= 1) {
-                        selectedFilters.forEach(filter => {
-                            if (filter.name === name) {    
-                                filterArr = filter.vehicles;
-                                const res = fVehicles(filterArr, filterBy, name);
+        return entryArr;
+    }
+
+    function enableDisableFilters(e, filterBy) {
+        const availableFilters = [];
+        const sortedFilters = [];
+
+        if (selectedFilters.length >= 1) {            
+            baseFiltered.forEach(vehicle => {
+                const entryArr = createEntries(vehicle);
+
+                entryArr.map(entry => {
+                    let name = entry.name;
+                    let value = entry.value;
+                    const found = availableFilters.find(filter => filter.name === name);
+
+                    if (availableFilters.length > 0) {                        
+                        if (found) {
+                            const index = availableFilters.findIndex(filter => filter.name === name);
     
-                                filter.vehicles = res.vehicles;
-    
-                                if (filter.vehicles.length < 1) {
-                                    selectedFilters.splice(selectedFilters.indexOf(filter), 1);
-    
-                                    const currFilter = selectedFilters.length - 1;
-    
-                                    filteredVehicles = selectedFilters[currFilter].vehicles;
-                                } else {
-                                    filteredVehicles = res.vehicles;
+                            if (name === "aspiration") {
+                                value.forEach(val => {
+                                    if (!availableFilters[index].value.includes(val)) {
+                                        availableFilters[index].value.push(val);
+                                    }
+                                });
+                            } else {
+                                if (!availableFilters[index].value.includes(value)) {
+                                    availableFilters[index].value.push(value);
                                 }
+                            }
+                        } else {
+                            if (Array.isArray(value)) {
+                                value = value.toString();
+                            }
+                            
+                            availableFilters.push({"name": name, "value": [value]});
+                        }
+                    } else {
+                        if (name === "aspiration") {
+                            availableFilters.push({"name": name, "value": value});
+                        } else {
+                            availableFilters.push({"name": name, "value": [value]});
+                        }
+                    }
+                });
+            });
+            
+            
+            activeFilters.forEach(() => {
+                baseFiltered.filter(vehicle => {
+                    return activeFilters.some(filter => {
+                        let res = filter.value.includes(vehicle[filter.name] || vehicle.specs[filter.name]);
+                        let valuesValue = vehicle[filter.name] || vehicle.specs[filter.name];
+
+                        if (filter.name === "aspiration") {
+                            filterBy.forEach(f => {
+                                if (f.name === "aspiration") {
+                                    f.value.forEach(val => {
+                                        res = valuesValue.includes(val);
+                                    });
+                                }
+                            });
+                        }
+
+                        if (filter.name === "power" || filter.name === "weight" || filter.name === "engine") {
+                            filterBy.forEach(f => {
+                                if (f.name === "power" || f.name === "weight" || f.name === "engine") {
+                                    const between = (val, min, max) => {
+                                        return val >= min && val <= max;
+                                    }
+
+                                    let val = valuesValue;
+                                    let min = f.value[0][0];
+                                    let max = f.value[0][1];
+
+                                    if (between(val, min, max)) {
+                                        res = valuesValue;
+                                    }
+                                }
+                            });
+                        }
+
+                        if (res) {
+                            const foundName = sortedFilters.find(sortedFilter => sortedFilter.name === filter.name);
+                            if (foundName) {
+                                const nameIndex = sortedFilters.findIndex(sortedFilter => sortedFilter.name === filter.name);
+                                if (filter.name === "aspiration") {
+                                    valuesValue.forEach(valsVal => {
+                                        const foundAspiration = sortedFilters[nameIndex].values.find(val => val.value === valsVal);
+
+                                        if (foundAspiration) {
+                                            const valueIndex = sortedFilters[nameIndex].values.findIndex(val => val.value === valsVal);
+
+                                            if (!sortedFilters[nameIndex].values[valueIndex].vehicles.includes(vehicle)) {
+                                                sortedFilters[nameIndex].values[valueIndex].vehicles.push(vehicle);
+                                            }
+                                        } else {
+                                            sortedFilters[nameIndex].values.push({"value": valsVal, "vehicles": [vehicle]});
+                                        }
+                                    });
+                                } else {
+                                    if (sortedFilters[nameIndex].values.find(val => val.value === valuesValue)) {
+                                        const valueIndex = sortedFilters[nameIndex].values.findIndex(val => val.value === valuesValue);
+        
+                                        if (!sortedFilters[nameIndex].values[valueIndex].vehicles.includes(vehicle)) {
+                                            sortedFilters[nameIndex].values[valueIndex].vehicles.push(vehicle);
+                                        }
+                                    } else {
+                                        sortedFilters[nameIndex].values.push({"value": valuesValue, "vehicles": [vehicle]});
+                                    }
+                                }
+                            } else {
+                                if (filter.name === "aspiration") {
+                                    sortedFilters.push({"name": filter.name, "values": [{"value": valuesValue[0], "vehicles": [vehicle]}]});
+                                } else {
+                                    sortedFilters.push({"name": filter.name, "values": [{"value": valuesValue, "vehicles": [vehicle]}]});
+                                }
+                            }
+                        }
+                    });
+                });
+            });
+
+            const sortedVehicles = [];
+            const notMatch = [];
+
+            if (selectedFilters.length > 1) {
+                baseFiltered.forEach(vehicle => {
+                    filterBy.forEach(filter => {
+                        if (vehicle.specs[filter.name]) {
+                            if (filter.name === "aspiration") {
+                                filter.value.forEach(val => {
+                                    if (!vehicle.specs[filter.name].includes(val)) {
+                                        notMatch.push(vehicle);
+                                    }
+                                })
+                            } else if (filter.name === "power" || filter.name === "weight" || filter.name === "engine") {
+                                const between = (val, min, max) => {
+                                    return val >= min && val <= max;
+                                }
+            
+                                let val = vehicle.specs[filter.name];
+                                let min = filter.value[0][0];
+                                let max = filter.value[0][1];
+            
+                                if (!between(val, min, max)) {
+                                    notMatch.push(vehicle)
+                                }
+                            } else {
+                                if (!filter.value.includes(vehicle.specs[filter.name])) {
+                                    notMatch.push(vehicle);
+                                }
+                            }
+                        } else if (vehicle[filter.name]) {
+                            if (!filter.value.includes(vehicle[filter.name])) {
+                                notMatch.push(vehicle);
+                            }
+                        }
+                    });
+                });
+            }
+
+            filteredVehicles.forEach(vehicle => {
+                if (!notMatch.includes(vehicle)) {
+                    if (!sortedVehicles.includes(vehicle)) {
+                        sortedVehicles.push(vehicle);
+                    }
+                }
+            });
+
+            const matchSomeArr = [];
+            sortedFilters.forEach(sortedFilter => {
+                sortedFilter.values.forEach(value => {
+                    let matchSome;
+
+                    notMatch.forEach(v => {
+                        if (v.specs[sortedFilter.name]) {
+                            if (sortedFilter.name === "aspiration") {
+                                matchSome = notMatch.find(vehicle => vehicle.specs.aspiration.includes(value.value));
+                            } else {
+                                matchSome = notMatch.find(vehicle => vehicle.specs[sortedFilter.name] === value.value);
+                            }
+                        } else if (v[sortedFilter.name]) {
+                            matchSome = notMatch.find(vehicle => vehicle[sortedFilter.name] === value.value);
+                        }
+                    })
+
+                    if (matchSome !== undefined) {
+                        matchSomeArr.push(matchSome);
+                    }
+
+                    let uniqueElements = [...new Set(matchSomeArr)];
+                    
+                    let count = uniqueElements.map(element => [
+                        element,
+                        matchSomeArr.filter(el => el === element).length
+                    ]);
+
+                    count.forEach(vehicle => {
+                        if (filterBy[filterBy.length - 1].name === "aspiration") {
+                            if (vehicle[filterBy.length - 2] === filterBy.length) {
+                                if (!sortedVehicles.includes(vehicle[0])) {
+                                    sortedVehicles.push(vehicle[0]);
+                                }
+                            }
+                        } 
+                        if (filterBy[filterBy.length - 2].name === "power" || filterBy[filterBy.length - 2].name === "weight" || filterBy[filterBy.length - 2].name === "engine") {
+                            const between = (val, min, max) => {
+                                return val >= min && val <= max;
+                            }
+                            
+                            matchSomeArr.forEach(v => {
+                                let val = v.specs[filterBy[filterBy.length - 2].name];
+                                let min = filterBy[filterBy.length - 2].value[0][0];
+                                let max = filterBy[filterBy.length - 2].value[0][1];
+    
+                                if (between(val, min, max)) {
+                                    sortedVehicles.push(v);
+                                }
+                            })
+                        } 
+                        else {
+                            if (vehicle[filterBy.length - 2] === (filterBy.length - 1)) {
+                                if (!sortedVehicles.includes(vehicle[0])) {
+                                    sortedVehicles.push(vehicle[0]);
+                                }
+                            }
+                        }
+                    });
+                });
+            });
+
+            const newArr = [];
+
+            sortedVehicles.forEach(vehicle => {
+                const entryArr = createEntries(vehicle);
+
+                if (!filteredVehicles.includes(vehicle)) {
+                    const unfilteredEntryArr = createEntries(vehicle);
+
+                    if (unfilteredEntryArr !== undefined) {
+                        unfilteredEntryArr.map(entry => {
+                            let name = entry.name;
+                            let value = entry.value;
+                            const found = newArr.find(filter => filter.name === name);
+        
+                            if (found) {
+                                const index = newArr.findIndex(filter => filter.name === name);
+        
+                                if (name === "aspiration") {
+                                    value.forEach(val => {
+                                        if (!newArr[index].value.includes(val)) {
+                                            newArr[index].value.push(val);
+                                        }
+                                    });
+                                } else {
+                                    if (!newArr[index].value.includes(value)) {
+                                        newArr[index].value.push(value);
+                                    }
+                                }
+                            } else {
+                                if (Array.isArray(value)) {
+                                    newArr.push({"name": name, "value": [value[0]]});
+                                } else {
+
+                                    newArr.push({"name": name, "value": [value]});
+                                }
+    
                             }
                         });
                     }
-                    updateFilter(e, filterBy);
-                } else if (e.target.type === "checkbox" || e.target.type !== "checkbox") {
-                    selectedFilters.forEach(filter => {
-                        if (filter.name === name) {
-                            filterBy.forEach(filterByItem => {
-                                if (e.target.type !== "checkbox") {
-                                    if (filterByItem.value[0][0] === min && filterByItem.value[0][1] === max) {
-                                        filterBy.splice(filterBy.indexOf(filterByItem), 1);
+                } else {
+                    entryArr.map(entry => {
+                        let name = entry.name;
+                        let value = entry.value;
+                        const found = newArr.find(filter => filter.name === name);
+    
+                        if (found) {
+                            const index = newArr.findIndex(filter => filter.name === name);
+    
+                            if (name === "aspiration") {
+                                value.forEach(val => {
+                                    if (!newArr[index].value.includes(val)) {
+                                        newArr[index].value.push(val);
                                     }
+                                });
+                            } else {
+                                if (!newArr[index].value.includes(value)) {
+                                    newArr[index].value.push(value);
                                 }
-                            });
-
-                            activeFilters.forEach(activeFilter => {
-                                if (e.target.type !== "checkbox") {
-                                    if (activeFilter.value[0] === min && activeFilter.value[1] === max) {
-                                        activeFilters.splice(activeFilters.indexOf(activeFilter), 1);
-                                    }
-                                }
-                            });
-
-                        }
-
-                        if (filter.vehicles.length < 1) {
-                            selectedFilters.splice(selectedFilters.indexOf(filter), 1);
+                            }
+                        } else {
+                            if (name === "aspiration") {
+                                newArr.push({"name": name, "value": [value[0]]});
+                            } else {
+                                newArr.push({"name": name, "value": [value]});
+                            }
                         }
                     });
-    
-                    if (selectedFilters.length < 1) {
-                        filterArr = baseFiltered;
-                        const res = fVehicles(filterArr, filterBy, name);
-                        selectedFilters.push(res);
-                        filteredVehicles = res.vehicles;
+                }
+            });
+
+            newArr.forEach(newFilter => {
+                const found = availableFilters.find(filter => filter === newFilter);
+                const index = availableFilters.findIndex(filter => filter.name === newFilter.name);
+                
+                if (!found) {
+                    if (selectedFilters.length > 1) {
+                            availableFilters[index] = newFilter;
                     } else {
-                        if (selectedFilters[0].name === name) {
-                            updateFilter(e, filterBy);
-                        } else {
-                            const found = selectedFilters.find(filter => filter.name === name);
-    
-                            if (!found) {
-                                const prevFilter = selectedFilters.length - 1;
-                                filterArr = selectedFilters[prevFilter].vehicles;
-    
-                                const res = fVehicles(filterArr, filterBy, name);
-    
-                                selectedFilters.push(res);
-                                filteredVehicles = res.vehicles;
-                            } else {
-                                updateFilter(e, filterBy);
+                        if (availableFilters[index] !== newFilter) {
+                            if (availableFilters[index].name !== selectedFilters[0].name) {
+                                availableFilters[index] = newFilter;
                             }
                         }
                     }
                 }
-            }
+            });
+
+            const valuesVehicles = [];
+            sortedFilters[sortedFilters.length - 1].values.forEach(value => {
+                value.vehicles.forEach(vehicle => {
+                    if (!valuesVehicles.includes(vehicle)) {
+                        valuesVehicles.push(vehicle);
+                    }
+                });
+            });
+
+            valuesVehicles.forEach(vehicle => {
+                filterBy.forEach(filter => {
+                    let found
+                    
+                    if (vehicle.specs[filter.name]) {
+                        if (filter.name === "aspiration") {
+                            found = filter.value.find(val => vehicle.specs[filter.name].includes(val));
+                        } else if (filter.name === "power" || filter.name === "weight" || filter.name === "engine") { 
+                            found = filter.value.find(val => vehicle.specs[filter.name] >= val[0] && vehicle.specs[filter.name] <= val[1]);
+                        } else {
+                            found = filter.value.find(val => val === vehicle.specs[filter.name]);
+                        }
+                    } else if (vehicle[filter.name]) {
+                        found = filter.value.find(val => val === vehicle[filter.name]);
+                    }
+
+                    if (!found) {
+                        const foundFilter = availableFilters.find(availableFilter => availableFilter.name === filterBy[filterBy.length - 2].name);
+
+                        if (foundFilter) {
+                            const index = availableFilters.findIndex(availableFilter => availableFilter.name === filterBy[filterBy.length - 2].name);
+                            if (vehicle.specs[filterBy[filterBy.length - 2].name]) {
+                                if (filter.name === "aspiration") {
+                                    vehicle.specs.aspiration.forEach(val => {
+                                        if (!availableFilters[index].value.includes(val)) {
+                                            availableFilters[index].value.push(val);
+                                        }
+                                    });
+                                } else {
+                                    if (!availableFilters[index].value.includes(vehicle.specs[filterBy[filterBy.length - 2].name])) {
+                                        availableFilters[index].value.push(vehicle.specs[filterBy[filterBy.length - 2].name]);
+                                    }
+                                }
+                            } else if (vehicle[filterBy[filterBy.length - 2].name]) {
+                                if (!availableFilters[index].value.includes(vehicle[filterBy[filterBy.length - 2].name])) {
+                                    availableFilters[index].value.push(vehicle[filterBy[filterBy.length - 2].name]);
+                                }
+                            }
+                        }
+                    } else {
+                        const foundFilter = availableFilters.find(availableFilter => availableFilter.name === filter.name);
+
+                        if (foundFilter) {
+                            const index = availableFilters.findIndex(availableFilter => availableFilter.name === filter.name);
+
+                            if (vehicle.specs[filter.name]) {
+                                if (filter.name === "aspiration") {
+                                    vehicle.specs.aspiration.forEach(val => {
+                                        if (!availableFilters[index].value.includes(val)) {
+                                            availableFilters[index].value.push(val);
+                                        }
+                                    });
+                                } else {
+                                    if (!availableFilters[index].value.includes(vehicle.specs[filter.name])) {
+                                        availableFilters[index].value.push(vehicle.specs[filter.name]);
+                                    }
+                                }
+                            } else if (vehicle[filter.name]) {
+                                if (!availableFilters[index].value.includes(vehicle[filter.name])) {
+                                    availableFilters[index].value.push(vehicle[filter.name]);
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+        } else {
+            baseFiltered.forEach(vehicle => {
+                const entryArr = createEntries(vehicle);
+
+                entryArr.map(entry => {
+                    let name = entry.name;
+                    let value = entry.value;
+    
+                    if (availableFilters.length > 0) {
+                        const found = availableFilters.find(filter => filter.name === name);
+                        
+                        if (found) {
+                            const index = availableFilters.findIndex(filter => filter.name === name);
+                            
+                            if (name === "aspiration") {
+                                value.forEach(val => {
+                                    if (!availableFilters[index].value.includes(val)) {
+                                        availableFilters[index].value.push(val);
+                                    }
+                                });
+                            } else {
+                                if (!availableFilters[index].value.includes(value)) {
+                                    availableFilters[index].value.push(value);
+                                }
+                            }
+                        } else {
+                            if (Array.isArray(value)) {
+                                value = value.toString();
+                            }
+                            
+                            availableFilters.push({"name": name, "value": [value]});
+                        }
+                    } else {
+                        if (name === "aspiration") {
+                            availableFilters.push({"name": name, "value": value});
+    
+                        } else {
+                            availableFilters.push({"name": name, "value": [value]});
+                        }
+                    }
+                });
+            });
         }
+        
+        availableFilters.forEach(filter => {
+            if (e.target.type !== "checkbox") {
+                let name = e.target.name.split(/[A-Z]/)[0];
+                
+                if (filter.name === name) {
+                    let min;
+                    let max;
+    
+                    const dropdownInput = document.getElementById(`${name}-dropdown-content`);
+                    const values = [];
+    
+                    baseFiltered.forEach(vehicle => {
+                        if (!values.includes(vehicle.specs[name])) {
+                            values.push(vehicle.specs[name]);
+                        }
+                    });
+    
+                    dropdownInput.querySelectorAll("input").forEach(input => {
+                        let parseInput = parseInt(input.value);
+                        let mathMin = Math.min(...values);
+                        let mathMax = Math.max(...values);
+    
+                        if (input.classList.value.includes("min")) {
+                            if (parseInput < mathMin) {
+                                min = mathMin;
+                            } if (parseInput > mathMax) {
+                                min = mathMax;
+                            } else if (parseInput >= mathMin && parseInput <= mathMax) {
+                                min = parseInput;
+                            }
+                        } else if (input.classList.value.includes("max")) {
+                            if (parseInput < mathMin) {
+                                max = mathMin;
+                            } if (parseInput > mathMax) {
+                                max = mathMax;
+                            } else if (parseInput >= mathMin && parseInput <= mathMax) {
+                                max = parseInput;
+                            }
+                        }
+                    });
+
+                    filter.value = [min, max];
+                }
+            } else {
+                if (filter.name === "power" || filter.name === "weight" || filter.name === "engine") {
+                    let min = Math.min(...filter.value);
+                    let max = Math.max(...filter.value);
+                    
+                    filter.value = [min, max];
+                }
+            }
+
+        });        
+        
+        dropdownItems.forEach(item => {
+            let name = item.id.replace(/-/, " ").split(" ")[0];
+            const dropdownInput = document.getElementById(`${name}-dropdown-content`);
+
+            if (dropdownInput !== null) {
+                dropdownInput.querySelectorAll("input").forEach(input => {
+                    let inputName = input.name.split(/[A-Z]/)[0];
+
+                    if (inputName === "power") {    
+                        if (e.target.type === "checkbox") {
+                            filterRange(e, powerRangeMin, selectedPower, powerRange, powerInput, filterBy, availableFilters, input, name);
+                            filterNumber(e, powerRangeMin, selectedPower, powerRange, powerInput, filterBy, availableFilters, input, name)
+                        } else {
+                            powerRange.forEach((range) => range.addEventListener("input", () => filterRange(e, powerRangeMin, selectedPower, powerRange, powerInput, filterBy, availableFilters, input, name)));
+                            powerInput.forEach((number) => number.addEventListener("input", () => filterNumber(e, powerRangeMin, selectedPower, powerRange, powerInput, filterBy, availableFilters, input, name)));
+                        }
+                    } else if (inputName === "weight") {    
+                        if (e.target.type === "checkbox") {
+                            filterRange(e, weightRangeMin, selectedWeight, weightRange, weightInput, filterBy, availableFilters, input, name);
+                            filterNumber(e, weightRangeMin, selectedWeight, weightRange, weightInput, filterBy, availableFilters, input, name)
+                        } else {
+                            weightRange.forEach((range) => range.addEventListener("input", () => filterRange(e, weightRangeMin, selectedWeight, weightRange, weightInput, filterBy, availableFilters, input, name)));
+                            weightInput.forEach((number) => number.addEventListener("input", () => filterNumber(e, weightRangeMin, selectedWeight, weightRange, weightInput, filterBy, availableFilters, input, name)));
+                        }
+                    } else if (inputName === "engine") {                            
+                        if (e.target.type === "checkbox") {
+                            filterRange(e, engineRangeMin, selectedEngine, engineRange, engineInput, filterBy, availableFilters, input, name);
+                            filterNumber(e, engineRangeMin, selectedEngine, engineRange, engineInput, filterBy, availableFilters, input, name)
+                        } else {
+                            engineRange.forEach((range) => range.addEventListener("input", () => filterRange(e, engineRangeMin, selectedEngine, engineRange, engineInput, filterBy, availableFilters, input, name)));
+                            engineInput.forEach((number) => number.addEventListener("input", () => filterNumber(e, engineRangeMin, selectedEngine, engineRange, engineInput, filterBy, availableFilters, input, name)));
+                        }
+                    }
+                });
+            }
+            
+            if (item.type === "checkbox") {
+                availableFilters.forEach(filter => {
+                    if (filter.name === item.name) {
+                        if (item.name === "cylinders") {
+                            if (!filter.value.includes(parseInt(item.value))) {
+                                if (activeFilters[0].name !== filter.name) {
+                                    item.disabled = true;
+                                }
+                            } else {
+                                item.disabled = false;
+                            }
+                        } else {
+                            if (!filter.value.includes(item.value)) {
+                                if (activeFilters[0].name !== filter.name) {
+                                    item.disabled = true;
+                                }
+                            } else {
+                                item.disabled = false;
+                            }
+                        }
+
+                    }
+                });
+            }
+        });
     }
 
     function hideFiltered(filteredVehicles) {
@@ -985,23 +1568,116 @@ if (window.location.pathname.includes("vehicles.html")) {
         }
     }
 
+    function filterVehicles(e) {
+        let name = e.target.name;
+        name = name.replace(/[A-Z]/, " ").split(" ")[0];
+        const filterBy = [];
+        const min = parseInt(e.target.min);
+        const max = parseInt(e.target.max);
+        let filterArr;
+
+        activeFilters.forEach(filter => {
+            const found = filterBy.find(item => item.name === filter.name);
+            if (found) {
+                const index = filterBy.findIndex((item => item.name === filter.name));
+                if (!filterBy[index].value.includes(filter.value)) {
+                    filterBy[index].value.push(filter.value)
+                }
+            } else {
+                filterBy.push({"name": filter.name, "value": [filter.value]});
+            }
+
+            return filter.name;
+        });
+
+        if (filterBy.length <= 1) {
+            firstFilter(e, filterBy, name);
+            updateFilter(e, filterBy);
+        } else {
+            if (filterBy[0].name === name) {
+                firstFilter(e, filterBy, name, min, max);
+                updateFilter(e, filterBy);
+            } else {
+                if (e.target.type === "checkbox" && !e.target.checked) {
+                    if (selectedFilters.length >= 1) {
+                        selectedFilters.forEach(filter => {
+                            if (filter.name === name) {    
+                                filterArr = filter.vehicles;
+                                const res = fVehicles(filterArr, filterBy, name);
+    
+                                filter.vehicles = res.vehicles;
+    
+                                if (filter.vehicles.length < 1) {
+                                    selectedFilters.splice(selectedFilters.indexOf(filter), 1);
+    
+                                    const currFilter = selectedFilters.length - 1;
+    
+                                    filteredVehicles = selectedFilters[currFilter].vehicles;
+                                } else {
+                                    filteredVehicles = res.vehicles;
+                                }
+                            }
+                        });
+
+                        updateFilter(e, filterBy);
+                    }
+                } else if (e.target.type === "checkbox" || e.target.type !== "checkbox") {
+                    selectedFilters.forEach(filter => {
+                        if (filter.name === name) {
+                            filterBy.forEach(filterByItem => {
+                                if (e.target.type !== "checkbox") {
+                                    if (filterByItem.value[0][0] === min && filterByItem.value[0][1] === max) {
+                                        filterBy.splice(filterBy.indexOf(filterByItem), 1);
+                                    }
+                                }
+                            });
+
+                            activeFilters.forEach(activeFilter => {
+                                if (e.target.type !== "checkbox") {
+                                    if (activeFilter.value[0] === min && activeFilter.value[1] === max) {
+                                        activeFilters.splice(activeFilters.indexOf(activeFilter), 1);
+                                    }
+                                }
+                            });
+                        }
+
+                        if (filter.vehicles.length < 1) {
+                            selectedFilters.splice(selectedFilters.indexOf(filter), 1);
+                        }
+                    });
+    
+                    if (selectedFilters.length < 1) {
+                        filterArr = baseFiltered;
+                        const res = fVehicles(filterArr, filterBy, name);
+                        selectedFilters.push(res);
+                        filteredVehicles = res.vehicles;
+
+                        updateFilter(e, filterBy);
+                    } else {
+                        const found = selectedFilters.find(filter => filter.name === name);
+
+                        if (!found) {
+                            const prevFilter = selectedFilters.length - 1;
+                            filterArr = selectedFilters[prevFilter].vehicles;
+
+                            const res = fVehicles(filteredVehicles, filterBy, name);
+
+                            selectedFilters.push(res);
+                            filteredVehicles = res.vehicles;
+                        }
+
+                        updateFilter(e, filterBy);
+                    }
+                }
+            }
+        }
+    }
+
     dropdownItems.forEach(item => item.addEventListener("input", (e) => {
         selectFilters(e);
         filterVehicles(e);
         hideFiltered(filteredVehicles);
-    }));    
-
-    //* FILTER POWER *//
-    powerRange.forEach((input) => input.addEventListener("input", (e) => filterPowerRange(e, powerRangeMin, selectedPower, powerRange, powerInput)));
-    powerInput.forEach((input) => input.addEventListener("input", (e) => filterPowerInput(e, powerRangeMin, selectedPower, powerRange, powerInput)));
-    
-    //* FILTER WEIGHT *//
-    weightRange.forEach((input) => input.addEventListener("input", (e) => filterWeightRange(e, weightRangeMin, selectedWeight, weightRange, weightInput)));
-    weightInput.forEach((input) => input.addEventListener("input", (e) => filterWeightInput(e, weightRangeMin, selectedWeight, weightRange, weightInput)));
-    
-    //* FILTER ENGINE *//
-    engineRange.forEach((input) => input.addEventListener("input", (e) => filterEngineRange(e, engineRangeMin, selectedEngine, engineRange, engineInput)));
-    engineInput.forEach((input) => input.addEventListener("input", (e) => filterEngineInput(e, engineRangeMin, selectedEngine, engineRange, engineInput)));
+    }));
 }
 
 function prevTile(e, carousel, nodes) {

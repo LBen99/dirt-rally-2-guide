@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DR2 Vehicles</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/vehicles.js" defer></script>
+    <script src="js/global.js" defer></script>
+    <script src="js/menu.js" defer></script>
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <nav>
+                <a class="logo" href="index.html">DR2G</a>
+
+                <button id="menu-icon" class="closed">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <ul id="web-menu">
+                    <li>
+                        <a href="locations.html">Locations</a>
+                    </li>
+                    <li>
+                        <a href="dlc.html">DLC</a>
+                    </li>
+                    <li>
+                        <a href="about.html">About</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <aside id="mobile-menu" class="closed">
+            <ul id="mobile-links" class="closed">
+                <li>
+                    <a href="locations.html">Locations</a>
+                </li>
+                <li>
+                    <a href="dlc.html">DLC</a>
+                </li>
+                <li>
+                    <a href="about.html">About</a>
+                </li>
+            </ul>
+        </aside>
+    
+        <main>
+            <ul id="page-btns">
+                <li id="btn-search">
+                    <button id="search-icon" class="fa-solid fa-magnifying-glass"></button>
+                    <input type="search" name="search-input" id="search-input">
+                </li>
+                <li id="btn-filter">
+                    <button id="filter-icon" class="show fa-solid fa-sliders"></button>
+                    <ul id="filter-list">
+                        <li>
+                            <a name="type" id="type" class="filter">Type</a>
+                            <aside id="type-dropdown" class="dropdown hide">
+                                <ul id="type-dropdown-content" class="dropdown-content"></ul>
+                            </aside>
+                        </li>
+                        <li>
+                            <a name="discipline" id="discipline" class="filter">Discipline</a>
+                            <aside id="discipline-dropdown" class="dropdown hide">
+                                <ul id="discipline-dropdown-content" class="dropdown-content"></ul>
+                            </aside>
+                        </li>
+                        <li>
+                            <a name="manufacturer" id="manufacturer" class="filter">Manufacturer</a>
+                            <aside id="manufacturer-dropdown" class="dropdown hide">
+                                <ul id="manufacturer-dropdown-content" class="dropdown-content"></ul>
+                            </aside>
+                        </li>
+                        <li>
+                            <a name="power" id="power" class="filter">Power</a>
+                            <aside id="power-dropdown" class="dropdown hide"></aside>                            </li>
+                        <li>
+                            <a name="transmission" id="transmission" class="filter">Transmission</a>
+                            <aside id="transmission-dropdown" class="dropdown hide">
+                                <ul id="transmission-dropdown-content" class="dropdown-content"></ul>
+                            </aside>
+                        </li>
+                        <li>
+                            <a name="weight" id="weight" class="filter">Weight</a>
+                            <aside id="weight-dropdown" class="dropdown hide"></aside>
+                        </li>
+                        <li>
+                            <a name="drivetrain" id="drivetrain" class="filter">Drivetrain</a>
+                            <aside id="drivetrain-dropdown" class="dropdown hide">
+                                <ul id="drivetrain-dropdown-content" class="dropdown-content"></ul>
+                            </aside>
+                        </li>
+                        <li>
+                            <a name="engine" id="engine" class="filter">Engine</a>
+                            <aside id="engine-dropdown" class="dropdown hide"></aside>
+                        </li>
+                        <li>
+                            <a name="cylinders" id="cylinders" class="filter">Cylinders</a>
+                            <aside id="cylinders-dropdown" class="dropdown hide">
+                                <ul id="cylinders-dropdown-content" class="dropdown-content"></ul>
+                            </aside>
+                        </li>
+                        <li>
+                            <a name="aspiration" id="aspiration" class="filter">Aspiration</a>
+                            <aside id="aspiration-dropdown" class="dropdown hide">
+                                <ul id="aspiration-dropdown-content" class="dropdown-content"></ul>
+                            </aside>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <section id="vehicleContainer" class="container"></section>
+        </main>
+    
+        <footer>
+            <ul id="social-links">
+                <li>
+                    <a href="https://www.instagram.com">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="mailto:dr2g@dr2g.com">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                </li>
+            </ul>
+        </footer>
+    </div>
+</body>
+</html>
